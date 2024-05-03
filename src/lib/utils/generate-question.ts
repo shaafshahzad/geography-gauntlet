@@ -21,28 +21,38 @@ export async function generateQuestion() {
     throw new Error("Question template data is missing or incomplete.");
   }
 
-  let question;
+  let question: string;
+  let answerSearchParam: string;
   switch (templateData.question_id) {
     case 1: // capital of country
     case 8: // country of capital
       question = templateData.template
         .replace("{country}", country.name)
         .replace("{capital}", country.capital);
+      answerSearchParam =
+        templateData.question_id === 1 ? country.capital : country.name;
       break;
+
     case 2: // country with some letters
       const value = Math.floor(Math.random() * 8) + 4;
       question = templateData.template.replace("{value}", value.toString());
+      answerSearchParam = value.toString();
       break;
+
     case 3: // country starting with letter
     case 4: // country ending with letter
       const letter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
       question = templateData.template.replace("{letter}", letter);
+      answerSearchParam = letter;
       break;
+
     case 5: // country with color in flag
       const colors = ["red", "green", "blue", "yellow", "black", "white"];
-      const color = colors[Math.floor(Math.random() * colors.length)];
-      question = templateData.template.replace("{color}", color || ""); // TO FIX (color is not defined in the template)
+      const color: string = colors[Math.floor(Math.random() * colors.length)]!;
+      question = templateData.template.replace("{color}", color);
+      answerSearchParam = color;
       break;
+
     case 6: // population less than
     case 7: // population more than
       const population =
@@ -50,13 +60,17 @@ export async function generateQuestion() {
         100000;
       const formattedPopulation = population.toLocaleString();
       question = templateData.template.replace("{value}", formattedPopulation);
+      answerSearchParam = population.toString();
       break;
+
     default:
       throw new Error("Invalid question template ID.");
   }
 
   return {
     question,
+    templateId,
     template: templateData.template,
+    answerSearchParam,
   };
 }
