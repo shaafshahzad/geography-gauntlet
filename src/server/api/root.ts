@@ -1,4 +1,4 @@
-import { countryRouter } from "~/server/api/routers/country";
+import { gauntletRouter } from "~/server/api/routers/gauntlet";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 
 /**
@@ -7,7 +7,7 @@ import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-  country: countryRouter,
+  gauntlet: gauntletRouter,
 });
 
 // export type definition of API
