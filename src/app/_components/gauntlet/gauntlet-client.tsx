@@ -18,31 +18,41 @@ export function GauntletClient({ initialQuestion }: GauntletClientProps) {
   const [question, setQuestion] = useState<Question>(initialQuestion);
   const [answer, setAnswer] = useState("");
   const [timer, setTimer] = useState(10);
+  const [totalScore, setTotalScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
+  const [isCorrect, setIsCorrect] = useState<null | boolean>(null);
+  const [timerActive, setTimerActive] = useState(true);
 
   useEffect(() => {
+    if (!timerActive) return undefined;
+
     const interval = setInterval(() => {
-      setTimer((prev) => prev - 1);
+      setTimer((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          setGameOver(true);
+          return 0;
+        }
+        return prev - 1;
+      });
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    if (timer <= 0) {
-      setGameOver(true);
-      clearInterval(timer);
-    }
-  }, [timer]);
+  }, [timerActive]);
 
   const handleSubmit = async () => {
+    setTimerActive(false);
     setAnswer("");
+
     const isValid = await validateAnswer(
       question.templateId,
       answer,
       question.answerSearchParam,
     );
+
+    setIsCorrect(isValid);
     if (isValid) {
+      setTotalScore(totalScore + timer);
       try {
         const res = await fetch("/api/gauntletQuestion", {
           method: "POST",
@@ -50,11 +60,13 @@ export function GauntletClient({ initialQuestion }: GauntletClientProps) {
         const newQuestion = await res.json();
         setQuestion(newQuestion);
         setTimer(10);
+        setTimerActive(true);
       } catch (error) {
         console.error("Failed to fetch new question", error);
+        setTimerActive(true);
       }
     } else {
-      setGameOver(true);
+      setTimerActive(true);
     }
   };
 
@@ -68,6 +80,7 @@ export function GauntletClient({ initialQuestion }: GauntletClientProps) {
     return (
       <div>
         <h1>Game Over</h1>
+        <p>Total Score: {totalScore}</p>
         <button onClick={() => window.location.reload()}>Restart Game</button>
       </div>
     );
@@ -88,6 +101,11 @@ export function GauntletClient({ initialQuestion }: GauntletClientProps) {
         <button onClick={handleSubmit} disabled={!answer}>
           Submit
         </button>
+        {isCorrect === true ? (
+          <p>Correct!</p>
+        ) : isCorrect === false ? (
+          <p>Incorrect!</p>
+        ) : null}
       </div>
     </div>
   );

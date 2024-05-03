@@ -23,10 +23,11 @@ export async function validateAnswer(
       );
 
     case 3: // country starting with letter
-      const countriesByLetter = await api.gauntlet.getCountriesByStartLetter({
-        letter: answerSearchParam,
-      });
-      return countriesByLetter.some(
+      const countriesByStartLetter =
+        await api.gauntlet.getCountriesByStartLetter({
+          letter: answerSearchParam,
+        });
+      return countriesByStartLetter.some(
         (country: { name: string }) =>
           country.name.toLowerCase() === answer.toLowerCase(),
       );
@@ -41,9 +42,8 @@ export async function validateAnswer(
       );
 
     case 5: // country with color in flag, expecting country name as answer
-      const inputColor = "blue"; // The color in question, perhaps set from the question context
       const countriesWithColor = await api.gauntlet.getCountriesByColor({
-        color: inputColor,
+        color: answerSearchParam,
       });
       return countriesWithColor.some(
         (country) => country.name.toLowerCase() === answer.toLowerCase(),

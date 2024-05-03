@@ -41,9 +41,22 @@ export async function generateQuestion() {
 
     case 3: // country starting with letter
     case 4: // country ending with letter
-      const letter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
-      question = templateData.template.replace("{letter}", letter);
-      answerSearchParam = letter;
+      if (templateData.question_id === 3) {
+        let letter: string;
+        do {
+          letter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+        } while (letter === "W" || letter === "X");
+        question = templateData.template.replace("{letter}", letter);
+        answerSearchParam = letter;
+      } else {
+        const excludedLetters = ["B", "F", "J", "P", "V", "W", "X", "Z"];
+        let letter: string;
+        do {
+          letter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+        } while (excludedLetters.includes(letter));
+        question = templateData.template.replace("{letter}", letter);
+        answerSearchParam = letter;
+      }
       break;
 
     case 5: // country with color in flag

@@ -67,7 +67,7 @@ export const gauntletRouter = createTRPCRouter({
     .query(async ({ ctx, input }) => {
       const allCountries = await ctx.db.query.countries.findMany();
       return allCountries.filter((country) =>
-        country.name.endsWith(input.letter),
+        country.name.toLowerCase().endsWith(input.letter.toLowerCase()),
       );
     }),
 
