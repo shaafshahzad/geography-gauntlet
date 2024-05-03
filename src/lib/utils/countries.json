@@ -1,0 +1,984 @@
+{
+    "Afghanistan": {
+      "capital": "Kabul",
+      "population": 40463000,
+      "flagColors": ["black", "red", "green"]
+    },
+    "Albania": {
+      "capital": "Tirana",
+      "population": 2842321,
+      "flagColors": ["red", "black"]
+    },
+    "Algeria": {
+      "capital": "Algiers",
+      "population": 44903225,
+      "flagColors": ["green", "white", "red"]
+    },
+    "Andorra": {
+      "capital": "Andorra la Vella",
+      "population": 79824,
+      "flagColors": ["blue", "yellow", "red"]
+    },
+    "Angola": {
+      "capital": "Luanda",
+      "population": 35588987,
+      "flagColors": ["red", "black", "yellow"]
+    },
+    "Antigua and Barbuda": {
+      "capital": "Saint John's",
+      "population": 93763,
+      "flagColors": ["red", "white", "blue", "black", "yellow"]
+    },
+    "Argentina": {
+      "capital": "Buenos Aires",
+      "population": 45376763,
+      "flagColors": ["light blue", "white", "yellow"]
+    },
+    "Armenia": {
+      "capital": "Yerevan",
+      "population": 2968128,
+      "flagColors": ["red", "blue", "orange"]
+    },
+    "Australia": {
+      "capital": "Canberra",
+      "population": 26177416,
+      "flagColors": ["blue", "red", "white"]
+    },
+    "Austria": {
+      "capital": "Vienna",
+      "population": 9043072,
+      "flagColors": ["red", "white"]
+    },
+    "Azerbaijan": {
+      "capital": "Baku",
+      "population": 10300791,
+      "flagColors": ["blue", "red", "green"]
+    },
+    "Bahamas": {
+      "capital": "Nassau",
+      "population": 400516,
+      "flagColors": ["black", "yellow", "blue"]
+    },
+    "Bahrain": {
+      "capital": "Manama",
+      "population": 1472233,
+      "flagColors": ["red", "white"]
+    },
+    "Bangladesh": {
+      "capital": "Dhaka",
+      "population": 171186372,
+      "flagColors": ["green", "red"]
+    },
+    "Barbados": {
+      "capital": "Bridgetown",
+      "population": 281635,
+      "flagColors": ["blue", "yellow", "black"]
+    },
+    "Belarus": {
+      "capital": "Minsk",
+      "population": 9398861,
+      "flagColors": ["red", "green", "white"]
+    },
+    "Belgium": {
+      "capital": "Brussels",
+      "population": 11655930,
+      "flagColors": ["black", "yellow", "red"]
+    },
+    "Belize": {
+      "capital": "Belmopan",
+      "population": 404915,
+      "flagColors": ["red", "blue", "white"]
+    },
+    "Benin": {
+      "capital": "Porto-Novo",
+      "population": 13089631,
+      "flagColors": ["green", "yellow", "red"]
+    },
+    "Bhutan": {
+      "capital": "Thimphu",
+      "population": 787941,
+      "flagColors": ["orange", "yellow", "white"]
+    },
+    "Bolivia": {
+      "capital": "Sucre",
+      "population": 12015826,
+      "flagColors": ["red", "yellow", "green"]
+    },
+    "Bosnia and Herzegovina": {
+      "capital": "Sarajevo",
+      "population": 3226736,
+      "flagColors": ["blue", "yellow", "white"]
+    },
+    "Botswana": {
+      "capital": "Gaborone",
+      "population": 2440066,
+      "flagColors": ["blue", "black", "white"]
+    },
+    "Brazil": {
+      "capital": "Brasilia",
+      "population": 215353593,
+      "flagColors": ["green", "yellow", "blue", "white"]
+    },
+    "Brunei": {
+      "capital": "Bandar Seri Begawan",
+      "population": 449002,
+      "flagColors": ["yellow", "white", "black", "red"]
+    },
+    "Bulgaria": {
+      "capital": "Sofia",
+      "population": 6855030,
+      "flagColors": ["white", "green", "red"]
+    },
+    "Burkina Faso": {
+      "capital": "Ouagadougou",
+      "population": 22164397,
+      "flagColors": ["red", "green", "yellow"]
+    },
+    "Burundi": {
+      "capital": "Gitega",
+      "population": 12639955,
+      "flagColors": ["red", "white", "green"]
+    },
+    "Cabo Verde": {
+      "capital": "Praia",
+      "population": 567678,
+      "flagColors": ["blue", "red", "white", "yellow"]
+    },
+    "Cambodia": {
+      "capital": "Phnom Penh",
+      "population": 17168695,
+      "flagColors": ["blue", "red", "white"]
+    },
+    "Cameroon": {
+      "capital": "Yaounde",
+      "population": 27911734,
+      "flagColors": ["green", "red", "yellow"]
+    },
+    "Canada": {
+      "capital": "Ottawa",
+      "population": 38491752,
+      "flagColors": ["red", "white"]
+    },
+    "Central African Republic": {
+      "capital": "Bangui",
+      "population": 5016678,
+      "flagColors": ["blue", "white", "green", "yellow", "red"]
+    },
+    "Chad": {
+      "capital": "N'Djamena",
+      "population": 17570543,
+      "flagColors": ["blue", "yellow", "red"]
+    },
+    "Chile": {
+      "capital": "Santiago",
+      "population": 19212362,
+      "flagColors": ["red", "white", "blue"]
+    },
+    "China": {
+      "capital": "Beijing",
+      "population": 1402112000,
+      "flagColors": ["red", "yellow"]
+    },
+    "Colombia": {
+      "capital": "Bogota",
+      "population": 51520798,
+      "flagColors": ["yellow", "blue", "red"]
+    },
+    "Comoros": {
+      "capital": "Moroni",
+      "population": 907419,
+      "flagColors": ["green", "white", "red", "yellow", "blue"]
+    },
+    "Congo (Congo-Brazzaville)": {
+      "capital": "Brazzaville",
+      "population": 5792308,
+      "flagColors": ["green", "yellow", "red"]
+    },
+    "Congo (Congo-Kinshasa)": {
+      "capital": "Kinshasa",
+      "population": 95240994,
+      "flagColors": ["blue", "red", "yellow"]
+    },
+    "Costa Rica": {
+      "capital": "San Jose",
+      "population": 5182458,
+      "flagColors": ["blue", "white", "red"]
+    },
+    "Croatia": {
+      "capital": "Zagreb",
+      "population": 4038574,
+      "flagColors": ["red", "white", "blue"]
+    },
+    "Cuba": {
+      "capital": "Havana",
+      "population": 11305322,
+      "flagColors": ["blue", "white", "red"]
+    },
+    "Cyprus": {
+      "capital": "Nicosia",
+      "population": 1221500,
+      "flagColors": ["white", "orange"]
+    },
+    "Czech Republic": {
+      "capital": "Prague",
+      "population": 10680000,
+      "flagColors": ["white", "red", "blue"]
+    },
+    "Denmark": {
+      "capital": "Copenhagen",
+      "population": 5835000,
+      "flagColors": ["red", "white"]
+    },
+    "Djibouti": {
+      "capital": "Djibouti",
+      "population": 1078373,
+      "flagColors": ["blue", "green", "white", "red"]
+    },
+    "Dominica": {
+      "capital": "Roseau",
+      "population": 74308,
+      "flagColors": ["green", "yellow", "black", "white", "red"]
+    },
+    "Dominican Republic": {
+      "capital": "Santo Domingo",
+      "population": 11056300,
+      "flagColors": ["blue", "red", "white"]
+    },
+    "Ecuador": {
+      "capital": "Quito",
+      "population": 18136578,
+      "flagColors": ["yellow", "blue", "red"]
+    },
+    "Egypt": {
+      "capital": "Cairo",
+      "population": 106156692,
+      "flagColors": ["red", "white", "black"]
+    },
+    "El Salvador": {
+      "capital": "San Salvador",
+      "population": 6550975,
+      "flagColors": ["blue", "white"]
+    },
+    "Equatorial Guinea": {
+      "capital": "Malabo",
+      "population": 1625000,
+      "flagColors": ["green", "white", "red", "blue"]
+    },
+    "Eritrea": {
+      "capital": "Asmara",
+      "population": 3662153,
+      "flagColors": ["green", "blue", "red", "yellow"]
+    },
+    "Estonia": {
+      "capital": "Tallinn",
+      "population": 1325648,
+      "flagColors": ["blue", "black", "white"]
+    },
+    "Eswatini (Swaziland)": {
+      "capital": "Mbabane",
+      "population": 1188169,
+      "flagColors": ["blue", "yellow", "red"]
+    },
+    "Ethiopia": {
+      "capital": "Addis Ababa",
+      "population": 123379924,
+      "flagColors": ["green", "yellow", "red"]
+    },
+    "Fiji": {
+      "capital": "Suva",
+      "population": 909466,
+      "flagColors": ["blue", "white", "red"]
+    },
+    "Finland": {
+      "capital": "Helsinki",
+      "population": 5561000,
+      "flagColors": ["white", "blue"]
+    },
+    "France": {
+      "capital": "Paris",
+      "population": 67426000,
+      "flagColors": ["blue", "white", "red"]
+    },
+    "Gabon": {
+      "capital": "Libreville",
+      "population": 2339136,
+      "flagColors": ["green", "yellow", "blue"]
+    },
+    "Gambia": {
+      "capital": "Banjul",
+      "population": 2528000,
+      "flagColors": ["red", "blue", "green", "white"]
+    },
+    "Georgia": {
+      "capital": "Tbilisi",
+      "population": 3729200,
+      "flagColors": ["white", "red"]
+    },
+    "Germany": {
+      "capital": "Berlin",
+      "population": 83155031,
+      "flagColors": ["black", "red", "yellow"]
+    },
+    "Ghana": {
+      "capital": "Accra",
+      "population": 32376000,
+      "flagColors": ["red", "yellow", "green", "black"]
+    },
+    "Greece": {
+      "capital": "Athens",
+      "population": 10718565,
+      "flagColors": ["blue", "white"]
+    },
+    "Grenada": {
+      "capital": "St. George's",
+      "population": 113000,
+      "flagColors": ["red", "yellow", "green"]
+    },
+    "Guatemala": {
+      "capital": "Guatemala City",
+      "population": 18584034,
+      "flagColors": ["blue", "white"]
+    },
+    "Guinea": {
+      "capital": "Conakry",
+      "population": 13829143,
+      "flagColors": ["red", "yellow", "green"]
+    },
+    "Guinea-Bissau": {
+      "capital": "Bissau",
+      "population": 2044862,
+      "flagColors": ["red", "yellow", "green", "black"]
+    },
+    "Guyana": {
+      "capital": "Georgetown",
+      "population": 808726,
+      "flagColors": ["green", "yellow", "red", "black", "white"]
+    },
+    "Haiti": {
+      "capital": "Port-au-Prince",
+      "population": 11743017,
+      "flagColors": ["blue", "red"]
+    },
+    "Honduras": {
+      "capital": "Tegucigalpa",
+      "population": 10223422,
+      "flagColors": ["blue", "white"]
+    },
+    "Hungary": {
+      "capital": "Budapest",
+      "population": 9660351,
+      "flagColors": ["red", "white", "green"]
+    },
+    "Iceland": {
+      "capital": "Reykjavik",
+      "population": 366700,
+      "flagColors": ["blue", "white", "red"]
+    },
+    "India": {
+      "capital": "New Delhi",
+      "population": 1380004385,
+      "flagColors": ["saffron", "white", "green", "blue"]
+    },
+    "Indonesia": {
+      "capital": "Jakarta",
+      "population": 277547000,
+      "flagColors": ["red", "white"]
+    },
+    "Iran": {
+      "capital": "Tehran",
+      "population": 85599892,
+      "flagColors": ["green", "white", "red"]
+    },
+    "Iraq": {
+      "capital": "Baghdad",
+      "population": 43257000,
+      "flagColors": ["red", "white", "black", "green"]
+    },
+    "Ireland": {
+      "capital": "Dublin",
+      "population": 4977400,
+      "flagColors": ["green", "white", "orange"]
+    },
+    "Israel": {
+      "capital": "Jerusalem",
+      "population": 9481000,
+      "flagColors": ["blue", "white"]
+    },
+    "Italy": {
+      "capital": "Rome",
+      "population": 59037482,
+      "flagColors": ["green", "white", "red"]
+    },
+    "Jamaica": {
+      "capital": "Kingston",
+      "population": 2985010,
+      "flagColors": ["green", "black", "yellow"]
+    },
+    "Japan": {
+      "capital": "Tokyo",
+      "population": 125584838,
+      "flagColors": ["white", "red"]
+    },
+    "Jordan": {
+      "capital": "Amman",
+      "population": 10271587,
+      "flagColors": ["black", "white", "green", "red"]
+    },
+    "Kazakhstan": {
+      "capital": "Nur-Sultan",
+      "population": 19050000,
+      "flagColors": ["blue", "yellow"]
+    },
+    "Kenya": {
+      "capital": "Nairobi",
+      "population": 54985695,
+      "flagColors": ["black", "red", "green", "white"]
+    },
+    "Kiribati": {
+      "capital": "South Tarawa",
+      "population": 125000,
+      "flagColors": ["red", "blue", "white", "yellow"]
+    },
+    "Kosovo": {
+      "capital": "Pristina",
+      "population": 1838595,
+      "flagColors": ["blue", "yellow", "white"]
+    },
+    "Kuwait": {
+      "capital": "Kuwait City",
+      "population": 4328511,
+      "flagColors": ["green", "white", "red", "black"]
+    },
+    "Kyrgyzstan": {
+      "capital": "Bishkek",
+      "population": 6721931,
+      "flagColors": ["red", "yellow"]
+    },
+    "Laos": {
+      "capital": "Vientiane",
+      "population": 7509939,
+      "flagColors": ["red", "blue", "white"]
+    },
+    "Latvia": {
+      "capital": "Riga",
+      "population": 1840973,
+      "flagColors": ["red", "white"]
+    },
+    "Lebanon": {
+      "capital": "Beirut",
+      "population": 6692322,
+      "flagColors": ["red", "white", "green"]
+    },
+    "Lesotho": {
+      "capital": "Maseru",
+      "population": 2292682,
+      "flagColors": ["blue", "white", "green", "black"]
+    },
+    "Liberia": {
+      "capital": "Monrovia",
+      "population": 5307250,
+      "flagColors": ["red", "white"]
+    },
+    "Libya": {
+      "capital": "Tripoli",
+      "population": 7038969,
+      "flagColors": ["red", "black", "green"]
+    },
+    "Liechtenstein": {
+      "capital": "Vaduz",
+      "population": 39192,
+      "flagColors": ["blue", "red"]
+    },
+    "Lithuania": {
+      "capital": "Vilnius",
+      "population": 2794329,
+      "flagColors": ["yellow", "green", "red"]
+    },
+    "Luxembourg": {
+      "capital": "Luxembourg",
+      "population": 634814,
+      "flagColors": ["red", "white", "light blue"]
+    },
+    "Madagascar": {
+      "capital": "Antananarivo",
+      "population": 29173453,
+      "flagColors": ["red", "green", "white"]
+    },
+    "Malawi": {
+      "capital": "Lilongwe",
+      "population": 20258624,
+      "flagColors": ["black", "red", "green"]
+    },
+    "Malaysia": {
+      "capital": "Kuala Lumpur",
+      "population": 32776195,
+      "flagColors": ["red", "white", "blue", "yellow"]
+    },
+    "Maldives": {
+      "capital": "Male",
+      "population": 540985,
+      "flagColors": ["red", "green", "white"]
+    },
+    "Mali": {
+      "capital": "Bamako",
+      "population": 21483693,
+      "flagColors": ["green", "yellow", "red"]
+    },
+    "Malta": {
+      "capital": "Valletta",
+      "population": 516100,
+      "flagColors": ["red", "white"]
+    },
+    "Marshall Islands": {
+      "capital": "Majuro",
+      "population": 59886,
+      "flagColors": ["blue", "orange", "white"]
+    },
+    "Mauritania": {
+      "capital": "Nouakchott",
+      "population": 4812813,
+      "flagColors": ["green", "yellow", "red"]
+    },
+    "Mauritius": {
+      "capital": "Port Louis",
+      "population": 1271484,
+      "flagColors": ["red", "blue", "yellow", "green"]
+    },
+    "Mexico": {
+      "capital": "Mexico City",
+      "population": 128933843,
+      "flagColors": ["green", "white", "red"]
+    },
+    "Micronesia": {
+      "capital": "Palikir",
+      "population": 102436,
+      "flagColors": ["blue", "white"]
+    },
+    "Moldova": {
+      "capital": "Chisinau",
+      "population": 2533800,
+      "flagColors": ["blue", "yellow", "red"]
+    },
+    "Monaco": {
+      "capital": "Monaco",
+      "population": 38987,
+      "flagColors": ["red", "white"]
+    },
+    "Mongolia": {
+      "capital": "Ulaanbaatar",
+      "population": 3371303,
+      "flagColors": ["red", "blue"]
+    },
+    "Montenegro": {
+      "capital": "Podgorica",
+      "population": 620739,
+      "flagColors": ["red", "gold"]
+    },
+    "Morocco": {
+      "capital": "Rabat",
+      "population": 37290000,
+      "flagColors": ["red", "green"]
+    },
+    "Mozambique": {
+      "capital": "Maputo",
+      "population": 33057962,
+      "flagColors": ["green", "black", "yellow", "white", "red"]
+    },
+    "Myanmar (Burma)": {
+      "capital": "Naypyidaw",
+      "population": 55404519,
+      "flagColors": ["yellow", "green", "red", "white"]
+    },
+    "Namibia": {
+      "capital": "Windhoek",
+      "population": 2601480,
+      "flagColors": ["blue", "red", "green", "yellow", "white"]
+    },
+    "Nauru": {
+      "capital": "Yaren",
+      "population": 10873,
+      "flagColors": ["blue", "yellow", "white"]
+    },
+    "Nepal": {
+      "capital": "Kathmandu",
+      "population": 29996478,
+      "flagColors": ["crimson", "blue"]
+    },
+    "Netherlands": {
+      "capital": "Amsterdam",
+      "population": 17490000,
+      "flagColors": ["red", "white", "blue"]
+    },
+    "New Zealand": {
+      "capital": "Wellington",
+      "population": 5145463,
+      "flagColors": ["blue", "red", "white"]
+    },
+    "Nicaragua": {
+      "capital": "Managua",
+      "population": 6758418,
+      "flagColors": ["blue", "white"]
+    },
+    "Niger": {
+      "capital": "Niamey",
+      "population": 26205086,
+      "flagColors": ["orange", "white", "green"]
+    },
+    "Nigeria": {
+      "capital": "Abuja",
+      "population": 216746934,
+      "flagColors": ["green", "white"]
+    },
+    "North Korea": {
+      "capital": "Pyongyang",
+      "population": 25890918,
+      "flagColors": ["blue", "red", "white"]
+    },
+    "North Macedonia": {
+      "capital": "Skopje",
+      "population": 2077132,
+      "flagColors": ["red", "yellow"]
+    },
+    "Norway": {
+      "capital": "Oslo",
+      "population": 5465631,
+      "flagColors": ["red", "blue", "white"]
+    },
+    "Oman": {
+      "capital": "Muscat",
+      "population": 5248000,
+      "flagColors": ["red", "white", "green"]
+    },
+    "Pakistan": {
+      "capital": "Islamabad",
+      "population": 233500636,
+      "flagColors": ["green", "white"]
+    },
+    "Palau": {
+      "capital": "Ngerulmud",
+      "population": 18092,
+      "flagColors": ["light blue", "yellow"]
+    },
+    "Palestine": {
+      "capital": "Jerusalem (East)",
+      "population": 5279500,
+      "flagColors": ["red", "white", "green", "black"]
+    },
+    "Panama": {
+      "capital": "Panama City",
+      "population": 4444972,
+      "flagColors": ["red", "blue", "white"]
+    },
+    "Papua New Guinea": {
+      "capital": "Port Moresby",
+      "population": 9612635,
+      "flagColors": ["red", "black", "yellow"]
+    },
+    "Paraguay": {
+      "capital": "Asuncion",
+      "population": 7306674,
+      "flagColors": ["red", "white", "blue"]
+    },
+    "Peru": {
+      "capital": "Lima",
+      "population": 33640843,
+      "flagColors": ["red", "white"]
+    },
+    "Philippines": {
+      "capital": "Manila",
+      "population": 112155071,
+      "flagColors": ["blue", "red", "white", "yellow"]
+    },
+    "Poland": {
+      "capital": "Warsaw",
+      "population": 38006000,
+      "flagColors": ["white", "red"]
+    },
+    "Portugal": {
+      "capital": "Lisbon",
+      "population": 10295909,
+      "flagColors": ["green", "red"]
+    },
+    "Qatar": {
+      "capital": "Doha",
+      "population": 2930524,
+      "flagColors": ["maroon", "white"]
+    },
+    "Romania": {
+      "capital": "Bucharest",
+      "population": 19001768,
+      "flagColors": ["blue", "yellow", "red"]
+    },
+    "Russia": {
+      "capital": "Moscow",
+      "population": 144104080,
+      "flagColors": ["white", "blue", "red"]
+    },
+    "Rwanda": {
+      "capital": "Kigali",
+      "population": 13596000,
+      "flagColors": ["blue", "yellow", "green"]
+    },
+    "Saint Kitts and Nevis": {
+      "capital": "Basseterre",
+      "population": 54045,
+      "flagColors": ["green", "yellow", "red", "black", "white"]
+    },
+    "Saint Lucia": {
+      "capital": "Castries",
+      "population": 185113,
+      "flagColors": ["blue", "yellow", "black", "white"]
+    },
+    "Saint Vincent and the Grenadines": {
+      "capital": "Kingstown",
+      "population": 111211,
+      "flagColors": ["blue", "yellow", "green"]
+    },
+    "Samoa": {
+      "capital": "Apia",
+      "population": 200874,
+      "flagColors": ["red", "blue", "white"]
+    },
+    "San Marino": {
+      "capital": "San Marino",
+      "population": 33938,
+      "flagColors": ["white", "blue"]
+    },
+    "Sao Tome and Principe": {
+      "capital": "Sao Tome",
+      "population": 227679,
+      "flagColors": ["green", "yellow", "red", "black"]
+    },
+    "Saudi Arabia": {
+      "capital": "Riyadh",
+      "population": 35811543,
+      "flagColors": ["green", "white"]
+    },
+    "Senegal": {
+      "capital": "Dakar",
+      "population": 17521956,
+      "flagColors": ["green", "yellow", "red"]
+    },
+    "Serbia": {
+      "capital": "Belgrade",
+      "population": 6926705,
+      "flagColors": ["red", "blue", "white"]
+    },
+    "Seychelles": {
+      "capital": "Victoria",
+      "population": 99592,
+      "flagColors": ["blue", "yellow", "red", "green", "white"]
+    },
+    "Sierra Leone": {
+      "capital": "Freetown",
+      "population": 8413456,
+      "flagColors": ["green", "white", "blue"]
+    },
+    "Singapore": {
+      "capital": "Singapore",
+      "population": 5685800,
+      "flagColors": ["red", "white"]
+    },
+    "Slovakia": {
+      "capital": "Bratislava",
+      "population": 5457873,
+      "flagColors": ["white", "blue", "red"]
+    },
+    "Slovenia": {
+      "capital": "Ljubljana",
+      "population": 2111897,
+      "flagColors": ["white", "blue", "red"]
+    },
+    "Solomon Islands": {
+      "capital": "Honiara",
+      "population": 721159,
+      "flagColors": ["blue", "green", "yellow"]
+    },
+    "Somalia": {
+  
+      "capital": "Mogadishu",
+      "population": 16709100,
+      "flagColors": ["light blue", "white"]
+    },
+    "South Africa": {
+      "capital": "Pretoria",
+      "population": 60041996,
+      "flagColors": ["black", "green", "yellow", "white", "blue", "red"]
+    },
+    "South Korea": {
+      "capital": "Seoul",
+      "population": 51780579,
+      "flagColors": ["white", "blue", "red", "black"]
+    },
+    "South Sudan": {
+      "capital": "Juba",
+      "population": 11496000,
+      "flagColors": ["blue", "white", "red", "green", "black", "yellow"]
+    },
+    "Spain": {
+      "capital": "Madrid",
+      "population": 47351567,
+      "flagColors": ["red", "yellow"]
+    },
+    "Sri Lanka": {
+      "capital": "Sri Jayawardenepura Kotte",
+      "population": 22250000,
+      "flagColors": ["maroon", "orange", "green", "yellow"]
+    },
+    "Sudan": {
+      "capital": "Khartoum",
+      "population": 45908679,
+      "flagColors": ["red", "white", "black", "green"]
+    },
+    "Suriname": {
+      "capital": "Paramaribo",
+      "population": 611919,
+      "flagColors": ["green", "white", "red", "yellow"]
+    },
+    "Sweden": {
+      "capital": "Stockholm",
+      "population": 10327589,
+      "flagColors": ["blue", "yellow"]
+    },
+    "Switzerland": {
+      "capital": "Bern",
+      "population": 8707121,
+      "flagColors": ["red", "white"]
+    },
+    "Syria": {
+      "capital": "Damascus",
+      "population": 18275704,
+      "flagColors": ["red", "white", "black", "green"]
+    },
+    "Taiwan": {
+      "capital": "Taipei",
+      "population": 23580000,
+      "flagColors": ["red", "blue", "white"]
+    },
+    "Tajikistan": {
+      "capital": "Dushanbe",
+      "population": 9959800,
+      "flagColors": ["red", "white", "green"]
+    },
+    "Tanzania": {
+      "capital": "Dodoma",
+      "population": 63229898,
+      "flagColors": ["green", "yellow", "black", "blue"]
+    },
+    "Thailand": {
+      "capital": "Bangkok",
+      "population": 69950862,
+      "flagColors": ["red", "white", "blue"]
+    },
+    "Timor-Leste": {
+      "capital": "Dili",
+      "population": 1375952,
+      "flagColors": ["red", "yellow", "black", "white"]
+    },
+    "Togo": {
+      "capital": "Lome",
+      "population": 8684018,
+      "flagColors": ["green", "yellow", "red", "white"]
+    },
+    "Tonga": {
+      "capital": "Nuku'alofa",
+      "population": 100209,
+      "flagColors": ["red", "white"]
+    },
+    "Trinidad and Tobago": {
+      "capital": "Port of Spain",
+      "population": 1403495,
+      "flagColors": ["red", "black", "white"]
+    },
+    "Tunisia": {
+      "capital": "Tunis",
+      "population": 12046889,
+      "flagColors": ["red", "white"]
+    },
+    "Turkey": {
+      "capital": "Ankara",
+      "population": 86925387,
+      "flagColors": ["red", "white"]
+    },
+    "Turkmenistan": {
+      "capital": "Ashgabat",
+      "population": 6202950,
+      "flagColors": ["green", "white", "red"]
+    },
+    "Tuvalu": {
+      "capital": "Funafuti",
+      "population": 12011,
+      "flagColors": ["light blue", "yellow", "white"]
+    },
+    "Uganda": {
+      "capital": "Kampala",
+      "population": 47123511,
+      "flagColors": ["black", "yellow", "red"]
+    },
+    "Ukraine": {
+      "capital": "Kyiv",
+      "population": 41158860,
+      "flagColors": ["blue", "yellow"]
+    },
+    "United Arab Emirates": {
+      "capital": "Abu Dhabi",
+      "population": 9890400,
+      "flagColors": ["red", "green", "white", "black"]
+    },
+    "United Kingdom": {
+      "capital": "London",
+      "population": 68207114,
+      "flagColors": ["red", "white", "blue"]
+    },
+    "United States": {
+      "capital": "Washington, D.C.",
+      "population": 331893745,
+      "flagColors": ["red", "white", "blue"]
+    },
+    "Uruguay": {
+      "capital": "Montevideo",
+      "population": 3485152,
+      "flagColors": ["blue", "white", "yellow"]
+    },
+    "Uzbekistan": {
+      "capital": "Tashkent",
+      "population": 34501586,
+      "flagColors": ["blue", "white", "green", "red"]
+    },
+    "Vanuatu": {
+      "capital": "Port Vila",
+      "population": 321695,
+      "flagColors": ["red", "green", "black", "yellow"]
+    },
+    "Vatican City (Holy See)": {
+      "capital": "Vatican City",
+      "population": 825,
+      "flagColors": ["yellow", "white"]
+    },
+    "Venezuela": {
+      "capital": "Caracas",
+      "population": 28435943,
+      "flagColors": ["yellow", "blue", "red"]
+    },
+    "Vietnam": {
+      "capital": "Hanoi",
+      "population": 98168829,
+      "flagColors": ["red", "yellow"]
+    },
+    "Yemen": {
+      "capital": "Sanaa",
+      "population": 30491000,
+      "flagColors": ["red", "white", "black"]
+    },
+    "Zambia": {
+      "capital": "Lusaka",
+      "population": 19406670,
+      "flagColors": ["green", "red", "black", "orange"]
+    },
+    "Zimbabwe": {
+      "capital": "Harare",
+      "population": 15092171,
+      "flagColors": ["green", "gold", "red", "black", "white"]
+    }
+  }
+  

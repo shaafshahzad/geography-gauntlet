@@ -1,4 +1,5 @@
 import { gauntletRouter } from "~/server/api/routers/gauntlet";
+import { countryRouter } from "~/server/api/routers/country";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 
 /**
@@ -8,6 +9,7 @@ import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
  */
 export const appRouter = createTRPCRouter({
   gauntlet: gauntletRouter,
+  country: countryRouter,
 });
 
 // export type definition of API
