@@ -4,6 +4,10 @@ import { Inter } from "next/font/google";
 
 import { TRPCReactProvider } from "~/trpc/react";
 
+import { ClerkProvider } from "@clerk/nextjs";
+
+import { Navbar } from "./_components/navbar";
+
 export const dynamic = "force-dynamic";
 
 const inter = Inter({
@@ -23,10 +27,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`font-sans ${inter.variable}`}>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <body className={`font-sans ${inter.variable}`}>
+          <TRPCReactProvider>
+            <main className="bg-background flex min-h-screen flex-col items-center justify-center gap-2">
+              <div className="min-h-screen w-full max-w-6xl border border-black px-20 py-5">
+                <Navbar />
+
+                {children}
+              </div>
+            </main>
+          </TRPCReactProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
