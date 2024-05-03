@@ -1,7 +1,7 @@
-import { GameRooms } from "./_components/game-rooms";
-import { Gauntlet } from "./_components/gauntlet";
-import { Quizzes } from "./_components/quizzes";
-import { UserStats } from "./_components/user-stats";
+import { GameRooms } from "./_components/main/game-rooms";
+import { Gauntlet } from "./_components/main/gauntlet";
+import { Quizzes } from "./_components/main/quizzes";
+import { UserStats } from "./_components/main/user-stats";
 
 export default async function Home() {
   return (
