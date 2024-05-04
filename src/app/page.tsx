@@ -7,31 +7,27 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { api } from "~/trpc/server";
 
 export default async function Home() {
+  let userStats = null;
   const { userId } = auth();
 
-  if (!userId) {
-    console.log("No userId found");
-    return null;
-  }
+  if (userId) {
+    const user = await currentUser();
+    if (!user) {
+      console.log("User not authenticated or not found");
+    } else {
+      const userExists = await api.user.getUser({ user_id: user.id });
+      if (!userExists) {
+        await api.user.createUser({
+          user_id: user.id,
+          fullname: user.firstName + " " + user.lastName,
+        });
+      }
 
-  const user = await currentUser();
-  if (!user) {
-    console.log("User not authenticated or not found");
-    return null;
-  }
-
-  const userExists = await api.user.getUser({ user_id: user.id });
-  if (!userExists) {
-    await api.user.createUser({
-      user_id: user.id,
-      fullname: user.firstName + " " + user.lastName,
-    });
-  }
-
-  const userStats = await api.user.getStats({ user_id: userId });
-  if (!userStats) {
-    console.log("User stats not found");
-    return null;
+      userStats = await api.user.getStats({ user_id: userId });
+      if (!userStats) {
+        console.log("User stats not found");
+      }
+    }
   }
 
   return (

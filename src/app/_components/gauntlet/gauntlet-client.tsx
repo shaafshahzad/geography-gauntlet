@@ -78,7 +78,7 @@ export function GauntletClient({
     }
   };
 
-  const resetGame = async () => {
+  const startGame = async () => {
     await fetchQuestion();
     setAnswer("");
     setTotalScore(0);
@@ -87,12 +87,6 @@ export function GauntletClient({
     setTimer(10);
     setTimerActive(true);
     setIsStarted(true);
-  };
-
-  const startGame = () => {
-    setIsStarted(true);
-    setTimerActive(true);
-    resetGame();
   };
 
   const handleSubmit = async () => {
@@ -125,7 +119,7 @@ export function GauntletClient({
       <div>
         <h1>Game Over</h1>
         <p>Total Score: {totalScore}</p>
-        <button onClick={resetGame}>Restart Game</button>
+        <button onClick={startGame}>Restart Game</button>
       </div>
     );
   }
