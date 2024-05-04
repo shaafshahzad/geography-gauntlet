@@ -12,9 +12,13 @@ interface Question {
 
 interface GauntletClientProps {
   initialQuestion: Question;
+  userId: string;
 }
 
-export function GauntletClient({ initialQuestion }: GauntletClientProps) {
+export function GauntletClient({
+  initialQuestion,
+  userId,
+}: GauntletClientProps) {
   const [question, setQuestion] = useState<Question>(initialQuestion);
   const [answer, setAnswer] = useState("");
   const [timer, setTimer] = useState(10);
@@ -32,6 +36,24 @@ export function GauntletClient({ initialQuestion }: GauntletClientProps) {
         if (prev <= 1) {
           clearInterval(interval);
           setGameOver(true);
+          try {
+            fetch("/api/updateStats", {
+              method: "POST",
+              body: JSON.stringify({
+                user_id: userId,
+                target: "gauntlet_score",
+                value: totalScore.toString(),
+              }),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            })
+              .then((response) => response.json())
+              .then((data) => console.log("Update response:", data))
+              .catch((error) => console.error("Failed to update stats", error));
+          } catch (error) {
+            console.error("Failed to update stats", error);
+          }
           return 0;
         }
         return prev - 1;

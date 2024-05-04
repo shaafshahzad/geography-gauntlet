@@ -2,7 +2,6 @@
 
 import { api } from "~/trpc/server";
 
-// Assuming you have functions to validate each type of question
 export async function validateAnswer(
   questionId: number,
   answer: string,

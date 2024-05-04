@@ -34,7 +34,6 @@ export default function RootLayout({
             <main className="bg-background flex min-h-screen flex-col items-center justify-center gap-2">
               <div className="min-h-screen w-full max-w-6xl border border-black px-20 py-5">
                 <Navbar />
-
                 {children}
               </div>
             </main>

@@ -18,6 +18,36 @@ import {
  */
 export const createTable = pgTableCreator((name) => `country-games_${name}`);
 
+export const users = createTable(
+  "user",
+  {
+    id: serial("id").primaryKey(),
+    user_id: varchar("user_id", { length: 256 }).notNull(),
+    fullname: varchar("fullname", { length: 256 }).notNull(),
+    created_at: timestamp("created_at")
+      .notNull()
+      .default(sql`now()`),
+  },
+  (example) => ({
+    fullname: index("fullname_idx").on(example.fullname),
+  }),
+);
+
+export const users_stats = createTable(
+  "user_stat",
+  {
+    user_stat_id: serial("id").primaryKey(),
+    user_id: varchar("user_id", { length: 256 }).notNull(),
+    room_wins: varchar("room_wins", { length: 256 }).notNull(),
+    gauntlet_score: varchar("gauntlet_score", { length: 256 }).notNull(),
+    country_quiz_time: varchar("country_quiz_time", { length: 256 }).notNull(),
+    flag_quiz_time: varchar("flag_quiz_time", { length: 256 }).notNull(),
+  },
+  (example) => ({
+    user_id: index("user_id_idx").on(example.user_id),
+  }),
+);
+
 export const countries = createTable(
   "country",
   {
