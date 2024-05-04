@@ -10,6 +10,11 @@ interface Question {
   templateId: number;
 }
 
+interface QuestionResponse {
+  ok: boolean;
+  question?: Question;
+}
+
 interface GauntletClientProps {
   initialQuestion: Question;
   userId: string;
@@ -68,8 +73,12 @@ export function GauntletClient({
       const res = await fetch("/api/gauntletQuestion", {
         method: "POST",
       });
-      const newQuestion = await res.json();
-      setQuestion(newQuestion);
+      const newQuestion: QuestionResponse = await res.json();
+      if (!newQuestion.ok || !newQuestion.question) {
+        console.error("Failed to fetch new question");
+        return;
+      }
+      setQuestion(newQuestion.question);
       setTimer(10);
       setTimerActive(true);
     } catch (error) {
@@ -79,38 +88,46 @@ export function GauntletClient({
   };
 
   const resetGame = async () => {
-    await fetchQuestion();
-    setAnswer("");
-    setTotalScore(0);
-    setGameOver(false);
-    setIsCorrect(null);
-    setTimer(10);
-    setTimerActive(true);
-    setIsStarted(true);
+    try {
+      await fetchQuestion();
+      setAnswer("");
+      setTotalScore(0);
+      setGameOver(false);
+      setIsCorrect(null);
+      setTimer(10);
+      setTimerActive(true);
+      setIsStarted(true);
+    } catch (error) {
+      console.error("Failed to reset game", error);
+    }
   };
 
   const startGame = () => {
     setIsStarted(true);
     setTimerActive(true);
-    resetGame();
+    void resetGame();
   };
 
   const handleSubmit = async () => {
-    setTimerActive(false);
-    setAnswer("");
+    try {
+      setTimerActive(false);
+      setAnswer("");
 
-    const isValid = await validateAnswer(
-      question.templateId,
-      answer,
-      question.answerSearchParam,
-    );
+      const isValid = await validateAnswer(
+        question.templateId,
+        answer,
+        question.answerSearchParam,
+      );
 
-    setIsCorrect(isValid);
-    if (isValid) {
-      setTotalScore(totalScore + timer);
-      fetchQuestion();
-    } else {
-      setTimerActive(true);
+      setIsCorrect(isValid);
+      if (isValid) {
+        setTotalScore(totalScore + timer);
+        await fetchQuestion();
+      } else {
+        setTimerActive(true);
+      }
+    } catch (error) {
+      console.error("Error in submitting answer", error);
     }
   };
 
