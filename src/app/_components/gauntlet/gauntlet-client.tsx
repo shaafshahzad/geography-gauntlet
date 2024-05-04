@@ -70,14 +70,15 @@ export function GauntletClient({
 
   const fetchQuestion = async () => {
     try {
-      const res = await fetch("/api/gauntletQuestion", {
-        method: "POST",
-      });
-      const newQuestion: QuestionResponse = await res.json();
+      const res = await fetch("/api/gauntletQuestion", { method: "POST" });
+      const json = await res.json();
+      const newQuestion = json as Partial<QuestionResponse>;
+
       if (!newQuestion.ok || !newQuestion.question) {
         console.error("Failed to fetch new question");
         return;
       }
+
       setQuestion(newQuestion.question);
       setTimer(10);
       setTimerActive(true);
@@ -131,9 +132,11 @@ export function GauntletClient({
     }
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = async (
+    event: React.KeyboardEvent<HTMLInputElement>,
+  ) => {
     if (event.key === "Enter") {
-      handleSubmit();
+      await handleSubmit();
     }
   };
 
