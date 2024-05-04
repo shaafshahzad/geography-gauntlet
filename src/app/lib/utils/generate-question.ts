@@ -7,7 +7,7 @@ export async function generateQuestion() {
     country_id: countryId,
   });
   const country = countryResponse.length > 0 ? countryResponse[0] : null;
-  if (!country || !country.name) {
+  if (!country?.name) {
     throw new Error("Country data is missing or incomplete.");
   }
 
@@ -17,7 +17,7 @@ export async function generateQuestion() {
     question_id: templateId,
   });
   const templateData = templateResponse.length > 0 ? templateResponse[0] : null;
-  if (!templateData || !templateData.template) {
+  if (!templateData?.template) {
     throw new Error("Question template data is missing or incomplete.");
   }
 

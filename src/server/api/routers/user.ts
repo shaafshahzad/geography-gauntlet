@@ -76,9 +76,12 @@ export const userRouter = createTRPCRouter({
       );
 
       if (newValue > currentValue) {
-        await ctx.db.update(users_stats).set({
-          [target]: value,
-        });
+        await ctx.db
+          .update(users_stats)
+          .set({
+            [target]: value,
+          })
+          .where(eq(users_stats.user_id, user_id));
       }
     }),
 });
