@@ -10,11 +10,6 @@ interface Question {
   templateId: number;
 }
 
-interface QuestionResponse {
-  ok: boolean;
-  question?: Question;
-}
-
 interface GauntletClientProps {
   initialQuestion: Question;
   userId: string;
@@ -70,15 +65,11 @@ export function GauntletClient({
 
   const fetchQuestion = async () => {
     try {
-      const res = await fetch("/api/gauntletQuestion", { method: "POST" });
-      const json = (await res.json()) as QuestionResponse;
-
-      if (!json.ok || !json.question) {
-        console.error("Failed to fetch new question");
-        return;
-      }
-
-      setQuestion(json.question);
+      const res = await fetch("/api/gauntletQuestion", {
+        method: "POST",
+      });
+      const newQuestion = await res.json();
+      setQuestion(newQuestion);
       setTimer(10);
       setTimerActive(true);
     } catch (error) {
@@ -88,54 +79,44 @@ export function GauntletClient({
   };
 
   const resetGame = async () => {
-    try {
-      await fetchQuestion();
-      setAnswer("");
-      setTotalScore(0);
-      setGameOver(false);
-      setIsCorrect(null);
-      setTimer(10);
-      setTimerActive(true);
-      setIsStarted(true);
-    } catch (error) {
-      console.error("Failed to reset game", error);
-    }
+    await fetchQuestion();
+    setAnswer("");
+    setTotalScore(0);
+    setGameOver(false);
+    setIsCorrect(null);
+    setTimer(10);
+    setTimerActive(true);
+    setIsStarted(true);
   };
 
   const startGame = () => {
     setIsStarted(true);
     setTimerActive(true);
-    void resetGame();
+    resetGame();
   };
 
   const handleSubmit = async () => {
-    try {
-      setTimerActive(false);
-      setAnswer("");
+    setTimerActive(false);
+    setAnswer("");
 
-      const isValid = await validateAnswer(
-        question.templateId,
-        answer,
-        question.answerSearchParam,
-      );
+    const isValid = await validateAnswer(
+      question.templateId,
+      answer,
+      question.answerSearchParam,
+    );
 
-      setIsCorrect(isValid);
-      if (isValid) {
-        setTotalScore(totalScore + timer);
-        await fetchQuestion();
-      } else {
-        setTimerActive(true);
-      }
-    } catch (error) {
-      console.error("Error in submitting answer", error);
+    setIsCorrect(isValid);
+    if (isValid) {
+      setTotalScore(totalScore + timer);
+      fetchQuestion();
+    } else {
+      setTimerActive(true);
     }
   };
 
-  const handleKeyDown = async (
-    event: React.KeyboardEvent<HTMLInputElement>,
-  ) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      await handleSubmit();
+      handleSubmit();
     }
   };
 
