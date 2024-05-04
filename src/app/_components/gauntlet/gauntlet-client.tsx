@@ -12,7 +12,7 @@ interface Question {
 
 interface GauntletClientProps {
   initialQuestion: Question;
-  userId: string;
+  userId?: string;
 }
 
 export function GauntletClient({
@@ -36,23 +36,27 @@ export function GauntletClient({
         if (prev <= 1) {
           clearInterval(interval);
           setGameOver(true);
-          try {
-            fetch("/api/updateStats", {
-              method: "POST",
-              body: JSON.stringify({
-                user_id: userId,
-                target: "gauntlet_score",
-                value: totalScore.toString(),
-              }),
-              headers: {
-                "Content-Type": "application/json",
-              },
-            })
-              .then((response) => response.json())
-              .then((data) => console.log("Update response:", data))
-              .catch((error) => console.error("Failed to update stats", error));
-          } catch (error) {
-            console.error("Failed to update stats", error);
+          if (userId) {
+            try {
+              fetch("/api/updateStats", {
+                method: "POST",
+                body: JSON.stringify({
+                  user_id: userId,
+                  target: "gauntlet_score",
+                  value: totalScore.toString(),
+                }),
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              })
+                .then((response) => response.json())
+                .then((data) => console.log("Update response:", data))
+                .catch((error) =>
+                  console.error("Failed to update stats", error),
+                );
+            } catch (error) {
+              console.error("Failed to update stats", error);
+            }
           }
           return 0;
         }
