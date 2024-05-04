@@ -71,15 +71,14 @@ export function GauntletClient({
   const fetchQuestion = async () => {
     try {
       const res = await fetch("/api/gauntletQuestion", { method: "POST" });
-      const json = await res.json();
-      const newQuestion = json as Partial<QuestionResponse>;
+      const json: Partial<QuestionResponse> = await res.json();
 
-      if (!newQuestion.ok || !newQuestion.question) {
+      if (!json.ok || !json.question) {
         console.error("Failed to fetch new question");
         return;
       }
 
-      setQuestion(newQuestion.question);
+      setQuestion(json.question);
       setTimer(10);
       setTimerActive(true);
     } catch (error) {
