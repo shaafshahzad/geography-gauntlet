@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { updateStats } from "~/lib/utils/update-stats";
 import { validateAnswer } from "~/lib/utils/validate-answer";
 
 interface Question {
@@ -36,28 +37,7 @@ export function GauntletClient({
         if (prev <= 1) {
           clearInterval(interval);
           setGameOver(true);
-          if (userId) {
-            try {
-              fetch("/api/updateStats", {
-                method: "POST",
-                body: JSON.stringify({
-                  user_id: userId,
-                  target: "gauntlet_score",
-                  value: totalScore.toString(),
-                }),
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              })
-                .then((response) => response.json())
-                .then((data) => console.log("Update response:", data))
-                .catch((error) =>
-                  console.error("Failed to update stats", error),
-                );
-            } catch (error) {
-              console.error("Failed to update stats", error);
-            }
-          }
+          updateStats(userId, "gauntlet_time", totalScore.toString());
           return 0;
         }
         return prev - 1;

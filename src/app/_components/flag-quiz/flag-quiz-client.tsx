@@ -11,6 +11,7 @@ import {
 } from "~/components/ui/carousel";
 import { Input } from "~/components/ui/input";
 import { formatTime } from "~/lib/utils/format-time";
+import { updateStats } from "~/lib/utils/update-stats";
 
 interface Flag {
   country_id: string;
@@ -44,7 +45,12 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
             const endTime = Date.now();
             setElapsedTime((endTime - startTime) / 1000);
             setGameOver(true);
-            updateStats();
+            updateStats(
+              userId,
+              "flag_quiz_time",
+              Math.floor(elapsedTime).toString(),
+            );
+            updateStats(userId, "flag_quiz_score", totalScore.toString());
             return 0;
           }
           return prev - 1;
@@ -59,7 +65,8 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
 
   useEffect(() => {
     if (gameOver && elapsedTime > 0) {
-      updateStats();
+      updateStats(userId, "flag_quiz_time", Math.floor(elapsedTime).toString());
+      updateStats(userId, "flag_quiz_score", totalScore.toString());
     }
   }, [gameOver, elapsedTime]);
 
@@ -70,48 +77,6 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
       setCountryFlags(flags);
     } catch (error) {
       console.error("Failed to start quiz", error);
-    }
-  };
-
-  const updateStats = async () => {
-    if (userId) {
-      try {
-        fetch("/api/updateStats", {
-          method: "POST",
-          body: JSON.stringify({
-            user_id: userId,
-            target: "flag_quiz_time",
-            value: Math.floor(elapsedTime).toString(),
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then((response) => response.json())
-          .then((data) => console.log("Update response:", data))
-          .catch((error) => console.error("Failed to update stats", error));
-      } catch (error) {
-        console.error("Failed to update stats", error);
-      }
-
-      try {
-        fetch("/api/updateStats", {
-          method: "POST",
-          body: JSON.stringify({
-            user_id: userId,
-            target: "flag_quiz_score",
-            value: totalScore.toString(),
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then((response) => response.json())
-          .then((data) => console.log("Update response:", data))
-          .catch((error) => console.error("Failed to update stats", error));
-      } catch (error) {
-        console.error("Failed to update stats", error);
-      }
     }
   };
 
