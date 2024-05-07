@@ -28,7 +28,7 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
   const [answer, setAnswer] = useState("");
   const [isCorrect, setIsCorrect] = useState<null | boolean>(null);
   const [totalScore, setTotalScore] = useState(0);
-  const [timer, setTimer] = useState(1080);
+  const [timer, setTimer] = useState(10);
   const [startTime, setStartTime] = useState(0);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [gameOver, setGameOver] = useState(false);
@@ -41,13 +41,12 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
         setTimer((prev) => {
           if (prev <= 1) {
             clearInterval(interval);
-            setGameOver(true);
             const endTime = Date.now();
             setElapsedTime((endTime - startTime) / 1000);
+            setGameOver(true);
             updateStats();
             return 0;
           }
-
           return prev - 1;
         });
       }, 1000);
@@ -77,7 +76,6 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
   const updateStats = async () => {
     if (userId) {
       try {
-        console.log("time elapsed", Math.floor(elapsedTime).toString());
         fetch("/api/updateStats", {
           method: "POST",
           body: JSON.stringify({
@@ -122,7 +120,7 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
     setIsCorrect(null);
     setTotalScore(0);
     setGameOver(false);
-    setTimer(1080);
+    setTimer(10);
     setElapsedTime(0);
     setIsStarted(true);
     setStartTime(Date.now());
@@ -132,8 +130,9 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
     if (answer && countryFlags[0]) {
       const currentFlag = countryFlags[0];
       if (
-        // currentFlag.name.toLowerCase().replace(/[^a-zA-Z]/g, "")
-        "a" === answer.toLowerCase().replace(/[^a-zA-Z]/g, "") // CHANGE AFTER TESTING
+        //currentFlag.name.toLowerCase().replace(/[^a-zA-Z]/g, "")
+        "a" === // REMOVE AFTER
+        answer.toLowerCase().replace(/[^a-zA-Z]/g, "")
       ) {
         setIsCorrect(true);
         setTotalScore((prev) => prev + 1);
