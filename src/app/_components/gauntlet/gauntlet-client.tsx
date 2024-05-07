@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { updateStats } from "~/lib/utils/update-stats";
+import React, { useState } from "react";
 import { validateAnswer } from "~/lib/utils/validate-answer";
+import { useGauntletTimer } from "~/lib/hooks/use-gauntlet-timer";
+import { fetchQuestion } from "~/lib/utils/fetch-question";
 
 interface Question {
   question: string;
@@ -20,75 +21,59 @@ export function GauntletClient({
   initialQuestion,
   userId,
 }: GauntletClientProps) {
-  const [question, setQuestion] = useState<Question>(initialQuestion);
-  const [answer, setAnswer] = useState("");
-  const [timer, setTimer] = useState(10);
-  const [totalScore, setTotalScore] = useState(0);
-  const [gameOver, setGameOver] = useState(false);
-  const [isCorrect, setIsCorrect] = useState<null | boolean>(null);
-  const [timerActive, setTimerActive] = useState(true);
-  const [isStarted, setIsStarted] = useState(false);
+  const [state, setState] = useState({
+    question: initialQuestion,
+    answer: "",
+    timer: 10,
+    totalScore: 0,
+    gameOver: false,
+    isCorrect: null as null | boolean,
+    timerActive: true,
+    isStarted: false,
+  });
 
-  useEffect(() => {
-    if (!timerActive || !isStarted) return undefined;
-
-    const interval = setInterval(() => {
-      setTimer((prev) => {
-        if (prev <= 1) {
-          clearInterval(interval);
-          setGameOver(true);
-          updateStats(userId, "gauntlet_time", totalScore.toString());
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [timerActive, isStarted, gameOver]);
-
-  const fetchQuestion = async () => {
-    try {
-      const res = await fetch("/api/gauntletQuestion", {
-        method: "GET",
-      });
-      const newQuestion = await res.json();
-      setQuestion(newQuestion);
-      setTimer(10);
-      setTimerActive(true);
-    } catch (error) {
-      console.error("Failed to fetch new question", error);
-      setTimerActive(true);
-    }
-  };
+  useGauntletTimer(
+    state.timerActive,
+    state.isStarted,
+    state.gameOver,
+    (value) => setState((s) => ({ ...s, gameOver: value })),
+    (func) => setState((s) => ({ ...s, timer: func(s.timer) })),
+    userId,
+    state.totalScore,
+  );
 
   const startGame = async () => {
-    await fetchQuestion();
-    setAnswer("");
-    setTotalScore(0);
-    setGameOver(false);
-    setIsCorrect(null);
-    setTimer(10);
-    setTimerActive(true);
-    setIsStarted(true);
+    await fetchQuestion(setState);
+    setState({
+      ...state,
+      answer: "",
+      totalScore: 0,
+      gameOver: false,
+      isCorrect: null,
+      timer: 10,
+      timerActive: true,
+      isStarted: true,
+    });
   };
 
   const handleSubmit = async () => {
-    setTimerActive(false);
-    setAnswer("");
+    setState((s) => ({ ...s, timerActive: false, answer: "" }));
 
     const isValid = await validateAnswer(
-      question.templateId,
-      answer,
-      question.answerSearchParam,
+      state.question.templateId,
+      state.answer,
+      state.question.answerSearchParam,
     );
 
-    setIsCorrect(isValid);
+    setState((s) => ({
+      ...s,
+      isCorrect: isValid,
+      totalScore: isValid ? s.totalScore + s.timer : s.totalScore,
+      timerActive: !isValid,
+    }));
+
     if (isValid) {
-      setTotalScore(totalScore + timer);
-      fetchQuestion();
-    } else {
-      setTimerActive(true);
+      fetchQuestion(setState);
     }
   };
 
@@ -97,6 +82,16 @@ export function GauntletClient({
       handleSubmit();
     }
   };
+
+  const {
+    gameOver,
+    isStarted,
+    timer,
+    totalScore,
+    answer,
+    question,
+    isCorrect,
+  } = state;
 
   if (gameOver) {
     return (
@@ -109,11 +104,7 @@ export function GauntletClient({
   }
 
   if (!isStarted) {
-    return (
-      <div>
-        <button onClick={startGame}>Click to Start</button>
-      </div>
-    );
+    return <button onClick={startGame}>Click to Start</button>;
   }
 
   return (
@@ -121,23 +112,21 @@ export function GauntletClient({
       <h1>Timer: {timer}</h1>
       <h1>Total Score: {totalScore}</h1>
       <p>Question: {question.question}</p>
-      <div>
-        <input
-          type="text"
-          value={answer}
-          onChange={(e) => setAnswer(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder="Type your answer here"
-        />
-        <button onClick={handleSubmit} disabled={!answer}>
-          Submit
-        </button>
-        {isCorrect === true ? (
-          <p>Correct!</p>
-        ) : isCorrect === false ? (
-          <p>Incorrect!</p>
-        ) : null}
-      </div>
+      <input
+        type="text"
+        value={answer}
+        onChange={(e) => setState({ ...state, answer: e.target.value })}
+        onKeyDown={handleKeyDown}
+        placeholder="Type your answer here"
+      />
+      <button onClick={handleSubmit} disabled={!answer}>
+        Submit
+      </button>
+      {isCorrect === true ? (
+        <p>Correct!</p>
+      ) : isCorrect === false ? (
+        <p>Incorrect!</p>
+      ) : null}
     </div>
   );
 }
