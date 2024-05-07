@@ -29,7 +29,7 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
   const [answer, setAnswer] = useState("");
   const [isCorrect, setIsCorrect] = useState<null | boolean>(null);
   const [totalScore, setTotalScore] = useState(0);
-  const [timer, setTimer] = useState(10);
+  const [timer, setTimer] = useState(1080);
   const [startTime, setStartTime] = useState(0);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [gameOver, setGameOver] = useState(false);
@@ -85,7 +85,7 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
     setIsCorrect(null);
     setTotalScore(0);
     setGameOver(false);
-    setTimer(10);
+    setTimer(1080);
     setElapsedTime(0);
     setIsStarted(true);
     setStartTime(Date.now());
@@ -95,8 +95,7 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
     if (answer && countryFlags[0]) {
       const currentFlag = countryFlags[0];
       if (
-        //currentFlag.name.toLowerCase().replace(/[^a-zA-Z]/g, "")
-        "a" === // REMOVE AFTER
+        currentFlag.name.toLowerCase().replace(/[^a-zA-Z]/g, "") ===
         answer.toLowerCase().replace(/[^a-zA-Z]/g, "")
       ) {
         setIsCorrect(true);
@@ -113,7 +112,6 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
       } else {
         setIsCorrect(false);
         setAnswer("");
-        console.log("Correct answer is:", currentFlag?.name); // REMOVE AFTER TESTING
       }
     }
   };
