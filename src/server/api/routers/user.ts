@@ -77,7 +77,19 @@ export const userRouter = createTRPCRouter({
         currentStats[target as keyof typeof currentStats].toString(),
       );
 
-      if (newValue > currentValue) {
+      let shouldUpdate = false;
+
+      if (target.includes("_time")) {
+        if (currentValue == 0 || newValue < currentValue) {
+          shouldUpdate = true;
+        }
+      } else {
+        if (newValue > currentValue) {
+          shouldUpdate = true;
+        }
+      }
+
+      if (shouldUpdate) {
         await ctx.db
           .update(users_stats)
           .set({

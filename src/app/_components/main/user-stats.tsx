@@ -1,5 +1,6 @@
 import { Card, CardContent, CardTitle } from "~/components/ui/card";
 import { api } from "~/trpc/server";
+import { formatTime } from "~/lib/utils/format-time";
 
 interface UserStatsProps {
   userStats?: {
@@ -26,12 +27,6 @@ export function UserStats({ userStats }: UserStatsProps) {
     );
   }
 
-  function formatTime(time: string) {
-    const minutes = Math.floor(Number(time) / 60);
-    const seconds = Number(time) % 60;
-    return `${minutes}:${seconds}`;
-  }
-
   return (
     <Card>
       <CardTitle>User Stats</CardTitle>
@@ -39,7 +34,10 @@ export function UserStats({ userStats }: UserStatsProps) {
         <p>Here are your stats:</p>
         <p>Room Wins: {userStats.room_wins}</p>
         <p>Highest Gauntlet Score: {userStats.gauntlet_score}</p>
-        <p>Fastest Country Quiz Time: {userStats.country_quiz_time}</p>
+        <p>
+          Country Quiz Performance: {userStats.country_quiz_score}/196 in{" "}
+          {formatTime(userStats.country_quiz_time)}
+        </p>
         <p>
           Flaq Quiz Performance: {userStats.flag_quiz_score}/196 in{" "}
           {formatTime(userStats.flag_quiz_time)}
