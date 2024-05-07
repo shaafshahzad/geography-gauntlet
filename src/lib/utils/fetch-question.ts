@@ -17,8 +17,8 @@ interface GauntletState {
 }
 
 export async function fetchQuestion(
-  setState: React.Dispatch<React.SetStateAction<any>>,
-  apiUrl: string = "/api/gauntletQuestion",
+  setState: React.Dispatch<React.SetStateAction<GauntletState>>,
+  apiUrl = "/api/gauntletQuestion",
 ) {
   try {
     const res = await fetch(apiUrl, { method: "GET" });
