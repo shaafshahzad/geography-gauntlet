@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { validateAnswer } from "~/app/lib/utils/validate-answer";
+import { validateAnswer } from "~/lib/utils/validate-answer";
 
 interface Question {
   question: string;
@@ -70,7 +70,7 @@ export function GauntletClient({
   const fetchQuestion = async () => {
     try {
       const res = await fetch("/api/gauntletQuestion", {
-        method: "POST",
+        method: "GET",
       });
       const newQuestion = await res.json();
       setQuestion(newQuestion);
@@ -139,6 +139,7 @@ export function GauntletClient({
   return (
     <div>
       <h1>Timer: {timer}</h1>
+      <h1>Total Score: {totalScore}</h1>
       <p>Question: {question.question}</p>
       <div>
         <input

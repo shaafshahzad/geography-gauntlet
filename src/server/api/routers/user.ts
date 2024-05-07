@@ -34,7 +34,9 @@ export const userRouter = createTRPCRouter({
           room_wins: "0",
           gauntlet_score: "0",
           country_quiz_time: "0",
+          country_quiz_score: "0",
           flag_quiz_time: "0",
+          flag_quiz_score: "0",
         });
       });
     }),

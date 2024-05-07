@@ -1,5 +1,6 @@
 import { gauntletRouter } from "~/server/api/routers/gauntlet";
 import { userRouter } from "~/server/api/routers/user";
+import { flagQuizRouter } from "~/server/api/routers/flag-quiz";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 
 /**
@@ -10,6 +11,7 @@ import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 export const appRouter = createTRPCRouter({
   gauntlet: gauntletRouter,
   user: userRouter,
+  flagQuiz: flagQuizRouter,
 });
 
 // export type definition of API

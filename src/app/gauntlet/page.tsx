@@ -1,4 +1,4 @@
-import { generateQuestion } from "~/app/lib/utils/generate-question";
+import { generateQuestion } from "~/lib/utils/generate-question";
 import { GauntletClient } from "../_components/gauntlet/gauntlet-client";
 import { currentUser } from "@clerk/nextjs/server";
 

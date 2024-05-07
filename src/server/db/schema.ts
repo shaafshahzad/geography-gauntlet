@@ -41,7 +41,13 @@ export const users_stats = createTable(
     room_wins: varchar("room_wins", { length: 256 }).notNull(),
     gauntlet_score: varchar("gauntlet_score", { length: 256 }).notNull(),
     country_quiz_time: varchar("country_quiz_time", { length: 256 }).notNull(),
+    country_quiz_score: varchar("country_quiz_score", {
+      length: 256,
+    }).notNull(),
     flag_quiz_time: varchar("flag_quiz_time", { length: 256 }).notNull(),
+    flag_quiz_score: varchar("flag_quiz_score", {
+      length: 256,
+    }).notNull(),
   },
   (example) => ({
     user_id: index("user_id_idx").on(example.user_id),
@@ -56,6 +62,7 @@ export const countries = createTable(
     capital: varchar("capital", { length: 256 }).notNull(),
     population: varchar("population", { length: 256 }).notNull(),
     flag_color: varchar("flag_color", { length: 256 }).notNull(),
+    flag_url: varchar("flag_url", { length: 256 }).notNull().default("url"),
   },
   (example) => ({
     nameIndex: index("name_idx").on(example.name),
@@ -66,10 +73,4 @@ export const gauntlet_questions = createTable("gauntlet_question", {
   question_id: serial("id").primaryKey(),
   template: varchar("template", { length: 256 }).notNull(),
   difficulty: varchar("difficulty", { length: 256 }).notNull(),
-});
-
-export const gauntlet_answers = createTable("gauntlet_answer", {
-  answer_id: serial("id").primaryKey(),
-  question_id: serial("question_id"),
-  answer: varchar("answer", { length: 256 }),
 });
