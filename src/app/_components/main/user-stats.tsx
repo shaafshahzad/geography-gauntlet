@@ -9,6 +9,8 @@ interface UserStatsProps {
     gauntlet_score: string;
     country_quiz_time: string;
     flag_quiz_time: string;
+    country_quiz_score: string;
+    flag_quiz_score: string;
   } | null;
 }
 
@@ -24,6 +26,12 @@ export function UserStats({ userStats }: UserStatsProps) {
     );
   }
 
+  function formatTime(time: string) {
+    const minutes = Math.floor(Number(time) / 60);
+    const seconds = Number(time) % 60;
+    return `${minutes}:${seconds}`;
+  }
+
   return (
     <Card>
       <CardTitle>User Stats</CardTitle>
@@ -32,7 +40,10 @@ export function UserStats({ userStats }: UserStatsProps) {
         <p>Room Wins: {userStats.room_wins}</p>
         <p>Highest Gauntlet Score: {userStats.gauntlet_score}</p>
         <p>Fastest Country Quiz Time: {userStats.country_quiz_time}</p>
-        <p>Fastest Flag Quiz Time: {userStats.flag_quiz_time}</p>
+        <p>
+          Flaq Quiz Performance: {userStats.flag_quiz_score}/196 in{" "}
+          {formatTime(userStats.flag_quiz_time)}
+        </p>
       </CardContent>
     </Card>
   );
