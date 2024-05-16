@@ -12,6 +12,7 @@ import {
 import { Input } from "~/components/ui/input";
 import { formatTime } from "~/lib/utils/format-time";
 import { updateStats } from "~/lib/utils/update-stats";
+import { type CarouselApi } from "~/components/ui/carousel";
 
 interface Flag {
   country_id: string;
@@ -24,7 +25,9 @@ interface FlagQuizClientProps {
 }
 
 export function FlagQuizClient({ userId }: FlagQuizClientProps) {
+  const [api, setApi] = useState<CarouselApi>();
   const [countryFlags, setCountryFlags] = useState<Flag[]>([]);
+  const [currentFlagIndex, setCurrentFlagIndex] = useState(0);
   const [isStarted, setIsStarted] = useState(false);
   const [answer, setAnswer] = useState("");
   const [isCorrect, setIsCorrect] = useState<null | boolean>(null);
@@ -70,6 +73,17 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
     }
   }, [gameOver, elapsedTime]);
 
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+    setCurrentFlagIndex(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrentFlagIndex(api.selectedScrollSnap() + 1);
+    });
+  }, [api, isStarted]);
+
   const fetchFlags = async () => {
     try {
       const res = await fetch("/api/countryFlags", { method: "GET" });
@@ -92,15 +106,17 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
   };
 
   const handleSubmit = async () => {
-    if (answer && countryFlags[0]) {
-      const currentFlag = countryFlags[0];
+    if (answer && countryFlags) {
+      const currentFlag = countryFlags[currentFlagIndex - 1];
+      console.log(currentFlag);
       if (
-        currentFlag.name.toLowerCase().replace(/[^a-zA-Z]/g, "") ===
+        currentFlag?.name.toLowerCase().replace(/[^a-zA-Z]/g, "") ===
         answer.toLowerCase().replace(/[^a-zA-Z]/g, "")
       ) {
         setIsCorrect(true);
         setTotalScore((prev) => prev + 1);
-        const newFlags = countryFlags.slice(1);
+        const newFlags = [...countryFlags];
+        newFlags.splice(currentFlagIndex - 1, 1);
         setCountryFlags(newFlags);
         setAnswer("");
 
@@ -150,7 +166,7 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
         Time Left: {Math.floor(timer / 60)}:
         {(timer % 60).toString().padStart(2, "0")}
       </p>
-      <Carousel>
+      <Carousel setApi={setApi}>
         <CarouselPrevious>Previous</CarouselPrevious>
         <CarouselContent>
           {countryFlags.map((country) => (
