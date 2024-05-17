@@ -1,17 +1,13 @@
+// TODO: refactor and simplify
+
 "use client";
 
-import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "~/components/ui/carousel";
-import { Input } from "~/components/ui/input";
+import { fetchFlags } from "~/lib/utils/fetch-flags";
 import { formatTime } from "~/lib/utils/format-time";
 import { updateStats } from "~/lib/utils/update-stats";
+import { FlagCarousel } from "./flag-carousel";
+import { QuizControls } from "./flag-quiz-controls";
 import { type CarouselApi } from "~/components/ui/carousel";
 
 interface Flag {
@@ -39,7 +35,7 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
 
   useEffect(() => {
     if (isStarted) {
-      fetchFlags();
+      fetchFlags(setCountryFlags);
       setStartTime(Date.now());
       const interval = setInterval(() => {
         setTimer((prev) => {
@@ -83,16 +79,6 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
       setCurrentFlagIndex(api.selectedScrollSnap() + 1);
     });
   }, [api, isStarted]);
-
-  const fetchFlags = async () => {
-    try {
-      const res = await fetch("/api/countryFlags", { method: "GET" });
-      const flags = await res.json();
-      setCountryFlags(flags);
-    } catch (error) {
-      console.error("Failed to start quiz", error);
-    }
-  };
 
   const startQuiz = () => {
     setAnswer("");
@@ -161,40 +147,21 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
 
   return (
     <>
-      <p>Countries Guessed: {totalScore}/196</p>
-      <p>
-        Time Left: {Math.floor(timer / 60)}:
-        {(timer % 60).toString().padStart(2, "0")}
-      </p>
-      <Carousel setApi={setApi}>
-        <CarouselPrevious>Previous</CarouselPrevious>
-        <CarouselContent>
-          {countryFlags.map((country) => (
-            <CarouselItem key={country.country_id}>
-              <Image
-                src={country.flag_url}
-                alt={country.name}
-                width={100}
-                height={100}
-                className="h-auto w-auto"
-              />
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselNext>Next</CarouselNext>
-      </Carousel>
-      <Input
-        type="text"
-        placeholder="Enter Country Name"
-        value={answer}
-        onChange={(e) => setAnswer(e.target.value)}
-        onKeyDown={handleKeyDown}
+      <FlagCarousel
+        countryFlags={countryFlags}
+        setApi={setApi}
+        api={api}
+        setCurrentFlagIndex={setCurrentFlagIndex}
       />
-      {isCorrect === true ? (
-        <p>Correct!</p>
-      ) : isCorrect === false ? (
-        <p>Incorrect!</p>
-      ) : null}
+      <QuizControls
+        answer={answer}
+        onAnswerChange={setAnswer}
+        onSubmit={handleSubmit}
+        onKeyDown={handleKeyDown}
+        timer={timer}
+        totalScore={totalScore}
+        isCorrect={isCorrect}
+      />
     </>
   );
 }
