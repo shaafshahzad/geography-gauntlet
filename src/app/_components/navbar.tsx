@@ -8,18 +8,21 @@ export function Navbar() {
   const router = useRouter();
 
   return (
-    <div className="flex w-full flex-row justify-between border border-black">
-      <h1 onClick={() => router.push("/")}>country games</h1>
-      <div>
-        <SignedOut>
-          <SignInButton>
-            <Button>Sign in</Button>
-          </SignInButton>
-        </SignedOut>
-        <SignedIn>
-          <UserButton />
-        </SignedIn>
-      </div>
+    <div className="flex w-full flex-row items-center justify-between border">
+      <h1
+        onClick={() => router.push("/")}
+        className="text-3xl font-bold italic"
+      >
+        country games
+      </h1>
+      <SignedOut>
+        <SignInButton>
+          <Button>Sign in</Button>
+        </SignInButton>
+      </SignedOut>
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
     </div>
   );
 }
