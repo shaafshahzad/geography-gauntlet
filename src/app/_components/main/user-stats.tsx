@@ -32,7 +32,6 @@ export function UserStats({ userStats }: UserStatsProps) {
       <CardTitle>User Stats</CardTitle>
       <CardContent>
         <p>Here are your stats:</p>
-        <p>Room Wins: {userStats.room_wins}</p>
         <p>Highest Gauntlet Score: {userStats.gauntlet_score}</p>
         <p>
           Country Quiz Performance: {userStats.country_quiz_score}/196 in{" "}

@@ -36,7 +36,6 @@ export default async function Home() {
         <UserStats userStats={userStats} />
         <Leaderboard />
       </div>
-      <GameRooms />
       <Gauntlet />
       <Quizzes />
     </div>

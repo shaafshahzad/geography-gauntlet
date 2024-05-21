@@ -13,7 +13,7 @@ export function Navbar() {
         onClick={() => router.push("/")}
         className="text-3xl font-bold italic"
       >
-        country games
+        GeographyGauntlet
       </h1>
       <SignedOut>
         <SignInButton>
