@@ -43,7 +43,6 @@ export function GauntletClient({
   );
 
   const startGame = async () => {
-    await fetchQuestion(setState);
     setState({
       ...state,
       answer: "",
@@ -54,6 +53,8 @@ export function GauntletClient({
       timerActive: true,
       isStarted: true,
     });
+
+    await fetchQuestion(setState);
   };
 
   const handleSubmit = async () => {
