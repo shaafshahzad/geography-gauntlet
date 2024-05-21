@@ -94,7 +94,6 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
   const handleSubmit = async () => {
     if (answer && countryFlags) {
       const currentFlag = countryFlags[currentFlagIndex - 1];
-      console.log(currentFlag);
       if (
         currentFlag?.name.toLowerCase().replace(/[^a-zA-Z]/g, "") ===
         answer.toLowerCase().replace(/[^a-zA-Z]/g, "")
@@ -103,6 +102,9 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
         setTotalScore((prev) => prev + 1);
         const newFlags = [...countryFlags];
         newFlags.splice(currentFlagIndex - 1, 1);
+        if (currentFlagIndex > newFlags.length) {
+          setCurrentFlagIndex(newFlags.length);
+        }
         setCountryFlags(newFlags);
         setAnswer("");
 
