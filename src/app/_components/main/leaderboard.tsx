@@ -20,6 +20,10 @@ interface LeaderboardItem {
   country_quiz_time?: string;
 }
 
+interface LeaderboardResponse {
+  leaderboard: LeaderboardItem[];
+}
+
 const truncateName = (fullname: string) => {
   const nameParts = fullname.split(" ");
   if (nameParts.length === 1) {
@@ -48,7 +52,7 @@ export function Leaderboard() {
         throw new Error("Network response was not ok");
       }
 
-      const data = await response.json();
+      const data: LeaderboardResponse = await response.json();
       setLeaderboard(data.leaderboard);
       setCategory(value);
     } catch (error) {
@@ -61,8 +65,8 @@ export function Leaderboard() {
   };
 
   useEffect(() => {
-    fetchLeaderboard(category);
-  }, []);
+    void fetchLeaderboard(category);
+  }, [category]);
 
   return (
     <Card className="w-full">
