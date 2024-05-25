@@ -29,7 +29,7 @@ export default function RootLayout({
         <body className={`font-sans ${inter.variable}`}>
           <TRPCReactProvider>
             <main className="flex min-h-screen flex-col items-center justify-center gap-2 bg-background">
-              <div className="min-h-screen w-full max-w-6xl border border-black px-20 py-5">
+              <div className="min-h-screen w-full max-w-6xl px-20 py-5">
                 <Navbar />
                 {children}
               </div>

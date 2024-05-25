@@ -8,7 +8,7 @@ export function Navbar() {
   const router = useRouter();
 
   return (
-    <div className="flex w-full flex-row items-center justify-between border">
+    <div className="flex w-full flex-row items-center justify-between">
       <h1
         onClick={() => router.push("/")}
         className="text-3xl font-bold italic"

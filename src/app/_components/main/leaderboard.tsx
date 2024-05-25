@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardContent, CardTitle } from "~/components/ui/card";
+import { Card, CardTitle, CardContent } from "~/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -9,7 +9,9 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { useEffect, useState } from "react";
-import { formatTime } from "~/lib/utils/format-time";
+import { GauntletLeaderboard } from "./gauntlet-leaderboard";
+import { FlagQuizLeaderboard } from "./flag-quiz-leaderboard";
+import { CountryQuizLeaderboard } from "./country-quiz-leaderboard";
 
 interface LeaderboardItem {
   fullname: string;
@@ -23,14 +25,6 @@ interface LeaderboardItem {
 interface LeaderboardResponse {
   leaderboard: LeaderboardItem[];
 }
-
-const truncateName = (fullname: string) => {
-  const nameParts = fullname.split(" ");
-  if (nameParts.length === 1) {
-    return fullname;
-  }
-  return `${nameParts[0]} ${nameParts[1]?.charAt(0)}.`;
-};
 
 export function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState<LeaderboardItem[] | null>(
@@ -60,20 +54,16 @@ export function Leaderboard() {
     }
   };
 
-  const parseScore = (score: string | undefined) => {
-    return score ? parseInt(score, 10) : 0;
-  };
-
   useEffect(() => {
     void fetchLeaderboard(category);
   }, [category]);
 
   return (
-    <Card className="w-full">
-      <CardTitle>Leaderboard</CardTitle>
-      <CardContent>
+    <Card className="flex w-full flex-col gap-4 p-5">
+      <CardTitle className="flex justify-between align-top">
+        Leaderboard
         <Select onValueChange={fetchLeaderboard} defaultValue="gauntlet">
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="h-[30px] w-[180px]">
             <SelectValue placeholder="Gauntlet" />
           </SelectTrigger>
           <SelectContent>
@@ -82,70 +72,17 @@ export function Leaderboard() {
             <SelectItem value="country-quiz">Country Quiz</SelectItem>
           </SelectContent>
         </Select>
-
-        <div>
-          {leaderboard &&
-            category === "gauntlet" &&
-            leaderboard
-              .sort(
-                (a, b) =>
-                  parseScore(b.gauntlet_score) - parseScore(a.gauntlet_score),
-              )
-              .map((user, index) => (
-                <div key={index} className="flex justify-between">
-                  <p>{index + 1}</p>
-                  <p>{truncateName(user.fullname)}</p>
-                  <p>{user.gauntlet_score}</p>
-                </div>
-              ))}
-
-          {leaderboard &&
-            category === "flag-quiz" &&
-            leaderboard
-              .sort((a, b) => {
-                const scoreDiff =
-                  parseScore(b.flag_quiz_score) - parseScore(a.flag_quiz_score);
-                if (scoreDiff !== 0) return scoreDiff;
-                return (
-                  new Date(a.flag_quiz_time!).getTime() -
-                  new Date(b.flag_quiz_time!).getTime()
-                );
-              })
-              .map((user, index) => (
-                <div key={index} className="flex justify-between">
-                  <p>{index + 1}</p>
-                  <p>{truncateName(user.fullname)}</p>
-                  <p>
-                    {user.flag_quiz_score}/196 in{" "}
-                    {formatTime(user.flag_quiz_time)}
-                  </p>
-                </div>
-              ))}
-
-          {leaderboard &&
-            category === "country-quiz" &&
-            leaderboard
-              .sort((a, b) => {
-                const scoreDiff =
-                  parseScore(b.country_quiz_score) -
-                  parseScore(a.country_quiz_score);
-                if (scoreDiff !== 0) return scoreDiff;
-                return (
-                  new Date(a.country_quiz_time!).getTime() -
-                  new Date(b.country_quiz_time!).getTime()
-                );
-              })
-              .map((user, index) => (
-                <div key={index} className="flex justify-between">
-                  <p>{index + 1}</p>
-                  <p>{truncateName(user.fullname)}</p>
-                  <p>
-                    {user.country_quiz_score}/196 in{" "}
-                    {formatTime(user.country_quiz_time)}
-                  </p>
-                </div>
-              ))}
-        </div>
+      </CardTitle>
+      <CardContent className="pb-0">
+        {leaderboard && category === "gauntlet" && (
+          <GauntletLeaderboard leaderboard={leaderboard} />
+        )}
+        {leaderboard && category === "flag-quiz" && (
+          <FlagQuizLeaderboard leaderboard={leaderboard} />
+        )}
+        {leaderboard && category === "country-quiz" && (
+          <CountryQuizLeaderboard leaderboard={leaderboard} />
+        )}
       </CardContent>
     </Card>
   );
