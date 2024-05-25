@@ -34,7 +34,7 @@ export function FlagCarousel({
     api.on("select", () => {
       setCurrentFlagIndex(api.selectedScrollSnap() + 1);
     });
-  }, [api]);
+  }, [api, setCurrentFlagIndex]);
 
   return (
     <Carousel setApi={setApi} className="h-1/2 w-1/2">
