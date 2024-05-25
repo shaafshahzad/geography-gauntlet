@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { validateAnswer } from "~/lib/utils/validate-answer";
 import { useGauntletTimer } from "~/lib/hooks/use-gauntlet-timer";
 import { fetchQuestion } from "~/lib/utils/fetch-question";
+import { useToast } from "~/components/ui/use-toast";
 
 interface Question {
   question: string;
@@ -31,6 +32,7 @@ export function GauntletClient({
     timerActive: true,
     isStarted: false,
   });
+  const { toast } = useToast();
 
   useGauntletTimer(
     state.timerActive,
@@ -74,7 +76,17 @@ export function GauntletClient({
     }));
 
     if (isValid) {
+      toast({
+        title: "Correct!",
+        description: `${state.answer} was a valid answer!`,
+      });
       fetchQuestion(setState);
+    } else {
+      toast({
+        variant: "destructive",
+        title: "Incorrect",
+        description: "Try again!",
+      });
     }
   };
 
@@ -123,11 +135,6 @@ export function GauntletClient({
       <button onClick={handleSubmit} disabled={!answer}>
         Submit
       </button>
-      {isCorrect === true ? (
-        <p>Correct!</p>
-      ) : isCorrect === false ? (
-        <p>Incorrect!</p>
-      ) : null}
     </div>
   );
 }

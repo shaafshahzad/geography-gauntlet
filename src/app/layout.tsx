@@ -1,12 +1,9 @@
 import "~/styles/globals.css";
-
 import { Inter } from "next/font/google";
-
 import { TRPCReactProvider } from "~/trpc/react";
-
 import { ClerkProvider } from "@clerk/nextjs";
-
 import { Navbar } from "./_components/navbar";
+import { Toaster } from "~/components/ui/toaster";
 
 export const dynamic = "force-dynamic";
 
@@ -37,6 +34,7 @@ export default function RootLayout({
                 {children}
               </div>
             </main>
+            <Toaster />
           </TRPCReactProvider>
         </body>
       </html>

@@ -11,6 +11,7 @@ import { type CarouselApi } from "~/components/ui/carousel";
 import { FlagQuizStart } from "./flag-quiz-start";
 import { QuizCountdown } from "./flag-quiz-countdown";
 import { FlagQuizRestart } from "./flag-quiz-restart";
+import { useToast } from "~/components/ui/use-toast";
 
 interface Flag {
   country_id: string;
@@ -34,6 +35,7 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
   const [startTime, setStartTime] = useState(0);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [gameOver, setGameOver] = useState(false);
+  const { toast } = useToast();
 
   useEffect(() => {
     if (isStarted) {
@@ -110,6 +112,11 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
         setCountryFlags(newFlags);
         setAnswer("");
 
+        toast({
+          title: "Correct!",
+          description: `${currentFlag.name} was the right answer!`,
+        });
+
         if (newFlags.length === 0) {
           const endTime = Date.now();
           setElapsedTime((endTime - startTime) / 1000);
@@ -118,6 +125,12 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
       } else {
         setIsCorrect(false);
         setAnswer("");
+
+        toast({
+          variant: "destructive",
+          title: "Incorrect",
+          description: "Try again!",
+        });
       }
     }
   };
@@ -152,9 +165,7 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
       <QuizControls
         answer={answer}
         onAnswerChange={setAnswer}
-        onSubmit={handleSubmit}
         onKeyDown={handleKeyDown}
-        isCorrect={isCorrect}
       />
     </div>
   );
