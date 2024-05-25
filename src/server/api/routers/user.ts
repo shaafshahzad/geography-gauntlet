@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { eq, and } from "drizzle-orm";
+import { eq, and, desc, asc } from "drizzle-orm";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { users, users_stats } from "~/server/db/schema";
 
@@ -31,7 +31,7 @@ export const userRouter = createTRPCRouter({
         });
         await ctx.db.insert(users_stats).values({
           user_id: input.user_id,
-          room_wins: "0",
+          fullname: input.fullname,
           gauntlet_score: "0",
           country_quiz_time: "0",
           country_quiz_score: "0",
@@ -100,5 +100,15 @@ export const userRouter = createTRPCRouter({
       } else {
         console.log("No update needed as the new value is not an improvement.");
       }
+    }),
+
+  getLeaderboard: publicProcedure
+    .input(
+      z.object({
+        value: z.string(),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      return await ctx.db.select().from(users_stats);
     }),
 });

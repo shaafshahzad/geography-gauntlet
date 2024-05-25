@@ -1,12 +1,10 @@
 import { Card, CardContent, CardTitle } from "~/components/ui/card";
-import { api } from "~/trpc/server";
 import { formatTime } from "~/lib/utils/format-time";
 
 interface UserStatsProps {
   userStats?: {
     user_id: string;
     user_stat_id: number;
-    room_wins: string;
     gauntlet_score: string;
     country_quiz_time: string;
     flag_quiz_time: string;
@@ -28,7 +26,7 @@ export function UserStats({ userStats }: UserStatsProps) {
   }
 
   return (
-    <Card>
+    <Card className="w-full">
       <CardTitle>User Stats</CardTitle>
       <CardContent>
         <p>Here are your stats:</p>

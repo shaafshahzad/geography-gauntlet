@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -8,7 +8,6 @@ import {
   CarouselPrevious,
 } from "~/components/ui/carousel";
 import { type CarouselApi } from "~/components/ui/carousel";
-import { Skeleton } from "~/components/ui/skeleton";
 
 interface Flag {
   country_id: string;
@@ -29,8 +28,6 @@ export function FlagCarousel({
   api,
   setCurrentFlagIndex,
 }: FlagCarouselProps) {
-  const [loadedFlags, setLoadedFlags] = useState<Record<string, boolean>>({});
-
   useEffect(() => {
     if (!api) return;
     setCurrentFlagIndex(api.selectedScrollSnap() + 1);
@@ -39,32 +36,21 @@ export function FlagCarousel({
     });
   }, [api]);
 
-  const handleImageLoad = (countryId: string) => {
-    setLoadedFlags((prevState) => ({
-      ...prevState,
-      [countryId]: true,
-    }));
-  };
-
   return (
-    <Carousel setApi={setApi} className="h-1/2">
+    <Carousel setApi={setApi} className="h-1/2 w-1/2">
       <CarouselPrevious>Previous</CarouselPrevious>
       <CarouselContent>
         {countryFlags.map((country) => (
           <CarouselItem
             key={country.country_id}
-            className="flex items-center justify-center"
+            className="relative flex h-64 w-full items-center justify-center"
           >
-            {!loadedFlags[country.country_id] && (
-              <Skeleton className="h-auto w-auto align-middle" />
-            )}
             <Image
               src={country.flag_url}
               alt={country.name}
-              width={750}
-              height={750}
-              className="h-auto w-auto align-middle"
-              onLoad={() => handleImageLoad(country.country_id)}
+              layout="fill"
+              objectFit="contain"
+              className="align-middle"
             />
           </CarouselItem>
         ))}

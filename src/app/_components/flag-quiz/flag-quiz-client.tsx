@@ -4,11 +4,13 @@
 
 import React, { useState, useEffect } from "react";
 import { fetchFlags } from "~/lib/utils/fetch-flags";
-import { formatTime } from "~/lib/utils/format-time";
 import { updateStats } from "~/lib/utils/update-stats";
 import { FlagCarousel } from "./flag-carousel";
 import { QuizControls } from "./flag-quiz-controls";
 import { type CarouselApi } from "~/components/ui/carousel";
+import { FlagQuizStart } from "./flag-quiz-start";
+import { QuizCountdown } from "./flag-quiz-countdown";
+import { FlagQuizRestart } from "./flag-quiz-restart";
 
 interface Flag {
   country_id: string;
@@ -127,28 +129,20 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
   };
 
   if (gameOver) {
-    return (
-      <div>
-        <h1>Game Over</h1>
-        <p>
-          You guessed {totalScore}/196 countries in{" "}
-          {formatTime(Math.floor(elapsedTime).toString())} seconds
-        </p>
-        <button onClick={startQuiz}>Restart Game</button>
-      </div>
-    );
+    return FlagQuizRestart({
+      startQuiz,
+      totalScore,
+      elapsedTime: elapsedTime,
+    });
   }
 
   if (!isStarted) {
-    return (
-      <div>
-        <button onClick={startQuiz}>Click to Start</button>
-      </div>
-    );
+    return FlagQuizStart(startQuiz);
   }
 
   return (
-    <>
+    <div className="flex max-w-6xl flex-col items-center justify-center gap-10">
+      <QuizCountdown timer={timer} totalScore={totalScore} />
       <FlagCarousel
         countryFlags={countryFlags}
         setApi={setApi}
@@ -160,10 +154,8 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
         onAnswerChange={setAnswer}
         onSubmit={handleSubmit}
         onKeyDown={handleKeyDown}
-        timer={timer}
-        totalScore={totalScore}
         isCorrect={isCorrect}
       />
-    </>
+    </div>
   );
 }

@@ -6,8 +6,6 @@ interface QuizControlsProps {
   onAnswerChange: (value: string) => void;
   onSubmit: () => void;
   onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-  timer: number;
-  totalScore: number;
   isCorrect: boolean | null;
 }
 
@@ -16,29 +14,23 @@ export function QuizControls({
   onAnswerChange,
   onSubmit,
   onKeyDown,
-  timer,
-  totalScore,
   isCorrect,
 }: QuizControlsProps) {
   return (
-    <>
-      <p>Countries Guessed: {totalScore}/196</p>
-      <p>
-        Time Left: {Math.floor(timer / 60)}:
-        {(timer % 60).toString().padStart(2, "0")}
-      </p>
+    <div className={`w-1/2 ${isCorrect === false ? "shake-animation" : ""}`}>
       <Input
         type="text"
         placeholder="Enter Country Name"
+        className="w-full"
         value={answer}
         onChange={(e) => onAnswerChange(e.target.value)}
         onKeyDown={onKeyDown}
       />
-      {isCorrect === true ? (
-        <p>Correct!</p>
-      ) : isCorrect === false ? (
-        <p>Incorrect!</p>
-      ) : null}
-    </>
+      {isCorrect === false && (
+        <p className="mt-2 animate-[wave_1s_ease-in-out_infinite] text-sm text-red-500">
+          Incorrect Answer
+        </p>
+      )}
+    </div>
   );
 }

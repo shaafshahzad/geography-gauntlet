@@ -4,7 +4,7 @@ export default async function CountryQuiz() {
   return (
     <div className="w-full">
       <h1>Country Quiz</h1>
-      <GlobeComponent />
+      <p>Work in progress...</p>
     </div>
   );
 }
