@@ -48,7 +48,7 @@ export function UserStats({ userStats }: UserStatsProps) {
               <TableRow>
                 <TableCell>Country Quiz Score</TableCell>
                 <TableCell className="text-right">
-                  {userStats.country_quiz_score}/196
+                  {userStats.country_quiz_score}/197
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -60,7 +60,7 @@ export function UserStats({ userStats }: UserStatsProps) {
               <TableRow>
                 <TableCell>Flag Quiz Score</TableCell>
                 <TableCell className="text-right">
-                  {userStats.flag_quiz_score}/196
+                  {userStats.flag_quiz_score}/197
                 </TableCell>
               </TableRow>
               <TableRow>

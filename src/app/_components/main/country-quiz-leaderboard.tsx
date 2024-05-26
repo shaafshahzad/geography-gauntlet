@@ -41,7 +41,7 @@ export function CountryQuizLeaderboard({
             <TableCell className="font-medium">{index + 1}</TableCell>
             <TableCell>{truncateName(user.fullname)}</TableCell>
             <TableCell className="text-right">
-              {user.country_quiz_score}/196 in{" "}
+              {user.country_quiz_score}/197 in{" "}
               {formatTime(user.country_quiz_time)}
             </TableCell>
           </TableRow>

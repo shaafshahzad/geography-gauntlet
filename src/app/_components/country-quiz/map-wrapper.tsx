@@ -11,6 +11,12 @@ import {
 const geoUrl =
   "https://utfs.io/f/942c1a83-a65d-493f-94ea-52b52dcb1b07-fqifry.json";
 
+interface GeoProperties {
+  NAME: string;
+  NAME_LONG: string;
+  NAME_EN?: string;
+}
+
 interface Country {
   country_id: number;
   name: string;
@@ -22,7 +28,7 @@ interface MapWrapperProps {
 }
 
 export function MapWrapper({ guessedCountries }: MapWrapperProps) {
-  const isCountryGuessed = (geo: any) => {
+  const isCountryGuessed = (geo: { properties: GeoProperties }) => {
     return guessedCountries.some(
       (country) =>
         country.name.toLowerCase().replace(/[^a-zA-Z]/g, "") ===
@@ -30,7 +36,7 @@ export function MapWrapper({ guessedCountries }: MapWrapperProps) {
         country.name.toLowerCase().replace(/[^a-zA-Z]/g, "") ===
           geo.properties.NAME_LONG.toLowerCase().replace(/[^a-zA-Z]/g, "") ||
         country.name.toLowerCase().replace(/[^a-zA-Z]/g, "") ===
-          geo.properties.NAME_EN.toLowerCase().replace(/[^a-zA-Z]/g, ""),
+          geo.properties.NAME_EN?.toLowerCase().replace(/[^a-zA-Z]/g, ""),
     );
   };
 
@@ -40,7 +46,9 @@ export function MapWrapper({ guessedCountries }: MapWrapperProps) {
         <Geographies geography={geoUrl}>
           {({ geographies }) =>
             geographies.map((geo) => {
-              const guessed = isCountryGuessed(geo);
+              const guessed = isCountryGuessed(
+                geo as { properties: GeoProperties },
+              );
               return (
                 <Geography
                   key={geo.rsmKey}

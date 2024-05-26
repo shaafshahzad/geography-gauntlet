@@ -35,7 +35,7 @@ export function FlagQuizLeaderboard({ leaderboard }: FlagQuizLeaderboardProps) {
             <TableCell className="font-medium">{index + 1}</TableCell>
             <TableCell>{truncateName(user.fullname)}</TableCell>
             <TableCell className="text-right">
-              {user.flag_quiz_score}/196 in {formatTime(user.flag_quiz_time)}
+              {user.flag_quiz_score}/197 in {formatTime(user.flag_quiz_time)}
             </TableCell>
           </TableRow>
         ))}
