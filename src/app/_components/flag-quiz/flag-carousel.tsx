@@ -10,7 +10,7 @@ import {
 import { type CarouselApi } from "~/components/ui/carousel";
 
 interface Flag {
-  country_id: string;
+  country_id: number;
   name: string;
   flag_url: string;
 }

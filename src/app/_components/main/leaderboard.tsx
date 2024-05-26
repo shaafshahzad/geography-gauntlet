@@ -47,7 +47,6 @@ export function Leaderboard() {
       }
 
       const data: LeaderboardResponse = await response.json();
-      console.log(data);
       setLeaderboard(data.leaderboard);
       setCategory(value);
     } catch (error) {

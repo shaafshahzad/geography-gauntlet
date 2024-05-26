@@ -2,6 +2,7 @@ import { gauntletRouter } from "~/server/api/routers/gauntlet";
 import { userRouter } from "~/server/api/routers/user";
 import { flagQuizRouter } from "~/server/api/routers/flag-quiz";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
+import { countryQuizRouter } from "./routers/country-quiz";
 
 /**
  * This is the primary router for your server.
@@ -12,6 +13,7 @@ export const appRouter = createTRPCRouter({
   gauntlet: gauntletRouter,
   user: userRouter,
   flagQuiz: flagQuizRouter,
+  countryQuiz: countryQuizRouter,
 });
 
 // export type definition of API

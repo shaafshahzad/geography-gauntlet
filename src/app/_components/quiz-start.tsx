@@ -1,4 +1,4 @@
-export function FlagQuizStart(startQuiz: () => void) {
+export function QuizStart(startQuiz: () => void) {
   return (
     <div>
       <button onClick={startQuiz}>Click to Start</button>

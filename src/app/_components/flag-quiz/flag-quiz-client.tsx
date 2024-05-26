@@ -6,30 +6,25 @@ import React, { useState, useEffect } from "react";
 import { fetchFlags } from "~/lib/utils/fetch-flags";
 import { updateStats } from "~/lib/utils/update-stats";
 import { FlagCarousel } from "./flag-carousel";
-import { QuizControls } from "./flag-quiz-controls";
+import { QuizControls } from "../quiz-controls";
 import { type CarouselApi } from "~/components/ui/carousel";
-import { FlagQuizStart } from "./flag-quiz-start";
-import { QuizCountdown } from "./flag-quiz-countdown";
-import { FlagQuizRestart } from "./flag-quiz-restart";
+import { QuizStart } from "../quiz-start";
+import { QuizCountdown } from "../quiz-countdown";
+import { QuizRestart } from "../quiz-restart";
 import { useToast } from "~/components/ui/use-toast";
 
 interface Flag {
-  country_id: string;
+  country_id: number;
   name: string;
   flag_url: string;
 }
 
-interface FlagQuizClientProps {
-  userId?: string;
-}
-
-export function FlagQuizClient({ userId }: FlagQuizClientProps) {
+export function FlagQuizClient({ userId }: { userId?: string }) {
   const [api, setApi] = useState<CarouselApi>();
   const [countryFlags, setCountryFlags] = useState<Flag[]>([]);
   const [currentFlagIndex, setCurrentFlagIndex] = useState(0);
   const [isStarted, setIsStarted] = useState(false);
   const [answer, setAnswer] = useState("");
-  const [isCorrect, setIsCorrect] = useState<null | boolean>(null);
   const [totalScore, setTotalScore] = useState(0);
   const [timer, setTimer] = useState(1080);
   const [startTime, setStartTime] = useState(0);
@@ -37,32 +32,40 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
   const [gameOver, setGameOver] = useState(false);
   const { toast } = useToast();
 
+  // IF ANY ISSUES WITH FLAG RENDER, FIX HERE
   useEffect(() => {
     if (isStarted) {
-      fetchFlags(setCountryFlags);
-      setStartTime(Date.now());
-      const interval = setInterval(() => {
-        setTimer((prev) => {
-          if (prev <= 1) {
-            clearInterval(interval);
-            const endTime = Date.now();
-            setElapsedTime((endTime - startTime) / 1000);
-            setGameOver(true);
-            updateStats(
-              userId,
-              "flag_quiz_time",
-              Math.floor(elapsedTime).toString(),
-            );
-            updateStats(userId, "flag_quiz_score", totalScore.toString());
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
+      const startGame = async () => {
+        const flags = await fetchFlags();
+        if (flags) {
+          setCountryFlags(flags);
+        }
+        setStartTime(Date.now());
+        const interval = setInterval(() => {
+          setTimer((prev) => {
+            if (prev <= 1) {
+              clearInterval(interval);
+              const endTime = Date.now();
+              setElapsedTime((endTime - startTime) / 1000);
+              setGameOver(true);
+              updateStats(
+                userId,
+                "flag_quiz_time",
+                Math.floor(elapsedTime).toString(),
+              );
+              updateStats(userId, "flag_quiz_score", totalScore.toString());
+              return 0;
+            }
+            return prev - 1;
+          });
+        }, 1000);
 
-      return () => {
-        clearInterval(interval);
+        return () => {
+          clearInterval(interval);
+        };
       };
+
+      startGame();
     }
   }, [isStarted, gameOver]);
 
@@ -86,7 +89,6 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
 
   const startQuiz = () => {
     setAnswer("");
-    setIsCorrect(null);
     setTotalScore(0);
     setGameOver(false);
     setTimer(1080);
@@ -102,7 +104,6 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
         currentFlag?.name.toLowerCase().replace(/[^a-zA-Z]/g, "") ===
         answer.toLowerCase().replace(/[^a-zA-Z]/g, "")
       ) {
-        setIsCorrect(true);
         setTotalScore((prev) => prev + 1);
         const newFlags = [...countryFlags];
         newFlags.splice(currentFlagIndex - 1, 1);
@@ -123,7 +124,6 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
           setGameOver(true);
         }
       } else {
-        setIsCorrect(false);
         setAnswer("");
 
         toast({
@@ -142,7 +142,7 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
   };
 
   if (gameOver) {
-    return FlagQuizRestart({
+    return QuizRestart({
       startQuiz,
       totalScore,
       elapsedTime: elapsedTime,
@@ -150,7 +150,7 @@ export function FlagQuizClient({ userId }: FlagQuizClientProps) {
   }
 
   if (!isStarted) {
-    return FlagQuizStart(startQuiz);
+    return QuizStart(startQuiz);
   }
 
   return (

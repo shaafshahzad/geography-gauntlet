@@ -1,14 +1,12 @@
-interface Flag {
-  country_id: string;
-  name: string;
-  flag_url: string;
-}
+"use server";
 
-export const fetchFlags = async (setCountryFlags: (flags: Flag[]) => void) => {
+import { api } from "~/trpc/server";
+
+export const fetchFlags = async () => {
   try {
-    const res = await fetch("/api/countryFlags", { method: "GET" });
-    const flags = await res.json();
-    setCountryFlags(flags);
+    const countryFlags = await api.flagQuiz.getCountryFlags();
+    countryFlags.sort(() => Math.random() - 0.5);
+    return countryFlags;
   } catch (error) {
     console.error("Failed to start quiz", error);
   }

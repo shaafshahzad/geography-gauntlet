@@ -6,7 +6,7 @@ interface FlagQuizRestartProps {
   startQuiz: () => void;
 }
 
-export function FlagQuizRestart({
+export function QuizRestart({
   totalScore,
   elapsedTime,
   startQuiz,

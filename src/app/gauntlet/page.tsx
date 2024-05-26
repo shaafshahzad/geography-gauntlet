@@ -7,7 +7,7 @@ export default async function Gauntlet() {
   const user = await currentUser();
 
   return (
-    <div>
+    <div className="flex h-[calc(100vh-136px)] w-full flex-col items-center justify-center">
       <h1>Geography Gauntlet</h1>
       <GauntletClient initialQuestion={question} userId={user?.id} />
     </div>
