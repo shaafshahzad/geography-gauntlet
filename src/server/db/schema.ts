@@ -4,6 +4,7 @@
 import { sql } from "drizzle-orm";
 import {
   index,
+  integer,
   pgTableCreator,
   serial,
   timestamp,
@@ -39,15 +40,11 @@ export const users_stats = createTable(
     user_stat_id: serial("id").primaryKey(),
     user_id: varchar("user_id", { length: 256 }).notNull(),
     fullname: varchar("fullname", { length: 256 }).notNull(),
-    gauntlet_score: varchar("gauntlet_score", { length: 256 }).notNull(),
-    country_quiz_time: varchar("country_quiz_time", { length: 256 }).notNull(),
-    country_quiz_score: varchar("country_quiz_score", {
-      length: 256,
-    }).notNull(),
-    flag_quiz_time: varchar("flag_quiz_time", { length: 256 }).notNull(),
-    flag_quiz_score: varchar("flag_quiz_score", {
-      length: 256,
-    }).notNull(),
+    gauntlet_score: integer("gauntlet_score").notNull(),
+    country_quiz_time: integer("country_quiz_time").notNull(),
+    country_quiz_score: integer("country_quiz_score").notNull(),
+    flag_quiz_time: integer("flag_quiz_time").notNull(),
+    flag_quiz_score: integer("flag_quiz_score").notNull(),
   },
   (example) => ({
     user_id: index("user_id_idx").on(example.user_id),

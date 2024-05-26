@@ -8,7 +8,7 @@ export function Quizzes() {
   const router = useRouter();
 
   return (
-    <Card>
+    <Card className="flex w-full flex-col p-5">
       <CardTitle>Quizzes</CardTitle>
       <CardContent className="flex justify-between">
         <div>

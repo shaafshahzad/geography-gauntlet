@@ -10,16 +10,12 @@ import { truncateName } from "~/lib/utils/truncate-name";
 
 interface LeaderboardItem {
   fullname: string;
-  gauntlet_score?: string;
+  gauntlet_score: number;
 }
 
 interface GauntletLeaderboardProps {
   leaderboard: LeaderboardItem[];
 }
-
-const parseScore = (score: string | undefined) => {
-  return score ? parseInt(score, 10) : 0;
-};
 
 export function GauntletLeaderboard({ leaderboard }: GauntletLeaderboardProps) {
   return (
@@ -32,21 +28,13 @@ export function GauntletLeaderboard({ leaderboard }: GauntletLeaderboardProps) {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {leaderboard
-          .sort(
-            (a, b) =>
-              parseScore(b.gauntlet_score) - parseScore(a.gauntlet_score),
-          )
-          .slice(0, 5)
-          .map((user, index) => (
-            <TableRow key={index}>
-              <TableCell className="font-medium">{index + 1}</TableCell>
-              <TableCell>{truncateName(user.fullname)}</TableCell>
-              <TableCell className="text-right">
-                {user.gauntlet_score}
-              </TableCell>
-            </TableRow>
-          ))}
+        {leaderboard.map((user, index) => (
+          <TableRow key={index}>
+            <TableCell className="font-medium">{index + 1}</TableCell>
+            <TableCell>{truncateName(user.fullname)}</TableCell>
+            <TableCell className="text-right">{user.gauntlet_score}</TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   );

@@ -15,11 +15,11 @@ import { CountryQuizLeaderboard } from "./country-quiz-leaderboard";
 
 interface LeaderboardItem {
   fullname: string;
-  gauntlet_score?: string;
-  flag_quiz_score?: string;
-  flag_quiz_time?: string;
-  country_quiz_score?: string;
-  country_quiz_time?: string;
+  gauntlet_score: number;
+  flag_quiz_score: number;
+  flag_quiz_time: number;
+  country_quiz_score: number;
+  country_quiz_time: number;
 }
 
 interface LeaderboardResponse {
@@ -47,6 +47,7 @@ export function Leaderboard() {
       }
 
       const data: LeaderboardResponse = await response.json();
+      console.log(data);
       setLeaderboard(data.leaderboard);
       setCategory(value);
     } catch (error) {

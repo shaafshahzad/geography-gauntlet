@@ -32,11 +32,11 @@ export const userRouter = createTRPCRouter({
         await ctx.db.insert(users_stats).values({
           user_id: input.user_id,
           fullname: input.fullname,
-          gauntlet_score: "0",
-          country_quiz_time: "0",
-          country_quiz_score: "0",
-          flag_quiz_time: "0",
-          flag_quiz_score: "0",
+          gauntlet_score: 0,
+          country_quiz_time: 0,
+          country_quiz_score: 0,
+          flag_quiz_time: 0,
+          flag_quiz_score: 0,
         });
       });
     }),
@@ -109,6 +109,30 @@ export const userRouter = createTRPCRouter({
       }),
     )
     .query(async ({ ctx, input }) => {
-      return await ctx.db.select().from(users_stats);
+      if (input.value === "gauntlet") {
+        return await ctx.db
+          .select()
+          .from(users_stats)
+          .orderBy(desc(users_stats.gauntlet_score))
+          .limit(5);
+      } else if (input.value === "flag-quiz") {
+        return await ctx.db
+          .select()
+          .from(users_stats)
+          .orderBy(
+            desc(users_stats.flag_quiz_score),
+            asc(users_stats.flag_quiz_time),
+          )
+          .limit(5);
+      } else if (input.value === "country-quiz") {
+        return await ctx.db
+          .select()
+          .from(users_stats)
+          .orderBy(
+            desc(users_stats.country_quiz_score),
+            asc(users_stats.country_quiz_time),
+          )
+          .limit(5);
+      }
     }),
 });

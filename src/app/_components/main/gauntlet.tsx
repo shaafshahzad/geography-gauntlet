@@ -8,7 +8,7 @@ export function Gauntlet() {
   const router = useRouter();
 
   return (
-    <Card>
+    <Card className="flex w-full flex-col p-5">
       <CardTitle>Gauntlet</CardTitle>
       <CardContent>
         <p>Click to start a gauntlet game</p>
