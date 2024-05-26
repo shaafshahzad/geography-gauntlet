@@ -6,6 +6,7 @@ import {
   Geographies,
   Geography,
   ZoomableGroup,
+  GeographyProps,
 } from "react-simple-maps";
 
 const geoUrl =
@@ -27,8 +28,13 @@ interface MapWrapperProps {
   guessedCountries: Country[];
 }
 
+interface Geo {
+  rsmKey: string;
+  properties: GeoProperties;
+}
+
 export function MapWrapper({ guessedCountries }: MapWrapperProps) {
-  const isCountryGuessed = (geo: { properties: GeoProperties }) => {
+  const isCountryGuessed = (geo: Geo) => {
     return guessedCountries.some(
       (country) =>
         country.name.toLowerCase().replace(/[^a-zA-Z]/g, "") ===
@@ -45,10 +51,8 @@ export function MapWrapper({ guessedCountries }: MapWrapperProps) {
       <ZoomableGroup center={[0, 0]} minZoom={1} maxZoom={50}>
         <Geographies geography={geoUrl}>
           {({ geographies }) =>
-            geographies.map((geo) => {
-              const guessed = isCountryGuessed(
-                geo as { properties: GeoProperties },
-              );
+            geographies.map((geo: Geo) => {
+              const guessed = isCountryGuessed(geo);
               return (
                 <Geography
                   key={geo.rsmKey}
