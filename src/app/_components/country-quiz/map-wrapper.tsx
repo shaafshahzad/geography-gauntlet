@@ -48,7 +48,7 @@ export function MapWrapper({ guessedCountries }: MapWrapperProps) {
 
   return (
     <ComposableMap className="border">
-      <ZoomableGroup center={[0, 0]} minZoom={1} maxZoom={50}>
+      <ZoomableGroup center={[0, 10]} zoom={1.5} minZoom={1.5} maxZoom={50}>
         <Geographies geography={geoUrl}>
           {({ geographies }) =>
             geographies.map((geo: Geo) => {
@@ -60,6 +60,17 @@ export function MapWrapper({ guessedCountries }: MapWrapperProps) {
                   fill={guessed ? "#E6A50E" : "#808080"}
                   stroke="#000000"
                   strokeWidth={0.15}
+                  style={{
+                    default: {
+                      outline: "none",
+                    },
+                    hover: {
+                      outline: "none",
+                    },
+                    pressed: {
+                      outline: "none",
+                    },
+                  }}
                 />
               );
             })

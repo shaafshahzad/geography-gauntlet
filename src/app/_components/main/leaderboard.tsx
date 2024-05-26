@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { GauntletLeaderboard } from "./gauntlet-leaderboard";
 import { FlagQuizLeaderboard } from "./flag-quiz-leaderboard";
 import { CountryQuizLeaderboard } from "./country-quiz-leaderboard";
+import { fetchLeaderboard } from "~/lib/utils/fetch-leaderboard";
 
 interface LeaderboardItem {
   fullname: string;
@@ -32,37 +33,30 @@ export function Leaderboard() {
   );
   const [category, setCategory] = useState<string>("gauntlet");
 
-  const fetchLeaderboard = async (value: string) => {
+  const getLeaderboard = async (value: string) => {
     try {
-      const response = await fetch("/api/getLeaderboard", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ value }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+      const leaderboardData = await fetchLeaderboard(value);
+      if (leaderboardData !== undefined) {
+        setLeaderboard(leaderboardData);
+      } else {
+        setLeaderboard(null);
       }
-
-      const data: LeaderboardResponse = await response.json();
-      setLeaderboard(data.leaderboard);
       setCategory(value);
     } catch (error) {
       console.error("Failed to retrieve leaderboard", error);
+      setLeaderboard(null);
     }
   };
 
   useEffect(() => {
-    void fetchLeaderboard(category);
+    void getLeaderboard(category);
   }, [category]);
 
   return (
     <Card className="flex w-full flex-col gap-4 p-5">
       <CardTitle className="flex justify-between align-top">
         Leaderboard
-        <Select onValueChange={fetchLeaderboard} defaultValue="gauntlet">
+        <Select onValueChange={getLeaderboard} defaultValue="gauntlet">
           <SelectTrigger className="h-[30px] w-[180px]">
             <SelectValue placeholder="Gauntlet" />
           </SelectTrigger>
