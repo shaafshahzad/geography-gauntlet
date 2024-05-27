@@ -30,7 +30,7 @@ export default async function Home() {
   }
 
   return (
-    <div className="flex h-[calc(100vh-136px)] flex-col justify-between gap-5 pt-20">
+    <div className="flex h-[calc(100vh-136px)] flex-col justify-between gap-5 pt-14">
       <div className="flex w-full flex-row justify-between gap-5">
         <UserStats userStats={userStats} />
         <Leaderboard />

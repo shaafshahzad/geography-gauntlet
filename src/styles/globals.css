@@ -2,56 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: 201 100% 95%;
-  --foreground: 201 5% 0%;
-  --card: 201 50% 90%;
-  --card-foreground: 201 5% 10%;
-  --popover: 201 100% 95%;
-  --popover-foreground: 201 100% 0%;
-  --primary: 201 37% 30%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 201 30% 70%;
-  --secondary-foreground: 0 0% 0%;
-  --muted: 163 30% 85%;
-  --muted-foreground: 201 5% 35%;
-  --accent: 163 30% 80%;
-  --accent-foreground: 201 5% 10%;
-  --destructive: 0 100% 30%;
-  --destructive-foreground: 201 5% 90%;
-  --border: 201 30% 50%;
-  --input: 201 30% 18%;
-  --ring: 201 37% 30%;
-  --radius: 0.5rem;
-}
-.dark {
-  --background: 201 50% 5%;
-  --foreground: 201 5% 90%;
-  --card: 201 50% 0%;
-  --card-foreground: 201 5% 90%;
-  --popover: 201 50% 5%;
-  --popover-foreground: 201 5% 90%;
-  --primary: 201 37% 30%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 201 30% 10%;
-  --secondary-foreground: 0 0% 100%;
-  --muted: 163 30% 15%;
-  --muted-foreground: 201 5% 60%;
-  --accent: 163 30% 15%;
-  --accent-foreground: 201 5% 90%;
-  --destructive: 0 100% 30%;
-  --destructive-foreground: 201 5% 90%;
-  --border: 201 30% 18%;
-  --input: 201 30% 18%;
-  --ring: 201 37% 30%;
-  --radius: 0.5rem;
-}
-
 @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 142.1 76.2% 36.3%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 142.1 76.2% 36.3%;
+    --radius: 0.5rem;
   }
 }

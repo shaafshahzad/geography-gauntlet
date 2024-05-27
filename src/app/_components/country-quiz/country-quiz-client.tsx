@@ -101,6 +101,12 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
           title: "Correct!",
           description: `${country.name} is a country!`,
         });
+
+        if (countries.length === 0) {
+          const endTime = Date.now();
+          setElapsedTime((endTime - startTime) / 1000);
+          setGameOver(true);
+        }
       } else {
         setAnswer("");
         toast({

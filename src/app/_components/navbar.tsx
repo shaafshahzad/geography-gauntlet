@@ -8,13 +8,14 @@ export function Navbar() {
   const router = useRouter();
 
   return (
-    <div className="flex w-full flex-row items-center justify-between">
-      <h1
+    <div className="flex w-full justify-between rounded-b-md border border-t-0 bg-card p-3">
+      <p
         onClick={() => router.push("/")}
-        className="text-3xl font-bold italic"
+        className="cursor-pointer text-3xl font-bold italic"
       >
         GeographyGauntlet
-      </h1>
+      </p>
+
       <SignedOut>
         <SignInButton>
           <Button>Sign in</Button>

@@ -112,7 +112,6 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
         }
         setCountryFlags(newFlags);
         setAnswer("");
-
         toast({
           title: "Correct!",
           description: `${currentFlag.name} was the right answer!`,
@@ -125,7 +124,6 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
         }
       } else {
         setAnswer("");
-
         toast({
           variant: "destructive",
           title: "Incorrect",
