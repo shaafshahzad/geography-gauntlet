@@ -28,7 +28,7 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <body className={`font-sans ${inter.variable}`}>
           <TRPCReactProvider>
-            <main className="flex min-h-screen flex-col items-center justify-center gap-2">
+            <main className="flex min-h-screen flex-col items-center justify-center gap-2 bg-background">
               <div className="min-h-screen w-full max-w-6xl px-20 pb-5">
                 <Navbar />
                 {children}
