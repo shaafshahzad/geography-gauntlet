@@ -20,6 +20,7 @@ const config = {
     "@typescript-eslint/prefer-nullish-coalescing": "warn",
     "@typescript-eslint/prefer-for-of": "warn",
     "@typescript-eslint/no-explicit-any": "warn",
+    " @typescript-eslint/no-unsafe-return": "off",
     "@typescript-eslint/no-unsafe-call": "warn",
     "@typescript-eslint/no-unsafe-member-access": "warn",
     "@typescript-eslint/consistent-type-imports": [
