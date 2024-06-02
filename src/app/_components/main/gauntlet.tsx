@@ -17,19 +17,19 @@ export function Gauntlet() {
   const router = useRouter();
 
   return (
-    <Card className="flex h-1/2 w-full flex-col gap-4 p-5">
-      <CardTitle>Gauntlet</CardTitle>
-      <CardContent className="flex h-full w-full justify-between gap-11 pb-0">
-        <div className="flex w-1/2 flex-col justify-between">
-          <World data={sampleArcs} globeConfig={globeConfig} />
-        </div>
-        <div className="flex w-1/2 flex-col justify-between">
+    <div className="flex h-full w-full flex-row gap-5">
+      <Card className="flex h-full w-1/2 flex-col gap-4 p-5">
+        <CardTitle>Gauntlet</CardTitle>
+        <CardContent className="flex h-full w-full flex-col justify-between gap-11 pb-0">
           <p>something something idk</p>
           <Button onClick={() => router.push("/gauntlet")}>
             Start Gauntlet
           </Button>
-        </div>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+      <div className="flex w-1/2 flex-col items-center justify-center">
+        <World data={sampleArcs} globeConfig={globeConfig} />
+      </div>
+    </div>
   );
 }

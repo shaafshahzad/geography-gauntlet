@@ -10,7 +10,7 @@ export function Quizzes() {
   return (
     <Card className="flex h-1/2 w-full flex-col gap-4 p-5">
       <CardTitle>Quizzes</CardTitle>
-      <CardContent className="flex h-full justify-between gap-11 pb-0">
+      <CardContent className="flex h-full justify-between gap-[98px] pb-0">
         <div className="flex w-1/2 flex-col justify-between">
           <p>Click to start a country quiz</p>
           <Button
