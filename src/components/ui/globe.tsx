@@ -107,10 +107,15 @@ export function Globe({ globeConfig, data }: WorldProps) {
       emissiveIntensity: number;
       shininess: number;
     };
-    globeMaterial.color = new Color(globeConfig.globeColor);
-    globeMaterial.emissive = new Color(globeConfig.emissive);
-    globeMaterial.emissiveIntensity = globeConfig.emissiveIntensity || 0.1;
-    globeMaterial.shininess = globeConfig.shininess || 0.9;
+    globeMaterial.color = new Color(
+      globeConfig.globeColor || defaultProps.globeColor,
+    );
+    globeMaterial.emissive = new Color(
+      globeConfig.emissive || defaultProps.emissive,
+    );
+    globeMaterial.emissiveIntensity =
+      globeConfig.emissiveIntensity || defaultProps.emissiveIntensity;
+    globeMaterial.shininess = globeConfig.shininess || defaultProps.shininess;
   };
 
   const _buildData = () => {
