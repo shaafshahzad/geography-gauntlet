@@ -14,7 +14,7 @@ export function Quizzes() {
       <CardContent className="flex h-full justify-between gap-[98px] pb-0">
         <div className="flex w-1/2 flex-col justify-between">
           <div className="flex flex-row">
-            <div className="flex w-3/4 flex-col">
+            <div className="flex flex-col">
               <p className="text-lg font-medium italic">
                 How well do you know the world?
               </p>
@@ -22,13 +22,6 @@ export function Quizzes() {
                 Name all the countries in the world within the time limit.
               </p>
             </div>
-            <Image
-              src="/country-quiz-icon.png"
-              width={100}
-              height={100}
-              alt="World Quiz icon"
-              className="align-middle"
-            />
           </div>
           <Button
             onClick={() => router.push("/country-quiz")}
@@ -39,7 +32,7 @@ export function Quizzes() {
         </div>
         <div className="flex w-1/2 flex-col justify-between">
           <div className="flex flex-row">
-            <div className="flex w-3/4 flex-col">
+            <div className="flex flex-col">
               <p className="text-lg font-medium italic">
                 How well do you know world flags?
               </p>
@@ -47,13 +40,6 @@ export function Quizzes() {
                 Identify the country each flag belongs to within the time limit.
               </p>
             </div>
-            <Image
-              src="/flag-quiz-icon.png"
-              width={100}
-              height={100}
-              alt="World Quiz icon"
-              className="align-middle"
-            />
           </div>
           <Button onClick={() => router.push("/flag-quiz")} className="w-full">
             Start Flag Quiz
