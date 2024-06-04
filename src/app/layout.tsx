@@ -16,7 +16,7 @@ export const metadata = {
   title: "GeographyGauntlet",
   description:
     "Test your geography knowledge with Gauntlet, Country Quiz, and Flag Quiz games.",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  icons: [{ rel: "icon", url: "/favicon.png" }],
 };
 
 export default function RootLayout({
