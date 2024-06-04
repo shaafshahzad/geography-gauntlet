@@ -13,7 +13,7 @@ export function Quizzes() {
       <CardTitle>Quizzes</CardTitle>
       <CardContent className="flex h-full justify-between gap-[98px] pb-0">
         <div className="flex w-1/2 flex-col justify-between">
-          <div className="flex flex-row">
+          <div className="mb-2 flex flex-row">
             <div className="flex flex-col">
               <p className="text-lg font-medium italic">
                 How well do you know the world?
@@ -31,7 +31,7 @@ export function Quizzes() {
           </Button>
         </div>
         <div className="flex w-1/2 flex-col justify-between">
-          <div className="flex flex-row">
+          <div className="mb-2 flex flex-row">
             <div className="flex flex-col">
               <p className="text-lg font-medium italic">
                 How well do you know world flags?
