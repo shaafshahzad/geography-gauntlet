@@ -14,7 +14,7 @@ export function Quizzes() {
       <CardContent className="flex h-full justify-between gap-[98px] pb-0">
         <div className="flex w-1/2 flex-col justify-between">
           <div className="flex flex-row">
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col">
               <p className="text-xl font-medium italic">
                 How well do you know the world?
               </p>
@@ -24,8 +24,8 @@ export function Quizzes() {
             </div>
             <Image
               src="/country-quiz-icon.png"
-              width={125}
-              height={15}
+              width={110}
+              height={110}
               alt="World Quiz icon"
               className="ml-6 align-middle"
             />
@@ -39,7 +39,7 @@ export function Quizzes() {
         </div>
         <div className="flex w-1/2 flex-col justify-between">
           <div className="flex flex-row">
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col">
               <p className="text-xl font-medium italic">
                 How well do you know world flags?
               </p>
@@ -49,8 +49,8 @@ export function Quizzes() {
             </div>
             <Image
               src="/flag-quiz-icon.png"
-              width={125}
-              height={15}
+              width={110}
+              height={110}
               alt="World Quiz icon"
               className="ml-6 align-middle"
             />
