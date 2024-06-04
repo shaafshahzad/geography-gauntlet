@@ -31,7 +31,7 @@ export function Gauntlet() {
               correctly.
               <br />
               Score points by answering quickly, but beware – once time runs
-              out, it's <b>game over</b>.
+              out, it&apos;s <b>game over</b>.
             </p>
             <Image
               src="/gauntlet-icon.png"
