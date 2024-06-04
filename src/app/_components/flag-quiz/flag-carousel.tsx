@@ -37,7 +37,7 @@ export function FlagCarousel({
   }, [api, setCurrentFlagIndex]);
 
   return (
-    <Carousel setApi={setApi} className="h-1/2 w-1/2">
+    <Carousel setApi={setApi} className="h-1/2 items-center justify-center">
       <CarouselPrevious>Previous</CarouselPrevious>
       <CarouselContent>
         {countryFlags.map((country) => (

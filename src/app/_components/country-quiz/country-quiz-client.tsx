@@ -9,6 +9,7 @@ import { fetchCountries } from "~/lib/utils/fetch-countries";
 import { QuizRestart } from "../quiz-restart";
 import { updateStats } from "~/lib/utils/update-stats";
 import { useToast } from "~/components/ui/use-toast";
+import { Card, CardContent } from "~/components/ui/card";
 
 interface Country {
   country_id: number;
@@ -149,13 +150,17 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-10">
-      <QuizCountdown timer={timer} totalScore={totalScore} />
-      <MapWrapper guessedCountries={guessedCountries} />
-      <QuizControls
-        answer={answer}
-        onAnswerChange={setAnswer}
-        onKeyDown={handleKeyDown}
-      />
+      <Card className="h-full w-full items-center justify-center p-10">
+        <CardContent className="space-y-10 pb-0">
+          <QuizCountdown timer={timer} totalScore={totalScore} />
+          <MapWrapper guessedCountries={guessedCountries} />
+          <QuizControls
+            answer={answer}
+            onAnswerChange={setAnswer}
+            onKeyDown={handleKeyDown}
+          />
+        </CardContent>
+      </Card>
     </div>
   );
 }

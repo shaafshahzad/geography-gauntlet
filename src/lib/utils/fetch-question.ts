@@ -14,10 +14,12 @@ interface GauntletState {
   isCorrect: boolean | null;
   timerActive: boolean;
   isStarted: boolean;
+  questionNumber: number;
 }
 
 export async function fetchQuestion(
   setState: React.Dispatch<React.SetStateAction<GauntletState>>,
+  questionNumber: number,
   apiUrl = "/api/gauntletQuestion",
 ) {
   try {
@@ -28,6 +30,7 @@ export async function fetchQuestion(
       question: newQuestion,
       timer: 10,
       timerActive: true,
+      questionNumber: questionNumber,
     }));
   } catch (error) {
     console.error("Failed to fetch new question", error);

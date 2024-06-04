@@ -13,11 +13,11 @@ export function QuizControls({
   onKeyDown,
 }: QuizControlsProps) {
   return (
-    <div className="w-1/2">
+    <div className="flex w-full items-center justify-center">
       <Input
         type="text"
         placeholder="Enter Country Name"
-        className="w-full"
+        className="w-5/6"
         value={answer}
         onChange={(e) => onAnswerChange(e.target.value)}
         onKeyDown={onKeyDown}

@@ -82,7 +82,6 @@ export const userRouter = createTRPCRouter({
       if (target.includes("time")) {
         if (newValue > 0 && (currentValue === 0 || newValue < currentValue)) {
           shouldUpdate = true;
-          console.log("Updating time since it's better than the current value");
         }
       } else {
         if (newValue > currentValue) {
@@ -97,8 +96,6 @@ export const userRouter = createTRPCRouter({
             [target]: value,
           })
           .where(eq(users_stats.user_id, user_id));
-      } else {
-        console.log("No update needed as the new value is not an improvement.");
       }
     }),
 

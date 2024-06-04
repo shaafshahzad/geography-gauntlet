@@ -12,6 +12,7 @@ import { QuizStart } from "../quiz-start";
 import { QuizCountdown } from "../quiz-countdown";
 import { QuizRestart } from "../quiz-restart";
 import { useToast } from "~/components/ui/use-toast";
+import { Card, CardContent } from "~/components/ui/card";
 
 interface Flag {
   country_id: number;
@@ -152,19 +153,23 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
   }
 
   return (
-    <div className="flex max-w-6xl flex-col items-center justify-center gap-10">
-      <QuizCountdown timer={timer} totalScore={totalScore} />
-      <FlagCarousel
-        countryFlags={countryFlags}
-        setApi={setApi}
-        api={api}
-        setCurrentFlagIndex={setCurrentFlagIndex}
-      />
-      <QuizControls
-        answer={answer}
-        onAnswerChange={setAnswer}
-        onKeyDown={handleKeyDown}
-      />
+    <div className="flex w-full flex-col items-center justify-center gap-10">
+      <Card className="h-full w-full items-center justify-center p-10">
+        <CardContent className="space-y-10 pb-0">
+          <QuizCountdown timer={timer} totalScore={totalScore} />
+          <FlagCarousel
+            countryFlags={countryFlags}
+            setApi={setApi}
+            api={api}
+            setCurrentFlagIndex={setCurrentFlagIndex}
+          />
+          <QuizControls
+            answer={answer}
+            onAnswerChange={setAnswer}
+            onKeyDown={handleKeyDown}
+          />
+        </CardContent>
+      </Card>
     </div>
   );
 }
