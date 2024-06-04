@@ -24,8 +24,8 @@ export function Quizzes() {
             </div>
             <Image
               src="/country-quiz-icon.png"
-              width={110}
-              height={110}
+              width={100}
+              height={100}
               alt="World Quiz icon"
               className="ml-6 align-middle"
             />
@@ -49,8 +49,8 @@ export function Quizzes() {
             </div>
             <Image
               src="/flag-quiz-icon.png"
-              width={110}
-              height={110}
+              width={100}
+              height={100}
               alt="World Quiz icon"
               className="ml-6 align-middle"
             />
