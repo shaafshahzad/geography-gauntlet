@@ -14,8 +14,8 @@ export function Quizzes() {
       <CardContent className="flex h-full justify-between gap-[98px] pb-0">
         <div className="flex w-1/2 flex-col justify-between">
           <div className="flex flex-row">
-            <div className="flex flex-col">
-              <p className="text-xl font-medium italic">
+            <div className="flex w-3/4 flex-col">
+              <p className="text-lg font-medium italic">
                 How well do you know the world?
               </p>
               <p className="text-md">
@@ -27,7 +27,7 @@ export function Quizzes() {
               width={100}
               height={100}
               alt="World Quiz icon"
-              className="ml-6 align-middle"
+              className="align-middle"
             />
           </div>
           <Button
@@ -39,8 +39,8 @@ export function Quizzes() {
         </div>
         <div className="flex w-1/2 flex-col justify-between">
           <div className="flex flex-row">
-            <div className="flex flex-col">
-              <p className="text-xl font-medium italic">
+            <div className="flex w-3/4 flex-col">
+              <p className="text-lg font-medium italic">
                 How well do you know world flags?
               </p>
               <p className="text-md">
@@ -52,7 +52,7 @@ export function Quizzes() {
               width={100}
               height={100}
               alt="World Quiz icon"
-              className="ml-6 align-middle"
+              className="align-middle"
             />
           </div>
           <Button onClick={() => router.push("/flag-quiz")} className="w-full">
