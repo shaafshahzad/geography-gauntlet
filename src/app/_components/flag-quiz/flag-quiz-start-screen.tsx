@@ -55,6 +55,7 @@ export function FlagQuizStartScreen({
                 height={250}
                 alt="Flag quiz page image"
                 className="align-middle"
+                priority={true}
               />
             </div>
             <div className="flex justify-end">

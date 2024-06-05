@@ -81,6 +81,7 @@ export function GauntletStartScreen({
                 height={350}
                 alt="Gauntlet page image"
                 className="align-middle"
+                priority={true}
               />
             </div>
             <div className="flex justify-end">

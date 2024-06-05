@@ -57,6 +57,7 @@ export function CountryQuizStartScreen({
                 height={450}
                 alt="Country quiz page image"
                 className="align-middle"
+                priority={true}
               />
             </div>
             <div className="flex justify-end">
