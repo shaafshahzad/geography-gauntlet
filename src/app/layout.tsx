@@ -4,6 +4,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Navbar } from "./_components/navbar";
 import { Toaster } from "~/components/ui/toaster";
+import { CSPostHogProvider } from "./_analytics/provider";
 
 export const dynamic = "force-dynamic";
 
@@ -26,19 +27,21 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body className={`font-sans ${inter.variable}`}>
-          <TRPCReactProvider>
-            <main className="flex min-h-screen flex-col items-center justify-center gap-2 bg-background">
-              <div className="min-h-screen w-full max-w-6xl px-20 pb-5">
-                <Navbar />
-                {children}
-              </div>
-            </main>
-            <Toaster />
-          </TRPCReactProvider>
-        </body>
-      </html>
+      <CSPostHogProvider>
+        <html lang="en" suppressHydrationWarning>
+          <body className={`font-sans ${inter.variable}`}>
+            <TRPCReactProvider>
+              <main className="flex min-h-screen flex-col items-center justify-center gap-2 bg-background">
+                <div className="min-h-screen w-full max-w-6xl px-20 pb-5">
+                  <Navbar />
+                  {children}
+                </div>
+              </main>
+              <Toaster />
+            </TRPCReactProvider>
+          </body>
+        </html>
+      </CSPostHogProvider>
     </ClerkProvider>
   );
 }
