@@ -2,8 +2,14 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { api } from "~/trpc/server";
 
+interface RequestBody {
+  user_id: string;
+  target: string;
+  value: string;
+}
+
 export async function POST(req: NextRequest) {
-  const body = await req.json();
+  const body: RequestBody = await req.json();
   const { user_id, target, value } = body;
 
   try {

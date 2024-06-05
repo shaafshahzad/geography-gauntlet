@@ -64,7 +64,7 @@ export function GauntletClient({
   const startGame = async () => {
     try {
       const res = await fetch("/api/gauntletQuestion", { method: "GET" });
-      const newQuestion: Question = await res.json();
+      const newQuestion: Question = (await res.json()) as Question;
 
       setState((prevState) => ({
         ...prevState,

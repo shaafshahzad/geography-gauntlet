@@ -24,7 +24,7 @@ export async function fetchQuestion(
 ) {
   try {
     const res = await fetch(apiUrl, { method: "GET" });
-    const newQuestion: Question = await res.json();
+    const newQuestion: Question = (await res.json()) as Question;
     setState((s: GauntletState) => ({
       ...s,
       question: newQuestion,
