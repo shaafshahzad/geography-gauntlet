@@ -23,10 +23,6 @@ interface LeaderboardItem {
   country_quiz_time: number;
 }
 
-interface LeaderboardResponse {
-  leaderboard: LeaderboardItem[];
-}
-
 export function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState<LeaderboardItem[] | null>(
     null,
