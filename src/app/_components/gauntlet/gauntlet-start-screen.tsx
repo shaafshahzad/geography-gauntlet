@@ -58,8 +58,8 @@ export function GauntletStartScreen({
               <br />
               <b>Spelling:</b> Be precise with your spelling. Abbreviations like
               &quot;USA&quot; or &quot;DRC&quot; won&apos;t be accepted. Use
-              full country names like &quot;United States" or &quot;Democratic
-              Republic of the Congo&quot;.
+              full country names like &quot;United States&quot; or
+              &quot;Democratic Republic of the Congo&quot;.
             </ul>
             <h2 className="text-lg font-bold">Tips for Success:</h2>
             <ul className="list-inside list-disc">
