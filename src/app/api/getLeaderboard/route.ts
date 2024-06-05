@@ -18,12 +18,13 @@ interface Leaderboard {
 }
 
 export async function POST(req: NextRequest) {
-  const body: Body = await req.json();
+  const body = (await req.json()) as Body;
   const { value } = body;
 
   try {
-    const leaderboard: Leaderboard[] | undefined =
-      await api.user.getLeaderboard({ value });
+    const leaderboard = (await api.user.getLeaderboard({ value })) as
+      | Leaderboard[]
+      | undefined;
     if (!leaderboard) {
       throw new Error("Leaderboard data is undefined");
     }

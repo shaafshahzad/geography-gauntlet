@@ -9,7 +9,7 @@ interface RequestBody {
 }
 
 export async function POST(req: NextRequest) {
-  const body: RequestBody = await req.json();
+  const body = (await req.json()) as RequestBody;
   const { user_id, target, value } = body;
 
   try {
