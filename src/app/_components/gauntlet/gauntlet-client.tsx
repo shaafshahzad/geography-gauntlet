@@ -22,17 +22,29 @@ interface GauntletClientProps {
   userId?: string;
 }
 
+interface GauntletState {
+  question: Question;
+  answer: string;
+  timer: number;
+  totalScore: number;
+  gameOver: boolean;
+  isCorrect: boolean | null;
+  timerActive: boolean;
+  isStarted: boolean;
+  questionNumber: number;
+}
+
 export function GauntletClient({
   initialQuestion,
   userId,
 }: GauntletClientProps) {
-  const [state, setState] = useState({
+  const [state, setState] = useState<GauntletState>({
     question: initialQuestion,
     answer: "",
     timer: 10,
     totalScore: 0,
     gameOver: false,
-    isCorrect: null as null | boolean,
+    isCorrect: null,
     timerActive: true,
     isStarted: false,
     questionNumber: 1,
@@ -54,8 +66,8 @@ export function GauntletClient({
       const res = await fetch("/api/gauntletQuestion", { method: "GET" });
       const newQuestion: Question = await res.json();
 
-      setState({
-        ...state,
+      setState((prevState) => ({
+        ...prevState,
         question: newQuestion,
         answer: "",
         totalScore: 0,
@@ -65,7 +77,7 @@ export function GauntletClient({
         timerActive: true,
         isStarted: true,
         questionNumber: 1,
-      });
+      }));
     } catch (error) {
       console.error("Failed to fetch new question", error);
     }

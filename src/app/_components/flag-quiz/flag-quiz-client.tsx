@@ -66,7 +66,7 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
         }
       };
 
-      startGame();
+      startGame().catch(console.error);
     }
 
     return () => {

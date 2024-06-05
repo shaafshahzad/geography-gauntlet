@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useRef, useState } from "react";
 import { Color, Scene, Fog, PerspectiveCamera, Vector3 } from "three";
 import ThreeGlobe from "three-globe";
@@ -108,14 +109,14 @@ export function Globe({ globeConfig, data }: WorldProps) {
       shininess: number;
     };
     globeMaterial.color = new Color(
-      globeConfig.globeColor || defaultProps.globeColor,
+      globeConfig.globeColor ?? defaultProps.globeColor,
     );
     globeMaterial.emissive = new Color(
-      globeConfig.emissive || defaultProps.emissive,
+      globeConfig.emissive ?? defaultProps.emissive,
     );
     globeMaterial.emissiveIntensity =
-      globeConfig.emissiveIntensity || defaultProps.emissiveIntensity;
-    globeMaterial.shininess = globeConfig.shininess || defaultProps.shininess;
+      globeConfig.emissiveIntensity ?? defaultProps.emissiveIntensity;
+    globeMaterial.shininess = globeConfig.shininess ?? defaultProps.shininess;
   };
 
   const _buildData = () => {
@@ -205,7 +206,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
   };
 
   useEffect(() => {
-    if (!globeRef.current || !globeData) return;
+    if (!globeRef.current ?? !globeData) return;
 
     const interval = setInterval(() => {
       if (!globeRef.current || !globeData) return;

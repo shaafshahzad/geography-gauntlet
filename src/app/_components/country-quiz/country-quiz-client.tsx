@@ -64,7 +64,7 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
         }
       };
 
-      startGame();
+      startGame().catch(console.error);
     }
 
     return () => {
