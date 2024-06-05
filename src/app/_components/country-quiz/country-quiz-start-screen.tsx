@@ -35,17 +35,17 @@ export function CountryQuizStartScreen({
               </li>
               <li>
                 <b>Spelling:</b> Be precise with your spelling. Abbreviations
-                like "USA" or "DRC" won&apos;t be accepted. Use full country
-                names like "United States" or "Democratic Republic of the
-                Congo".
+                like &quot;USA&quot; or &quot;DRC&quot; won&apos;t be accepted.
+                Use full country names like &quot;United States&quot; or
+                &quot;Democratic Republic of the Congo&quot;.
               </li>
             </ul>
             <h2 className="text-lg font-bold">Tips for Success:</h2>
             <ul className="list-inside list-disc">
               <li>Brush up on your world geography.</li>
               <li>
-                Practice makes perfect – the more you play, the better you'll
-                get!
+                Practice makes perfect – the more you play, the better
+                you&apos;ll get!
               </li>
             </ul>
           </div>

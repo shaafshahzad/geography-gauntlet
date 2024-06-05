@@ -42,7 +42,7 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
         intervalRef.current = setInterval(() => {
           setTimer((prev) => {
             if (prev <= 1) {
-              clearInterval(intervalRef.current as NodeJS.Timeout);
+              clearInterval(intervalRef.current!);
               setElapsedTime(1080);
               setGameOver(true);
               updateStats(userId, "country_quiz_time", "1080");
@@ -99,7 +99,7 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
         });
 
         if (countries.length === 0) {
-          clearInterval(intervalRef.current as NodeJS.Timeout);
+          clearInterval(intervalRef.current!);
           setGameOver(true);
         }
       } else {

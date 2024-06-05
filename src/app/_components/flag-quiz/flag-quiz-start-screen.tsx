@@ -34,9 +34,9 @@ export function FlagQuizStartScreen({
               </li>
               <li>
                 <b>Spelling:</b> Be precise with your spelling. Abbreviations
-                like "USA" or "DRC" won&apos;t be accepted. Use full country
-                names like "United States" or "Democratic Republic of the
-                Congo".
+                like &quot;USA&quot; or &quot;DRC&quot; won&apos;t be accepted.
+                Use full country names like &quot;United States&quot; or
+                &quot;Democratic Republic of the Congo&quot;.
               </li>
             </ul>
             <h2 className="text-lg font-bold">Tips for Success:</h2>

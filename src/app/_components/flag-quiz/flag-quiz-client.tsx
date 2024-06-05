@@ -44,7 +44,7 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
         intervalRef.current = setInterval(() => {
           setTimer((prev) => {
             if (prev <= 1) {
-              clearInterval(intervalRef.current as NodeJS.Timeout);
+              clearInterval(intervalRef.current!);
               setElapsedTime(1080);
               setGameOver(true);
               updateStats(userId, "flag_quiz_time", "1080");
@@ -114,7 +114,7 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
         });
 
         if (newFlags.length === 0) {
-          clearInterval(intervalRef.current as NodeJS.Timeout);
+          clearInterval(intervalRef.current!);
           setGameOver(true);
         }
       } else {

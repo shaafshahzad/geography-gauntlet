@@ -57,8 +57,9 @@ export function GauntletStartScreen({
               answer, the higher your score!
               <br />
               <b>Spelling:</b> Be precise with your spelling. Abbreviations like
-              "USA" or "DRC" won&apos;t be accepted. Use full country names like
-              "United States" or "Democratic Republic of the Congo".
+              &quot;USA&quot; or &quot;DRC&quot; won&apos;t be accepted. Use
+              full country names like &quot;United States" or &quot;Democratic
+              Republic of the Congo&quot;.
             </ul>
             <h2 className="text-lg font-bold">Tips for Success:</h2>
             <ul className="list-inside list-disc">
