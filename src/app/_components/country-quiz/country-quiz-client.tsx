@@ -1,15 +1,15 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { MapWrapper } from "../country-quiz/map-wrapper";
 import { QuizControls } from "../quiz-controls";
 import { QuizCountdown } from "../quiz-countdown";
-import { QuizStart } from "../quiz-start";
 import { fetchCountries } from "~/lib/utils/fetch-countries";
-import { QuizRestart } from "../quiz-restart";
+import { RestartScreen } from "../restart-screen";
 import { updateStats } from "~/lib/utils/update-stats";
 import { useToast } from "~/components/ui/use-toast";
 import { Card, CardContent } from "~/components/ui/card";
+import { CountryQuizStartScreen } from "./country-quiz-start-screen";
 
 interface Country {
   country_id: number;
@@ -23,11 +23,11 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
   const [gameOver, setGameOver] = useState(false);
   const [countries, setCountries] = useState<Country[]>([]);
   const [guessedCountries, setGuessedCountries] = useState<Country[]>([]);
-  const [startTime, setStartTime] = useState(0);
   const [timer, setTimer] = useState(1080);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [totalScore, setTotalScore] = useState(0);
   const { toast } = useToast();
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (isStarted) {
@@ -36,45 +36,40 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
         if (countries) {
           setCountries(countries);
         }
-        setStartTime(Date.now());
-        const interval = setInterval(() => {
+        setElapsedTime(0);
+        setTimer(1080);
+
+        intervalRef.current = setInterval(() => {
           setTimer((prev) => {
             if (prev <= 1) {
-              clearInterval(interval);
-              const endTime = Date.now();
-              setElapsedTime((endTime - startTime) / 1000);
+              clearInterval(intervalRef.current as NodeJS.Timeout);
+              setElapsedTime(1080);
               setGameOver(true);
-              updateStats(
-                userId,
-                "country_quiz_time",
-                Math.floor(elapsedTime).toString(),
-              );
+              updateStats(userId, "country_quiz_time", "1080");
               updateStats(userId, "country_quiz_score", totalScore.toString());
               return 0;
             }
             return prev - 1;
           });
         }, 1000);
-
-        return () => {
-          clearInterval(interval);
-        };
       };
 
       startGame();
     }
-  }, [isStarted, gameOver]);
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isStarted]);
 
   useEffect(() => {
-    if (gameOver && elapsedTime > 0) {
-      updateStats(
-        userId,
-        "country_quiz_time",
-        Math.floor(elapsedTime).toString(),
-      );
+    if (gameOver) {
+      updateStats(userId, "country_quiz_time", "1080");
       updateStats(userId, "country_quiz_score", totalScore.toString());
     }
-  }, [gameOver, elapsedTime]);
+  }, [gameOver]);
 
   const handleSubmit = async () => {
     if (answer && countries) {
@@ -104,8 +99,7 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
         });
 
         if (countries.length === 0) {
-          const endTime = Date.now();
-          setElapsedTime((endTime - startTime) / 1000);
+          clearInterval(intervalRef.current as NodeJS.Timeout);
           setGameOver(true);
         }
       } else {
@@ -123,11 +117,8 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
     setAnswer("");
     setTotalScore(0);
     setGameOver(false);
-    setTimer(1080);
-    setElapsedTime(0);
     setIsStarted(true);
     setGuessedCountries([]);
-    setStartTime(Date.now());
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -137,15 +128,21 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
   };
 
   if (gameOver) {
-    return QuizRestart({
-      startQuiz,
-      totalScore,
-      elapsedTime: elapsedTime,
-    });
+    return (
+      <RestartScreen
+        totalScore={totalScore}
+        questionNumber={0}
+        elapsedTime={elapsedTime}
+        restart={startQuiz}
+        isGauntlet={false}
+      />
+    );
   }
 
   if (!isStarted) {
-    return QuizStart(startQuiz);
+    return (
+      <CountryQuizStartScreen isStarted={isStarted} startGame={startQuiz} />
+    );
   }
 
   return (

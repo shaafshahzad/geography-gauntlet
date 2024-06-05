@@ -1,18 +1,16 @@
-// TODO: refactor and simplify
-
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { fetchFlags } from "~/lib/utils/fetch-flags";
 import { updateStats } from "~/lib/utils/update-stats";
 import { FlagCarousel } from "./flag-carousel";
 import { QuizControls } from "../quiz-controls";
 import { type CarouselApi } from "~/components/ui/carousel";
-import { QuizStart } from "../quiz-start";
 import { QuizCountdown } from "../quiz-countdown";
-import { QuizRestart } from "../quiz-restart";
+import { RestartScreen } from "../restart-screen";
 import { useToast } from "~/components/ui/use-toast";
 import { Card, CardContent } from "~/components/ui/card";
+import { FlagQuizStartScreen } from "./flag-quiz-start-screen";
 
 interface Flag {
   country_id: number;
@@ -28,12 +26,11 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
   const [answer, setAnswer] = useState("");
   const [totalScore, setTotalScore] = useState(0);
   const [timer, setTimer] = useState(1080);
-  const [startTime, setStartTime] = useState(0);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const { toast } = useToast();
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // IF ANY ISSUES WITH FLAG RENDER, FIX HERE
   useEffect(() => {
     if (isStarted) {
       const startGame = async () => {
@@ -41,41 +38,40 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
         if (flags) {
           setCountryFlags(flags);
         }
-        setStartTime(Date.now());
-        const interval = setInterval(() => {
+        setElapsedTime(0);
+        setTimer(1080);
+
+        intervalRef.current = setInterval(() => {
           setTimer((prev) => {
             if (prev <= 1) {
-              clearInterval(interval);
-              const endTime = Date.now();
-              setElapsedTime((endTime - startTime) / 1000);
+              clearInterval(intervalRef.current as NodeJS.Timeout);
+              setElapsedTime(1080);
               setGameOver(true);
-              updateStats(
-                userId,
-                "flag_quiz_time",
-                Math.floor(elapsedTime).toString(),
-              );
+              updateStats(userId, "flag_quiz_time", "1080");
               updateStats(userId, "flag_quiz_score", totalScore.toString());
               return 0;
             }
             return prev - 1;
           });
         }, 1000);
-
-        return () => {
-          clearInterval(interval);
-        };
       };
 
       startGame();
     }
-  }, [isStarted, gameOver]);
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isStarted]);
 
   useEffect(() => {
-    if (gameOver && elapsedTime > 0) {
-      updateStats(userId, "flag_quiz_time", Math.floor(elapsedTime).toString());
+    if (gameOver) {
+      updateStats(userId, "flag_quiz_time", "1080");
       updateStats(userId, "flag_quiz_score", totalScore.toString());
     }
-  }, [gameOver, elapsedTime]);
+  }, [gameOver]);
 
   useEffect(() => {
     if (!api) {
@@ -95,7 +91,6 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
     setTimer(1080);
     setElapsedTime(0);
     setIsStarted(true);
-    setStartTime(Date.now());
   };
 
   const handleSubmit = async () => {
@@ -119,8 +114,7 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
         });
 
         if (newFlags.length === 0) {
-          const endTime = Date.now();
-          setElapsedTime((endTime - startTime) / 1000);
+          clearInterval(intervalRef.current as NodeJS.Timeout);
           setGameOver(true);
         }
       } else {
@@ -141,15 +135,19 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
   };
 
   if (gameOver) {
-    return QuizRestart({
-      startQuiz,
-      totalScore,
-      elapsedTime: elapsedTime,
-    });
+    return (
+      <RestartScreen
+        totalScore={totalScore}
+        questionNumber={0}
+        elapsedTime={elapsedTime}
+        restart={startQuiz}
+        isGauntlet={false}
+      />
+    );
   }
 
   if (!isStarted) {
-    return QuizStart(startQuiz);
+    return <FlagQuizStartScreen isStarted={isStarted} startGame={startQuiz} />;
   }
 
   return (

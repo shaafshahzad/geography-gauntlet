@@ -18,7 +18,7 @@ export function Gauntlet() {
   const router = useRouter();
 
   return (
-    <div className="flex h-full w-full flex-row gap-5">
+    <div className="flex h-1/2 w-full flex-row gap-5">
       <Card className="flex h-full w-1/2 flex-col gap-4 p-5">
         <CardTitle>Gauntlet</CardTitle>
         <CardContent className="flex h-full w-full flex-col justify-between gap-4 pb-0">
@@ -46,7 +46,7 @@ export function Gauntlet() {
           </div>
         </CardContent>
       </Card>
-      <div className="flex w-1/2 flex-col items-center justify-center">
+      <div className="flex h-full w-1/2 flex-col items-center justify-center">
         <World data={sampleArcs} globeConfig={globeConfig} />
       </div>
     </div>

@@ -7,6 +7,8 @@ import { fetchQuestion } from "~/lib/utils/fetch-question";
 import { useToast } from "~/components/ui/use-toast";
 import { Input } from "~/components/ui/input";
 import { Card, CardContent } from "~/components/ui/card";
+import { GauntletStartScreen } from "./gauntlet-start-screen";
+import { RestartScreen } from "../restart-screen";
 
 interface Question {
   question: string;
@@ -119,16 +121,18 @@ export function GauntletClient({
 
   if (gameOver) {
     return (
-      <div>
-        <h1>Game Over</h1>
-        <p>Total Score: {totalScore}</p>
-        <button onClick={startGame}>Restart Game</button>
-      </div>
+      <RestartScreen
+        totalScore={totalScore}
+        questionNumber={questionNumber}
+        elapsedTime={0}
+        restart={startGame}
+        isGauntlet={true}
+      />
     );
   }
 
   if (!isStarted) {
-    return <button onClick={startGame}>Click to Start</button>;
+    return <GauntletStartScreen isStarted={isStarted} startGame={startGame} />;
   }
 
   return (

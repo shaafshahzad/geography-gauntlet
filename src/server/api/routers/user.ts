@@ -65,37 +65,47 @@ export const userRouter = createTRPCRouter({
       const { user_id, target, value } = input;
       const newValue = parseInt(value);
 
-      const currentStats = await ctx.db.query.users_stats.findFirst({
-        where: (users_stats, { eq }) => eq(users_stats.user_id, user_id),
-      });
+      try {
+        await ctx.db.transaction(async (trx) => {
+          const currentStats = await trx.query.users_stats.findFirst({
+            where: (users_stats, { eq }) => eq(users_stats.user_id, user_id),
+          });
 
-      if (!currentStats) {
-        throw new Error("User stats not found");
-      }
+          if (!currentStats) {
+            throw new Error("User stats not found");
+          }
 
-      const currentValue = parseInt(
-        currentStats[target as keyof typeof currentStats].toString(),
-      );
+          const currentValue = parseInt(
+            currentStats[target as keyof typeof currentStats].toString(),
+          );
 
-      let shouldUpdate = false;
+          let shouldUpdate = false;
 
-      if (target.includes("time")) {
-        if (newValue > 0 && (currentValue === 0 || newValue < currentValue)) {
-          shouldUpdate = true;
-        }
-      } else {
-        if (newValue > currentValue) {
-          shouldUpdate = true;
-        }
-      }
+          if (target.includes("time")) {
+            if (
+              newValue > 0 &&
+              (currentValue === 0 || newValue < currentValue)
+            ) {
+              shouldUpdate = true;
+            }
+          } else {
+            if (newValue > currentValue) {
+              shouldUpdate = true;
+            }
+          }
 
-      if (shouldUpdate) {
-        await ctx.db
-          .update(users_stats)
-          .set({
-            [target]: value,
-          })
-          .where(eq(users_stats.user_id, user_id));
+          if (shouldUpdate) {
+            await trx
+              .update(users_stats)
+              .set({
+                [target]: value,
+              })
+              .where(eq(users_stats.user_id, user_id));
+          }
+        });
+      } catch (error) {
+        console.error("Failed to update user stats:", error);
+        throw new Error("Failed to update user stats");
       }
     }),
 
