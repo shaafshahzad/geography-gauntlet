@@ -78,14 +78,13 @@ export const gauntletRouter = createTRPCRouter({
       }),
     )
     .query(({ ctx, input }) => {
-      const colorPattern = `%${input.color}%`;
       return ctx.db.query.countries.findMany({
         where: (countries, { or, like }) =>
           or(
-            like(countries.flag_color, `${input.color}, %`), // Color at the beginning, followed by comma
-            like(countries.flag_color, `%, ${input.color}, %`), // Color in the middle, enclosed by commas
-            like(countries.flag_color, `%, ${input.color}`), // Color at the end, preceded by a comma
-            like(countries.flag_color, input.color), // Exactly matching the whole field if only one color
+            like(countries.flag_color, `${input.color}, %`), // color at the beginning, followed by comma
+            like(countries.flag_color, `%, ${input.color}, %`), // color in the middle, enclosed by commas
+            like(countries.flag_color, `%, ${input.color}`), // color at the end, preceded by a comma
+            like(countries.flag_color, input.color), // exactly matching the whole field if only one color
           ),
       });
     }),
@@ -104,7 +103,7 @@ export const gauntletRouter = createTRPCRouter({
       });
 
       if (!countryData) {
-        return false; // Country not found or other error
+        return false; // country not found or other error
       }
 
       if (input.condition === "less") {
@@ -113,6 +112,6 @@ export const gauntletRouter = createTRPCRouter({
         return parseInt(countryData.population) > input.population;
       }
 
-      return false; // In case the condition is not met or invalid
+      return false; // in case the condition is not met or invalid
     }),
 });

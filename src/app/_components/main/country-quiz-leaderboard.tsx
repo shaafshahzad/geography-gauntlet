@@ -19,10 +19,6 @@ interface CountryQuizLeaderboardProps {
   leaderboard: LeaderboardItem[];
 }
 
-const parseScore = (score: string | undefined) => {
-  return score ? parseInt(score, 10) : 0;
-};
-
 export function CountryQuizLeaderboard({
   leaderboard,
 }: CountryQuizLeaderboardProps) {

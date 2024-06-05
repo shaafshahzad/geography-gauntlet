@@ -6,7 +6,6 @@ import {
   Geographies,
   Geography,
   ZoomableGroup,
-  GeographyProps,
 } from "react-simple-maps";
 
 const geoUrl =

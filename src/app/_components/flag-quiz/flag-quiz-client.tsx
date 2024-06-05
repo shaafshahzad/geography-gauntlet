@@ -34,26 +34,36 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
   useEffect(() => {
     if (isStarted) {
       const startGame = async () => {
-        const flags = await fetchFlags();
-        if (flags) {
-          setCountryFlags(flags);
-        }
-        setElapsedTime(0);
-        setTimer(1080);
+        try {
+          const flags = await fetchFlags();
+          if (flags) {
+            setCountryFlags(flags);
+          }
+          setElapsedTime(0);
+          setTimer(1080);
 
-        intervalRef.current = setInterval(() => {
-          setTimer((prev) => {
-            if (prev <= 1) {
-              clearInterval(intervalRef.current!);
-              setElapsedTime(1080);
-              setGameOver(true);
-              updateStats(userId, "flag_quiz_time", "1080");
-              updateStats(userId, "flag_quiz_score", totalScore.toString());
-              return 0;
-            }
-            return prev - 1;
-          });
-        }, 1000);
+          intervalRef.current = setInterval(() => {
+            setTimer((prev) => {
+              if (prev <= 1) {
+                clearInterval(intervalRef.current!);
+                setElapsedTime(1080);
+                setGameOver(true);
+                updateStats(userId, "flag_quiz_time", "1080").catch(
+                  console.error,
+                );
+                updateStats(
+                  userId,
+                  "flag_quiz_score",
+                  totalScore.toString(),
+                ).catch(console.error);
+                return 0;
+              }
+              return prev - 1;
+            });
+          }, 1000);
+        } catch (error) {
+          console.error(error);
+        }
       };
 
       startGame();
@@ -68,10 +78,12 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
 
   useEffect(() => {
     if (gameOver) {
-      updateStats(userId, "flag_quiz_time", "1080");
-      updateStats(userId, "flag_quiz_score", totalScore.toString());
+      updateStats(userId, "flag_quiz_time", "1080").catch(console.error);
+      updateStats(userId, "flag_quiz_score", totalScore.toString()).catch(
+        console.error,
+      );
     }
-  }, [gameOver]);
+  }, [gameOver, totalScore, userId]);
 
   useEffect(() => {
     if (!api) {
@@ -130,7 +142,7 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      handleSubmit();
+      handleSubmit().catch(console.error);
     }
   };
 

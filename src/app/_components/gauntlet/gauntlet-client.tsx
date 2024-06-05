@@ -52,7 +52,7 @@ export function GauntletClient({
   const startGame = async () => {
     try {
       const res = await fetch("/api/gauntletQuestion", { method: "GET" });
-      const newQuestion = await res.json();
+      const newQuestion: Question = await res.json();
 
       setState({
         ...state,
@@ -104,7 +104,7 @@ export function GauntletClient({
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      handleSubmit();
+      handleSubmit().catch(console.error);
     }
   };
 
@@ -115,7 +115,6 @@ export function GauntletClient({
     totalScore,
     answer,
     question,
-    isCorrect,
     questionNumber,
   } = state;
 

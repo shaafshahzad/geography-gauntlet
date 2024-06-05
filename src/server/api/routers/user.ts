@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { eq, and, desc, asc } from "drizzle-orm";
+import { eq, desc, asc } from "drizzle-orm";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { users, users_stats } from "~/server/db/schema";
 
@@ -24,7 +24,7 @@ export const userRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      await ctx.db.transaction(async (db) => {
+      await ctx.db.transaction(async () => {
         await ctx.db.insert(users).values({
           user_id: input.user_id,
           fullname: input.fullname,

@@ -3,7 +3,6 @@
 import { Card, CardTitle, CardContent } from "~/components/ui/card";
 import { Button } from "~/components/ui/button";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 
 export function Quizzes() {
   const router = useRouter();

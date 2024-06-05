@@ -32,26 +32,36 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
   useEffect(() => {
     if (isStarted) {
       const startGame = async () => {
-        const countries = await fetchCountries();
-        if (countries) {
-          setCountries(countries);
-        }
-        setElapsedTime(0);
-        setTimer(1080);
+        try {
+          const countries = await fetchCountries();
+          if (countries) {
+            setCountries(countries);
+          }
+          setElapsedTime(0);
+          setTimer(1080);
 
-        intervalRef.current = setInterval(() => {
-          setTimer((prev) => {
-            if (prev <= 1) {
-              clearInterval(intervalRef.current!);
-              setElapsedTime(1080);
-              setGameOver(true);
-              updateStats(userId, "country_quiz_time", "1080");
-              updateStats(userId, "country_quiz_score", totalScore.toString());
-              return 0;
-            }
-            return prev - 1;
-          });
-        }, 1000);
+          intervalRef.current = setInterval(() => {
+            setTimer((prev) => {
+              if (prev <= 1) {
+                clearInterval(intervalRef.current!);
+                setElapsedTime(1080);
+                setGameOver(true);
+                updateStats(userId, "country_quiz_time", "1080").catch(
+                  console.error,
+                );
+                updateStats(
+                  userId,
+                  "country_quiz_score",
+                  totalScore.toString(),
+                ).catch(console.error);
+                return 0;
+              }
+              return prev - 1;
+            });
+          }, 1000);
+        } catch (error) {
+          console.error(error);
+        }
       };
 
       startGame();
@@ -62,14 +72,16 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isStarted]);
+  }, [isStarted, totalScore, userId]);
 
   useEffect(() => {
     if (gameOver) {
-      updateStats(userId, "country_quiz_time", "1080");
-      updateStats(userId, "country_quiz_score", totalScore.toString());
+      updateStats(userId, "country_quiz_time", "1080").catch(console.error);
+      updateStats(userId, "country_quiz_score", totalScore.toString()).catch(
+        console.error,
+      );
     }
-  }, [gameOver]);
+  }, [gameOver, totalScore, userId]);
 
   const handleSubmit = async () => {
     if (answer && countries) {
@@ -123,7 +135,7 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      handleSubmit();
+      handleSubmit().catch(console.error);
     }
   };
 
