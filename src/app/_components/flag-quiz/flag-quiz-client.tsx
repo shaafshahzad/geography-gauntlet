@@ -48,14 +48,12 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
                 clearInterval(intervalRef.current!);
                 setElapsedTime(1080);
                 setGameOver(true);
-                updateStats(userId, "flag_quiz_time", "1080").catch(
+                updateStats(userId, "flag_quiz_time", 1080).catch(
                   console.error,
                 );
-                updateStats(
-                  userId,
-                  "flag_quiz_score",
-                  totalScore.toString(),
-                ).catch(console.error);
+                updateStats(userId, "flag_quiz_score", totalScore).catch(
+                  console.error,
+                );
                 return 0;
               }
               return prev - 1;
@@ -78,10 +76,8 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
 
   useEffect(() => {
     if (gameOver) {
-      updateStats(userId, "flag_quiz_time", "1080").catch(console.error);
-      updateStats(userId, "flag_quiz_score", totalScore.toString()).catch(
-        console.error,
-      );
+      updateStats(userId, "flag_quiz_time", 1080).catch(console.error);
+      updateStats(userId, "flag_quiz_score", totalScore).catch(console.error);
     }
   }, [gameOver, totalScore, userId]);
 

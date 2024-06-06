@@ -46,14 +46,12 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
                 clearInterval(intervalRef.current!);
                 setElapsedTime(1080);
                 setGameOver(true);
-                updateStats(userId, "country_quiz_time", "1080").catch(
+                updateStats(userId, "country_quiz_time", 1080).catch(
                   console.error,
                 );
-                updateStats(
-                  userId,
-                  "country_quiz_score",
-                  totalScore.toString(),
-                ).catch(console.error);
+                updateStats(userId, "country_quiz_score", totalScore).catch(
+                  console.error,
+                );
                 return 0;
               }
               return prev - 1;
@@ -76,8 +74,8 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
 
   useEffect(() => {
     if (gameOver) {
-      updateStats(userId, "country_quiz_time", "1080").catch(console.error);
-      updateStats(userId, "country_quiz_score", totalScore.toString()).catch(
+      updateStats(userId, "country_quiz_time", 1080).catch(console.error);
+      updateStats(userId, "country_quiz_score", totalScore).catch(
         console.error,
       );
     }

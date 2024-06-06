@@ -5,7 +5,7 @@ import { api } from "~/trpc/server";
 interface RequestBody {
   user_id: string;
   target: string;
-  value: string;
+  value: number;
 }
 
 export async function POST(req: NextRequest) {

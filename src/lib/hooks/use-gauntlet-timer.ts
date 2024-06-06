@@ -18,7 +18,7 @@ export const useGauntletTimer = (
         if (score <= 1) {
           clearInterval(interval);
           setGameOver(true);
-          updateStats(userId, "gauntlet_score", totalScore.toString()).catch(
+          updateStats(userId, "gauntlet_score", totalScore).catch(
             console.error,
           );
           return 0;

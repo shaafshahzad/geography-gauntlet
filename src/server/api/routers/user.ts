@@ -58,12 +58,12 @@ export const userRouter = createTRPCRouter({
       z.object({
         user_id: z.string(),
         target: z.string(),
-        value: z.string(),
+        value: z.number(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
       const { user_id, target, value } = input;
-      const newValue = parseInt(value);
+      const newValue = value;
 
       try {
         await ctx.db.transaction(async (trx) => {

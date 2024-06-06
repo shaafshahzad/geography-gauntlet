@@ -1,7 +1,7 @@
 export const updateStats = async (
   userId: string | undefined,
   target: string,
-  value: string,
+  value: number,
 ) => {
   if (userId) {
     try {
