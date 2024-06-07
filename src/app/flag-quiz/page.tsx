@@ -5,7 +5,7 @@ export default async function FlagQuiz() {
   const user = await currentUser();
 
   return (
-    <div className="flex h-[calc(100vh-136px)] w-full flex-col items-center justify-center">
+    <div className="flex h-[calc(100%-136px)] w-full flex-col items-center justify-center py-5 sm:h-[calc(100vh-136px)] sm:py-0">
       <FlagQuizClient userId={user?.id} />
     </div>
   );

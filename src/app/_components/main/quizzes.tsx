@@ -8,10 +8,10 @@ export function Quizzes() {
   const router = useRouter();
 
   return (
-    <Card className="flex h-1/2 w-full flex-col gap-4 p-5">
+    <Card className="flex w-full flex-col gap-4 p-5">
       <CardTitle>Quizzes</CardTitle>
-      <CardContent className="flex h-full justify-between gap-[98px] pb-0">
-        <div className="flex w-1/2 flex-col justify-between">
+      <CardContent className="flex h-full flex-col justify-between gap-10 px-1 pb-0 sm:px-6 md:flex-row md:gap-[98px]">
+        <div className="flex w-full flex-col justify-between md:w-1/2">
           <div className="mb-2 flex flex-row">
             <div className="flex flex-col">
               <p className="text-lg font-medium italic">
@@ -29,7 +29,7 @@ export function Quizzes() {
             Start Country Quiz
           </Button>
         </div>
-        <div className="flex w-1/2 flex-col justify-between">
+        <div className="flex w-full flex-col justify-between md:w-1/2">
           <div className="mb-2 flex flex-row">
             <div className="flex flex-col">
               <p className="text-lg font-medium italic">

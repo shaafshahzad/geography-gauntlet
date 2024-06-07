@@ -49,11 +49,11 @@ export function Leaderboard() {
   }, [category]);
 
   return (
-    <Card className="flex w-full flex-col gap-4 p-5">
+    <Card className="flex h-full w-full flex-col gap-4 p-5">
       <CardTitle className="flex justify-between align-top">
         Leaderboard
         <Select onValueChange={getLeaderboard} defaultValue="gauntlet">
-          <SelectTrigger className="h-[29px] w-[180px]">
+          <SelectTrigger className="h-[29px] w-[140px] md:w-[100px] lg:w-[180px]">
             <SelectValue placeholder="Gauntlet" />
           </SelectTrigger>
           <SelectContent>
@@ -63,7 +63,7 @@ export function Leaderboard() {
           </SelectContent>
         </Select>
       </CardTitle>
-      <CardContent className="pb-0">
+      <CardContent className="px-1 pb-0 sm:px-6">
         {leaderboard && category === "gauntlet" && (
           <GauntletLeaderboard leaderboard={leaderboard} />
         )}

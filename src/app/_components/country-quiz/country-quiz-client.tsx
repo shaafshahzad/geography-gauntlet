@@ -70,7 +70,7 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isStarted, totalScore, userId]);
+  }, [isStarted, userId]);
 
   useEffect(() => {
     if (gameOver) {
@@ -79,7 +79,7 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
         console.error,
       );
     }
-  }, [gameOver, totalScore, userId]);
+  }, [gameOver, userId]);
 
   const handleSubmit = async () => {
     if (answer && countries) {
@@ -157,8 +157,8 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-10">
-      <Card className="h-full w-full items-center justify-center p-10">
-        <CardContent className="space-y-10 pb-0">
+      <Card className="h-full w-full items-center justify-center px-5 py-5 sm:p-10">
+        <CardContent className="space-y-10 px-0 pb-0">
           <QuizCountdown timer={timer} totalScore={totalScore} />
           <MapWrapper guessedCountries={guessedCountries} />
           <QuizControls

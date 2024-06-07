@@ -18,14 +18,14 @@ export function Gauntlet() {
   const router = useRouter();
 
   return (
-    <div className="flex h-1/2 w-full flex-row gap-5">
-      <Card className="flex h-full w-1/2 flex-col gap-4 p-5">
+    <div className="flex h-2/5 w-full flex-row lg:gap-5">
+      <Card className="flex h-full w-full flex-col gap-4 p-5 lg:w-1/2">
         <CardTitle>Gauntlet</CardTitle>
-        <CardContent className="flex h-full w-full flex-col justify-between gap-4 pb-0">
+        <CardContent className="flex h-full w-full flex-col justify-between gap-4 px-1 pb-0 sm:px-6">
           <p className="text-2xl font-medium italic">
             Test your geography knowledge under pressure!
           </p>
-          <div className="flex flex-col items-center justify-center gap-4">
+          <div className="flex flex-grow flex-col items-center justify-end gap-4 md:flex-row">
             <p className="text-md">
               In Gauntlet, you have <u>10 seconds</u> to answer each question
               correctly.
@@ -40,13 +40,13 @@ export function Gauntlet() {
               alt="Gauntlet icon"
               className="align-middle"
             />
-            <Button className="w-full" onClick={() => router.push("/gauntlet")}>
-              Start Gauntlet
-            </Button>
           </div>
+          <Button className="w-full" onClick={() => router.push("/gauntlet")}>
+            Start Gauntlet
+          </Button>
         </CardContent>
       </Card>
-      <div className="flex h-full w-1/2 flex-col items-center justify-center">
+      <div className="invisible flex h-full w-0 flex-col items-center justify-center lg:visible lg:w-1/2">
         <World data={sampleArcs} globeConfig={globeConfig} />
       </div>
     </div>

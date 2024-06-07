@@ -18,6 +18,7 @@ export const metadata = {
   description:
     "Test your geography knowledge with Gauntlet, Country Quiz, and Flag Quiz games.",
   icons: [{ rel: "icon", url: "/favicon.png" }],
+  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
 };
 
 export default function RootLayout({
@@ -28,11 +29,11 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <CSPostHogProvider>
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en" suppressHydrationWarning className="h-full">
           <body className={`font-sans ${inter.variable}`}>
             <TRPCReactProvider>
               <main className="flex min-h-screen flex-col items-center justify-center gap-2 bg-background">
-                <div className="min-h-screen w-full max-w-6xl px-20 pb-5">
+                <div className="min-h-screen w-full px-4 pb-5 md:max-w-6xl md:px-20">
                   <Navbar />
                   {children}
                 </div>

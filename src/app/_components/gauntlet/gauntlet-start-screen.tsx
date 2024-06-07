@@ -15,8 +15,8 @@ export function GauntletStartScreen({
         <CardTitle className="mb-5 text-center text-3xl">
           Welcome to the Gauntlet!
         </CardTitle>
-        <CardContent className="flex gap-10 space-y-10 pb-0 pt-5">
-          <div className="flex w-1/2 flex-col space-y-5">
+        <CardContent className="flex flex-col gap-10 px-0 pb-0 pt-5 sm:space-y-10 sm:px-6 lg:flex-row">
+          <div className="flex w-full flex-col space-y-5 lg:w-1/2">
             <p>
               The Gauntlet is the ultimate test of your geographical knowledge
               and quick thinking. In this fast-paced game, you&apos;ll face a
@@ -73,8 +73,8 @@ export function GauntletStartScreen({
               </li>
             </ul>
           </div>
-          <div className="flex w-1/2 flex-col justify-between">
-            <div className="flex flex-grow items-center justify-center">
+          <div className="flex w-full flex-col justify-between lg:w-1/2">
+            <div className="invisible flex h-0 flex-grow items-center justify-center lg:visible lg:h-auto">
               <Image
                 src="/gauntlet.png"
                 width={350}

@@ -26,7 +26,7 @@ export function CountryQuizLeaderboard({
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">Rank</TableHead>
+          <TableHead className="w-[70px]">Rank</TableHead>
           <TableHead>Name</TableHead>
           <TableHead className="text-right">Score</TableHead>
         </TableRow>

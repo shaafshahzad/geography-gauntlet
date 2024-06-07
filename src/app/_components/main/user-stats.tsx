@@ -25,9 +25,9 @@ export function UserStats({ userStats }: UserStatsProps) {
   return (
     <Card className="flex w-full flex-col gap-4 p-5">
       <CardTitle className="h-[30px]">User Stats</CardTitle>
-      <CardContent className="h-full pb-0">
+      <CardContent className="h-full px-1 pb-0 sm:px-6">
         {!userStats ? (
-          <div className="flex h-full w-full items-center justify-center">
+          <div className="flex h-full w-full items-center justify-center text-center">
             Sign in to view your stats or sign up to track them
           </div>
         ) : (

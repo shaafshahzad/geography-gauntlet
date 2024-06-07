@@ -160,8 +160,8 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-10">
-      <Card className="h-full w-full items-center justify-center p-10">
-        <CardContent className="space-y-10 pb-0">
+      <Card className="h-full w-full items-center justify-center px-10 py-5 sm:p-10">
+        <CardContent className="space-y-2 px-3 py-1 pb-0 sm:space-y-10 sm:p-6">
           <QuizCountdown timer={timer} totalScore={totalScore} />
           <FlagCarousel
             countryFlags={countryFlags}
