@@ -148,13 +148,13 @@ export function GauntletClient({
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-10">
-      <Card className="h-full w-full items-center justify-center p-10">
-        <CardContent className="space-y-10 pb-0">
+      <Card className="h-full w-full items-center justify-center px-5 py-10 sm:p-10">
+        <CardContent className="space-y-2 pb-0 sm:space-y-10">
           <div className="flex w-full flex-col items-center justify-center space-y-1">
             <p className="text-4xl font-medium">{timer}</p>
             <p className="text-xl font-light">Score: {totalScore}</p>
           </div>
-          <div className="flex flex-col items-center justify-center gap-2 py-20 text-center">
+          <div className="flex flex-col items-center justify-center gap-2 py-5 text-center sm:py-20">
             <p className="text-lg">Question {questionNumber}</p>
             <p className="text-2xl">{question.question}</p>
           </div>
