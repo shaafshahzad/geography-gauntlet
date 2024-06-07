@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Navbar } from "./_components/navbar";
 import { Toaster } from "~/components/ui/toaster";
 import { CSPostHogProvider } from "./_analytics/provider";
+import { Viewport } from "next";
 
 export const dynamic = "force-dynamic";
 
@@ -18,7 +19,12 @@ export const metadata = {
   description:
     "Test your geography knowledge with Gauntlet, Country Quiz, and Flag Quiz games.",
   icons: [{ rel: "icon", url: "/favicon.png" }],
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
