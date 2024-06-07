@@ -34,23 +34,6 @@ export const users = createTable(
   }),
 );
 
-export const users_stats = createTable(
-  "user_stat",
-  {
-    user_stat_id: serial("id").primaryKey(),
-    user_id: varchar("user_id", { length: 256 }).notNull(),
-    fullname: varchar("fullname", { length: 256 }).notNull(),
-    gauntlet_score: integer("gauntlet_score").notNull(),
-    country_quiz_time: integer("country_quiz_time").notNull(),
-    country_quiz_score: integer("country_quiz_score").notNull(),
-    flag_quiz_time: integer("flag_quiz_time").notNull(),
-    flag_quiz_score: integer("flag_quiz_score").notNull(),
-  },
-  (example) => ({
-    user_id: index("user_id_idx").on(example.user_id),
-  }),
-);
-
 export const countries = createTable(
   "country",
   {
@@ -71,3 +54,20 @@ export const gauntlet_questions = createTable("gauntlet_question", {
   template: varchar("template", { length: 256 }).notNull(),
   difficulty: varchar("difficulty", { length: 256 }).notNull(),
 });
+
+export const users_statistics = createTable(
+  "user_statistics",
+  {
+    user_stat_id: serial("id").primaryKey(),
+    user_id: varchar("user_id", { length: 256 }).notNull(),
+    fullname: varchar("fullname", { length: 256 }).notNull(),
+    gauntlet_score: integer("gauntlet_score").notNull(),
+    country_quiz_time: integer("country_quiz_time").notNull(),
+    country_quiz_score: integer("country_quiz_score").notNull(),
+    flag_quiz_time: integer("flag_quiz_time").notNull(),
+    flag_quiz_score: integer("flag_quiz_score").notNull(),
+  },
+  (example) => ({
+    user_id: index("user_id_idx").on(example.user_id),
+  }),
+);

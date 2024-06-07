@@ -28,7 +28,7 @@ export function RestartScreen({
           </p>
         ) : (
           <p className="text-xl">
-            You guessed <b>{totalScore}/196</b> countries in{" "}
+            You guessed <b>{totalScore}/197</b> countries in{" "}
             <b>{formatTime(Math.floor(elapsedTime).toString())} seconds</b>.
           </p>
         )}

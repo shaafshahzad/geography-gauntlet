@@ -46,14 +46,9 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
             setTimer((prev) => {
               if (prev <= 1) {
                 clearInterval(intervalRef.current!);
-                setElapsedTime(1080);
+                const elapsed = 1080 - prev;
+                setElapsedTime(elapsed);
                 setGameOver(true);
-                updateStats(userId, "flag_quiz_time", 1080).catch(
-                  console.error,
-                );
-                updateStats(userId, "flag_quiz_score", totalScore).catch(
-                  console.error,
-                );
                 return 0;
               }
               return prev - 1;
@@ -72,12 +67,13 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isStarted]);
+  }, [isStarted, userId]);
 
   useEffect(() => {
     if (gameOver) {
-      updateStats(userId, "flag_quiz_time", 1080).catch(console.error);
+      updateStats(userId, "flag_quiz_time", elapsedTime).catch(console.error);
       updateStats(userId, "flag_quiz_score", totalScore).catch(console.error);
+      setIsStarted(false);
     }
   }, [gameOver, totalScore, userId]);
 
@@ -123,6 +119,7 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
 
         if (newFlags.length === 0) {
           clearInterval(intervalRef.current!);
+          setElapsedTime(1080 - timer);
           setGameOver(true);
         }
       } else {

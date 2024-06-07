@@ -44,14 +44,9 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
             setTimer((prev) => {
               if (prev <= 1) {
                 clearInterval(intervalRef.current!);
-                setElapsedTime(1080);
+                const elapsed = 1080 - prev;
+                setElapsedTime(elapsed);
                 setGameOver(true);
-                updateStats(userId, "country_quiz_time", 1080).catch(
-                  console.error,
-                );
-                updateStats(userId, "country_quiz_score", totalScore).catch(
-                  console.error,
-                );
                 return 0;
               }
               return prev - 1;
@@ -74,12 +69,15 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
 
   useEffect(() => {
     if (gameOver) {
-      updateStats(userId, "country_quiz_time", 1080).catch(console.error);
+      updateStats(userId, "country_quiz_time", elapsedTime).catch(
+        console.error,
+      );
       updateStats(userId, "country_quiz_score", totalScore).catch(
         console.error,
       );
+      setIsStarted(false);
     }
-  }, [gameOver, userId]);
+  }, [gameOver, totalScore, userId]);
 
   const handleSubmit = async () => {
     if (answer && countries) {
@@ -108,8 +106,9 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
           description: `${country.name} is a country!`,
         });
 
-        if (countries.length === 0) {
+        if (guessedCountries.length + 1 === countries.length) {
           clearInterval(intervalRef.current!);
+          setElapsedTime(1080 - timer);
           setGameOver(true);
         }
       } else {

@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { eq, desc, asc } from "drizzle-orm";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
-import { users, users_stats } from "~/server/db/schema";
+import { users, users_statistics } from "~/server/db/schema";
 
 export const userRouter = createTRPCRouter({
   getUser: publicProcedure
@@ -29,7 +29,7 @@ export const userRouter = createTRPCRouter({
           user_id: input.user_id,
           fullname: input.fullname,
         });
-        await ctx.db.insert(users_stats).values({
+        await ctx.db.insert(users_statistics).values({
           user_id: input.user_id,
           fullname: input.fullname,
           gauntlet_score: 0,
@@ -48,8 +48,9 @@ export const userRouter = createTRPCRouter({
       }),
     )
     .query(async ({ ctx, input }) => {
-      return await ctx.db.query.users_stats.findFirst({
-        where: (users_stats, { eq }) => eq(users_stats.user_id, input.user_id),
+      return await ctx.db.query.users_statistics.findFirst({
+        where: (users_statistics, { eq }) =>
+          eq(users_statistics.user_id, input.user_id),
       });
     }),
 
@@ -67,17 +68,18 @@ export const userRouter = createTRPCRouter({
 
       try {
         await ctx.db.transaction(async (trx) => {
-          const currentStats = await trx.query.users_stats.findFirst({
-            where: (users_stats, { eq }) => eq(users_stats.user_id, user_id),
+          const currentStats = await trx.query.users_statistics.findFirst({
+            where: (users_statistics, { eq }) =>
+              eq(users_statistics.user_id, user_id),
           });
 
           if (!currentStats) {
             throw new Error("User stats not found");
           }
 
-          const currentValue = parseInt(
-            currentStats[target as keyof typeof currentStats].toString(),
-          );
+          const currentValue = currentStats[
+            target as keyof typeof currentStats
+          ] as number;
 
           let shouldUpdate = false;
 
@@ -96,11 +98,11 @@ export const userRouter = createTRPCRouter({
 
           if (shouldUpdate) {
             await trx
-              .update(users_stats)
+              .update(users_statistics)
               .set({
                 [target]: value,
               })
-              .where(eq(users_stats.user_id, user_id));
+              .where(eq(users_statistics.user_id, user_id));
           }
         });
       } catch (error) {
@@ -119,25 +121,25 @@ export const userRouter = createTRPCRouter({
       if (input.value === "gauntlet") {
         return await ctx.db
           .select()
-          .from(users_stats)
-          .orderBy(desc(users_stats.gauntlet_score))
+          .from(users_statistics)
+          .orderBy(desc(users_statistics.gauntlet_score))
           .limit(5);
       } else if (input.value === "flag-quiz") {
         return await ctx.db
           .select()
-          .from(users_stats)
+          .from(users_statistics)
           .orderBy(
-            desc(users_stats.flag_quiz_score),
-            asc(users_stats.flag_quiz_time),
+            desc(users_statistics.flag_quiz_score),
+            asc(users_statistics.flag_quiz_time),
           )
           .limit(5);
       } else if (input.value === "country-quiz") {
         return await ctx.db
           .select()
-          .from(users_stats)
+          .from(users_statistics)
           .orderBy(
-            desc(users_stats.country_quiz_score),
-            asc(users_stats.country_quiz_time),
+            desc(users_statistics.country_quiz_score),
+            asc(users_statistics.country_quiz_time),
           )
           .limit(5);
       }
