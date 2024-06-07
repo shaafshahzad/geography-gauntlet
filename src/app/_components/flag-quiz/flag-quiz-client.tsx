@@ -46,8 +46,7 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
             setTimer((prev) => {
               if (prev <= 1) {
                 clearInterval(intervalRef.current!);
-                const elapsed = 1080 - prev;
-                setElapsedTime(elapsed);
+                setElapsedTime(1080);
                 setGameOver(true);
                 return 0;
               }
