@@ -11,7 +11,7 @@ export function GauntletStartScreen({
 }) {
   if (!isStarted) {
     return (
-      <Card className="flex w-full flex-col items-center justify-center p-10">
+      <Card className="flex h-full w-full flex-col items-center justify-center p-10">
         <CardTitle className="mb-5 text-center text-3xl">
           Welcome to the Gauntlet!
         </CardTitle>
