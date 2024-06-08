@@ -46,7 +46,7 @@ export function MapWrapper({ guessedCountries }: MapWrapperProps) {
   };
 
   return (
-    <ComposableMap className="rounded-xl border">
+    <ComposableMap className="h-full rounded-xl border">
       <ZoomableGroup center={[0, 10]} zoom={1.5} minZoom={1.5} maxZoom={50}>
         <Geographies geography={geoUrl}>
           {({ geographies }) =>
