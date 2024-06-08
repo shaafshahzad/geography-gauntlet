@@ -18,7 +18,7 @@ export function Gauntlet() {
   const router = useRouter();
 
   return (
-    <div className="flex h-2/5 w-full flex-row lg:gap-5">
+    <div className="flex h-full w-full flex-row lg:gap-5">
       <Card className="flex h-full w-full flex-col gap-4 p-5 lg:w-1/2">
         <CardTitle>Gauntlet</CardTitle>
         <CardContent className="flex h-full w-full flex-col justify-between gap-4 px-1 pb-0 sm:px-6">

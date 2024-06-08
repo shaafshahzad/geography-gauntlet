@@ -8,7 +8,7 @@ export function Quizzes() {
   const router = useRouter();
 
   return (
-    <Card className="flex w-full flex-col gap-4 p-5">
+    <Card className="flex h-full w-full flex-col gap-4 p-5">
       <CardTitle>Quizzes</CardTitle>
       <CardContent className="flex h-full flex-col justify-between gap-10 px-1 pb-0 sm:px-6 md:flex-row md:gap-[98px]">
         <div className="flex w-full flex-col justify-between md:w-1/2">
