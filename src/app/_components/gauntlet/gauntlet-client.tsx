@@ -149,7 +149,7 @@ export function GauntletClient({
   return (
     <div className="flex w-full flex-col items-center justify-center gap-10">
       <Card className="h-full w-full items-center justify-center px-5 py-10 sm:p-10">
-        <CardContent className="space-y-2 pb-0 sm:space-y-10">
+        <CardContent className="w-full space-y-2 pb-0 sm:space-y-10">
           <div className="flex w-full flex-col items-center justify-center space-y-1">
             <p className="text-4xl font-medium">{timer}</p>
             <p className="text-xl font-light">Score: {totalScore}</p>
@@ -164,6 +164,7 @@ export function GauntletClient({
             onChange={(e) => setState({ ...state, answer: e.target.value })}
             onKeyDown={handleKeyDown}
             placeholder="Type your answer here"
+            className="w-full"
           />
         </CardContent>
       </Card>

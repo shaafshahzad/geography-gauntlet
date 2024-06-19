@@ -11,7 +11,7 @@ import { ThemeProvider } from "~/components/ui/theme-provider";
 
 export const dynamic = "force-dynamic";
 
-const inter = Open_Sans({
+const font = Open_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
@@ -38,7 +38,7 @@ export default function RootLayout({
     <ClerkProvider>
       <CSPostHogProvider>
         <html lang="en" suppressHydrationWarning className="h-full">
-          <body className={`font-sans ${inter.variable}`}>
+          <body className={`font-sans ${font.variable}`}>
             <TRPCReactProvider>
               <ThemeProvider
                 attribute="class"
@@ -48,7 +48,7 @@ export default function RootLayout({
               >
                 <main className="flex min-h-screen flex-col items-center justify-center gap-2 bg-background">
                   <Background>
-                    <div className="min-h-screen w-full px-4 pb-5 md:max-w-6xl md:px-20">
+                    <div className="min-h-screen w-full flex-col justify-center px-4 pb-5 md:max-w-6xl md:px-20">
                       <Navbar />
                       {children}
                     </div>

@@ -154,9 +154,9 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
   }
 
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-10">
+    <div className="flex h-[90%] w-full flex-col items-center justify-center gap-10">
       <Card className="h-full w-full items-center justify-center px-5 py-5 sm:p-10">
-        <CardContent className="flex max-h-screen flex-col items-center justify-center space-y-10 px-0 pb-0">
+        <CardContent className="flex h-full w-full flex-col items-center justify-center space-y-10 px-0 pb-0">
           <QuizCountdown timer={timer} totalScore={totalScore} />
           <MapWrapper guessedCountries={guessedCountries} />
           <QuizControls

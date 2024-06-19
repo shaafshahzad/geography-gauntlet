@@ -13,7 +13,7 @@ export function QuizControls({
   onKeyDown,
 }: QuizControlsProps) {
   return (
-    <div className="flex w-full items-center justify-center">
+    <div className="flex w-full items-center justify-center pt-[30px]">
       <Input
         type="text"
         placeholder="Enter Country Name"

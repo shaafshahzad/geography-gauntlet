@@ -43,7 +43,7 @@ export function FlagCarousel({
         {countryFlags.map((country) => (
           <CarouselItem
             key={country.country_id}
-            className="relative flex h-64 w-full items-center justify-center"
+            className="relative flex h-full min-h-64 w-full items-center justify-center"
           >
             <Image
               src={country.flag_url}
