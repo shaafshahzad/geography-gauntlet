@@ -8,7 +8,7 @@ import { QuizControls } from "../quiz-controls";
 import { type CarouselApi } from "~/components/ui/carousel";
 import { QuizCountdown } from "../quiz-countdown";
 import { RestartScreen } from "../restart-screen";
-import { useToast } from "~/components/ui/use-toast";
+import { toast } from "sonner";
 import { Card, CardContent } from "~/components/ui/card";
 import { FlagQuizStartScreen } from "./flag-quiz-start-screen";
 
@@ -28,7 +28,6 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
   const [timer, setTimer] = useState(1080);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [gameOver, setGameOver] = useState(false);
-  const { toast } = useToast();
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -111,8 +110,7 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
         }
         setCountryFlags(newFlags);
         setAnswer("");
-        toast({
-          title: "Correct!",
+        toast.success("Correct!", {
           description: `${currentFlag.name} was the right answer!`,
         });
 
@@ -123,9 +121,7 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
         }
       } else {
         setAnswer("");
-        toast({
-          variant: "destructive",
-          title: "Incorrect",
+        toast.error("Incorrect", {
           description: "Try again!",
         });
       }

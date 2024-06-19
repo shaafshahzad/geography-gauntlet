@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { validateAnswer } from "~/lib/utils/validate-answer";
 import { useGauntletTimer } from "~/lib/hooks/use-gauntlet-timer";
 import { fetchQuestion } from "~/lib/utils/fetch-question";
-import { useToast } from "~/components/ui/use-toast";
+import { toast } from "sonner";
 import { Input } from "~/components/ui/input";
 import { Card, CardContent } from "~/components/ui/card";
 import { GauntletStartScreen } from "./gauntlet-start-screen";
@@ -49,7 +49,6 @@ export function GauntletClient({
     isStarted: false,
     questionNumber: 1,
   });
-  const { toast } = useToast();
 
   useGauntletTimer(
     state.timerActive,
@@ -100,15 +99,12 @@ export function GauntletClient({
     }));
 
     if (isValid) {
-      toast({
-        title: "Correct!",
-        description: `${state.answer} was a valid answer!`,
+      toast.success("Correct!", {
+        description: `'${state.answer}' was a valid answer!`,
       });
       await fetchQuestion(setState, state.questionNumber + 1);
     } else {
-      toast({
-        variant: "destructive",
-        title: "Incorrect",
+      toast.error("Incorrect", {
         description: "Try again!",
       });
     }

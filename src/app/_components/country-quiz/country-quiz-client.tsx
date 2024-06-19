@@ -7,7 +7,7 @@ import { QuizCountdown } from "../quiz-countdown";
 import { fetchCountries } from "~/lib/utils/fetch-countries";
 import { RestartScreen } from "../restart-screen";
 import { updateStats } from "~/lib/utils/update-stats";
-import { useToast } from "~/components/ui/use-toast";
+import { toast } from "sonner";
 import { Card, CardContent } from "~/components/ui/card";
 import { CountryQuizStartScreen } from "./country-quiz-start-screen";
 
@@ -26,7 +26,6 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
   const [timer, setTimer] = useState(1080);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [totalScore, setTotalScore] = useState(0);
-  const { toast } = useToast();
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -89,9 +88,7 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
       if (country) {
         if (guessedCountries.includes(country)) {
           setAnswer("");
-          toast({
-            variant: "warning",
-            title: `Already Guessed ${country.name}!`,
+          toast.warning(`Already Guessed ${country.name}!`, {
             description: "Try another country!",
           });
           return;
@@ -100,8 +97,7 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
         setTotalScore((prev) => prev + 1);
         setGuessedCountries((prev) => [...prev, country]);
         setAnswer("");
-        toast({
-          title: "Correct!",
+        toast.success("Correct!", {
           description: `${country.name} is a country!`,
         });
 
@@ -112,9 +108,7 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
         }
       } else {
         setAnswer("");
-        toast({
-          variant: "destructive",
-          title: "Incorrect",
+        toast.error("Incorrect", {
           description: "Try again!",
         });
       }

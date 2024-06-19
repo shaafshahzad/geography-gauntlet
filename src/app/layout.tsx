@@ -3,7 +3,7 @@ import { Open_Sans } from "next/font/google";
 import { TRPCReactProvider } from "~/trpc/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Navbar } from "./_components/navbar";
-import { Toaster } from "~/components/ui/toaster";
+import { Toaster } from "~/components/ui/sonner";
 import { CSPostHogProvider } from "./_analytics/provider";
 import { Viewport } from "next";
 import { Background } from "./_components/main/background";
@@ -54,7 +54,7 @@ export default function RootLayout({
                     </div>
                   </Background>
                 </main>
-                <Toaster />
+                <Toaster richColors />
               </ThemeProvider>
             </TRPCReactProvider>
           </body>
