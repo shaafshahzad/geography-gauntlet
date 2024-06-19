@@ -4,15 +4,7 @@ import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardTitle } from "~/components/ui/card";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { globeConfig, sampleArcs } from "~/lib/Globe";
-import dynamic from "next/dynamic";
-
-const World = dynamic(
-  () => import("~/components/ui/globe").then((m) => m.World),
-  {
-    ssr: false,
-  },
-);
+import { Globe } from "~/components/ui/globe";
 
 export function Gauntlet() {
   const router = useRouter();
@@ -47,7 +39,7 @@ export function Gauntlet() {
         </CardContent>
       </Card>
       <div className="invisible flex h-full w-0 flex-col items-center justify-center lg:visible lg:w-1/2">
-        <World data={sampleArcs} globeConfig={globeConfig} />
+        <Globe />
       </div>
     </div>
   );

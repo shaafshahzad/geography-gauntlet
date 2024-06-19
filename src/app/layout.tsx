@@ -1,15 +1,17 @@
 import "~/styles/globals.css";
-import { Inter } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import { TRPCReactProvider } from "~/trpc/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Navbar } from "./_components/navbar";
 import { Toaster } from "~/components/ui/toaster";
 import { CSPostHogProvider } from "./_analytics/provider";
 import { Viewport } from "next";
+import { Background } from "./_components/main/background";
+import { ThemeProvider } from "~/components/ui/theme-provider";
 
 export const dynamic = "force-dynamic";
 
-const inter = Inter({
+const inter = Open_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
@@ -38,13 +40,22 @@ export default function RootLayout({
         <html lang="en" suppressHydrationWarning className="h-full">
           <body className={`font-sans ${inter.variable}`}>
             <TRPCReactProvider>
-              <main className="flex min-h-screen flex-col items-center justify-center gap-2 bg-background">
-                <div className="min-h-screen w-full px-4 pb-5 md:max-w-6xl md:px-20">
-                  <Navbar />
-                  {children}
-                </div>
-              </main>
-              <Toaster />
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+              >
+                <main className="flex min-h-screen flex-col items-center justify-center gap-2 bg-background">
+                  <Background>
+                    <div className="min-h-screen w-full px-4 pb-5 md:max-w-6xl md:px-20">
+                      <Navbar />
+                      {children}
+                    </div>
+                  </Background>
+                </main>
+                <Toaster />
+              </ThemeProvider>
             </TRPCReactProvider>
           </body>
         </html>
