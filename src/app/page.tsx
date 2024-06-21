@@ -14,15 +14,15 @@ export default async function Home() {
     if (!user) {
       console.log("User not authenticated or not found");
     } else {
-      const userExists = await api.user.getUser({ user_id: user.id });
-      if (!userExists) {
+      userStats = await api.user.getStats({ user_id: user.id });
+      if (!userStats) {
         await api.user.createUser({
           user_id: user.id,
           fullname: user.firstName + " " + user.lastName,
         });
+        userStats = await api.user.getStats({ user_id: userId });
       }
 
-      userStats = await api.user.getStats({ user_id: userId });
       if (!userStats) {
         console.log("User stats not found");
       }

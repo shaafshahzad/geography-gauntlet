@@ -1,21 +1,9 @@
 import { z } from "zod";
 import { eq, desc, asc } from "drizzle-orm";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
-import { users, users_statistics } from "~/server/db/schema";
+import { users_statistics } from "~/server/db/schema";
 
 export const userRouter = createTRPCRouter({
-  getUser: publicProcedure
-    .input(
-      z.object({
-        user_id: z.string(),
-      }),
-    )
-    .query(async ({ ctx, input }) => {
-      return await ctx.db.query.users.findFirst({
-        where: (users, { eq }) => eq(users.user_id, input.user_id),
-      });
-    }),
-
   createUser: publicProcedure
     .input(
       z.object({
@@ -25,10 +13,6 @@ export const userRouter = createTRPCRouter({
     )
     .mutation(async ({ ctx, input }) => {
       await ctx.db.transaction(async () => {
-        await ctx.db.insert(users).values({
-          user_id: input.user_id,
-          fullname: input.fullname,
-        });
         await ctx.db.insert(users_statistics).values({
           user_id: input.user_id,
           fullname: input.fullname,

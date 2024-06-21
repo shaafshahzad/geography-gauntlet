@@ -1,13 +1,11 @@
 // Example model schema from the Drizzle docs
 // https://orm.drizzle.team/docs/sql-schema-declaration
 
-import { sql } from "drizzle-orm";
 import {
   index,
   integer,
   pgTableCreator,
   serial,
-  timestamp,
   varchar,
 } from "drizzle-orm/pg-core";
 
@@ -18,21 +16,6 @@ import {
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
 export const createTable = pgTableCreator((name) => `country-games_${name}`);
-
-export const users = createTable(
-  "user",
-  {
-    id: serial("id").primaryKey(),
-    user_id: varchar("user_id", { length: 256 }).notNull(),
-    fullname: varchar("fullname", { length: 256 }).notNull(),
-    created_at: timestamp("created_at")
-      .notNull()
-      .default(sql`now()`),
-  },
-  (example) => ({
-    fullname: index("fullname_idx").on(example.fullname),
-  }),
-);
 
 export const countries = createTable(
   "country",
