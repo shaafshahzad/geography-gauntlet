@@ -105,7 +105,7 @@ export function GauntletClient({
       await fetchQuestion(setState, state.questionNumber + 1);
     } else {
       toast.error("Incorrect", {
-        description: "Try again!",
+        description: `'${state.answer}' was not correct. Try again!`,
       });
     }
   };
