@@ -1,4 +1,4 @@
-export const alternateSpellings: { [key: string]: string } = {
+export const alternateSpellings: Record<string, string> = {
   drc: "Democratic Republic of the Congo",
   usa: "United States",
   uae: "United Arab Emirates",

@@ -17,10 +17,10 @@ export default async function Home() {
     } else {
       userStats = await api.user.getStats({ user_id: user.id });
       if (!userStats) {
-        const firstName = user.firstName || "";
-        const lastName = user.lastName || "";
-        const username = user.username || "";
-        const fullname = (firstName + " " + lastName).trim() || username;
+        const firstName = user.firstName ?? "";
+        const lastName = user.lastName ?? "";
+        const username = user.username ?? "";
+        const fullname = (firstName + " " + lastName).trim() ?? username;
 
         await api.user.createUser({
           user_id: user.id,

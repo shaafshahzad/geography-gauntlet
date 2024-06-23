@@ -1,12 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import { api } from "~/trpc/server";
 
+interface Body {
+  data?: {
+    deleted?: boolean;
+    id?: string;
+  };
+  type?: string;
+}
+
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
+    const body: Body = await req.json();
 
-    if (body.data && body.data.deleted && body.type === "user.deleted") {
-      const userId = body.data.id;
+    if (body.data?.deleted && body.type === "user.deleted") {
+      const userId = body.data.id as string;
 
       await api.user.deleteUser({ user_id: userId });
 

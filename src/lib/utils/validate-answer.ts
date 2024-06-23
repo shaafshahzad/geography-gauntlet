@@ -9,7 +9,7 @@ function sanitizeInput(input: string): string {
 
 function getFullCountryName(input: string): string {
   const sanitizedInput = sanitizeInput(input);
-  return alternateSpellings[sanitizedInput] || input;
+  return alternateSpellings[sanitizedInput] ?? input;
 }
 
 export async function validateAnswer(
