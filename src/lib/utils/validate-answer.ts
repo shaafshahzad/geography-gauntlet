@@ -2,15 +2,22 @@
 
 import { api } from "~/trpc/server";
 
+function sanitizeInput(input: string): string {
+  return input.replace(/[^a-zA-Z]/g, "").toLowerCase();
+}
+
 export async function validateAnswer(
   questionId: number,
   answer: string,
   answerSearchParam: string,
 ) {
+  const sanitizedAnswer = sanitizeInput(answer);
+  const sanitizedAnswerSearchParam = sanitizeInput(answerSearchParam);
+
   switch (questionId) {
     case 1: // capital of country
     case 8: // country of capital
-      return answer.toLowerCase() === answerSearchParam.toLowerCase();
+      return sanitizedAnswer === sanitizedAnswerSearchParam;
 
     case 2: // country with some letters
       const countries = await api.gauntlet.getCountriesByLength({
@@ -18,7 +25,7 @@ export async function validateAnswer(
       });
       return countries.some(
         (country: { name: string }) =>
-          country.name.toLowerCase() === answer.toLowerCase(),
+          sanitizeInput(country.name) === sanitizedAnswer,
       );
 
     case 3: // country starting with letter
@@ -28,7 +35,7 @@ export async function validateAnswer(
         });
       return countriesByStartLetter.some(
         (country: { name: string }) =>
-          country.name.toLowerCase() === answer.toLowerCase(),
+          sanitizeInput(country.name) === sanitizedAnswer,
       );
 
     case 4: // country ending with letter
@@ -37,7 +44,7 @@ export async function validateAnswer(
       });
       return countriesByEndLetter.some(
         (country: { name: string }) =>
-          country.name.toLowerCase() === answer.toLowerCase(),
+          sanitizeInput(country.name) === sanitizedAnswer,
       );
 
     case 5: // country with color in flag, expecting country name as answer
@@ -45,13 +52,13 @@ export async function validateAnswer(
         color: answerSearchParam,
       });
       return countriesWithColor.some(
-        (country) => country.name.toLowerCase() === answer.toLowerCase(),
+        (country) => sanitizeInput(country.name) === sanitizedAnswer,
       );
 
     case 6: // population less than
     case 7: // population more than
       const isPopulationValid = await api.gauntlet.checkPopulation({
-        country: answer.trim().toLowerCase(),
+        country: sanitizedAnswer,
         population: parseInt(answerSearchParam),
         condition: questionId === 6 ? "less" : "greater",
       });
