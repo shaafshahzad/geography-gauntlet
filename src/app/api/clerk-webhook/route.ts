@@ -20,10 +20,10 @@ interface Body {
 
 export async function POST(req: NextRequest) {
   try {
-    const body: Body = await req.json();
+    const body = (await req.json()) as Body;
 
     if (body.data?.deleted && body.type === "user.deleted") {
-      const userId = body.data.id!;
+      const userId = body.data.id;
 
       await api.user.deleteUser({ user_id: userId });
 
