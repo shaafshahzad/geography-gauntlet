@@ -25,6 +25,20 @@ export const userRouter = createTRPCRouter({
       });
     }),
 
+  deleteUser: publicProcedure
+    .input(
+      z.object({
+        user_id: z.string(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      await ctx.db.transaction(async (trx) => {
+        await trx
+          .delete(users_statistics)
+          .where(eq(users_statistics.user_id, input.user_id));
+      });
+    }),
+
   getStats: publicProcedure
     .input(
       z.object({

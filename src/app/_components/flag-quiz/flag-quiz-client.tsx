@@ -122,7 +122,7 @@ export function FlagQuizClient({ userId }: { userId?: string }) {
       } else {
         setAnswer("");
         toast.error("Incorrect", {
-          description: "Try again!",
+          description: `'${answer}' was not correct. Try again!`,
         });
       }
     }

@@ -6,7 +6,7 @@ import { Navbar } from "./_components/navbar";
 import { Toaster } from "~/components/ui/sonner";
 import { CSPostHogProvider } from "./_analytics/provider";
 import { Viewport } from "next";
-import { Background } from "./_components/main/background";
+import Background from "./_components/background";
 import { ThemeProvider } from "~/components/ui/theme-provider";
 
 export const dynamic = "force-dynamic";
@@ -46,7 +46,7 @@ export default function RootLayout({
                 enableSystem
                 disableTransitionOnChange
               >
-                <main className="flex min-h-screen flex-col items-center justify-center gap-2 bg-background">
+                <main className="flex min-h-screen flex-col items-center justify-center gap-2">
                   <Background>
                     <div className="min-h-screen w-full flex-col justify-center px-4 pb-5 md:max-w-6xl md:px-20">
                       <Navbar />

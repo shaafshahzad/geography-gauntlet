@@ -41,7 +41,7 @@ export function GauntletClient({
   const [state, setState] = useState<GauntletState>({
     question: initialQuestion,
     answer: "",
-    timer: 10,
+    timer: 15,
     totalScore: 0,
     gameOver: false,
     isCorrect: null,
@@ -72,7 +72,7 @@ export function GauntletClient({
         totalScore: 0,
         gameOver: false,
         isCorrect: null,
-        timer: 10,
+        timer: 15,
         timerActive: true,
         isStarted: true,
         questionNumber: 1,

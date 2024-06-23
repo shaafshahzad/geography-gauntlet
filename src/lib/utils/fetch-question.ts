@@ -28,7 +28,7 @@ export async function fetchQuestion(
     setState((s: GauntletState) => ({
       ...s,
       question: newQuestion,
-      timer: 10,
+      timer: 15,
       timerActive: true,
       questionNumber: questionNumber,
     }));

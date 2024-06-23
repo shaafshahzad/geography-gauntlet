@@ -11,7 +11,7 @@ export function GauntletStartScreen({
 }) {
   if (!isStarted) {
     return (
-      <Card className="flex h-full w-full flex-col items-center justify-center p-10">
+      <Card className="flex w-full flex-col items-center justify-center p-10">
         <CardTitle className="mb-5 text-center text-3xl">
           Welcome to the Gauntlet!
         </CardTitle>
@@ -21,7 +21,7 @@ export function GauntletStartScreen({
               The Gauntlet is the ultimate test of your geographical knowledge
               and quick thinking. In this fast-paced game, you&apos;ll face a
               series of challenging questions, each designed to test a different
-              aspect of your geography skills. You have only <b>10 seconds</b>{" "}
+              aspect of your geography skills. You have only <b>15 seconds</b>{" "}
               to answer each question correctly. If you fail to answer in time
               or make a mistake, it&apos;s <b>game over!</b>
             </p>

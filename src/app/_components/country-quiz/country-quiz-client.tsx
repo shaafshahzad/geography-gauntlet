@@ -109,7 +109,7 @@ export function CountryQuizClient({ userId }: { userId?: string }) {
       } else {
         setAnswer("");
         toast.error("Incorrect", {
-          description: "Try again!",
+          description: `'${answer}' is not a country. Try again!`,
         });
       }
     }

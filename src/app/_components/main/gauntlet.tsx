@@ -19,7 +19,7 @@ export function Gauntlet() {
           </p>
           <div className="flex flex-grow flex-col items-center justify-end gap-4 md:flex-row">
             <p className="text-md">
-              In Gauntlet, you have <u>10 seconds</u> to answer each question
+              In Gauntlet, you have <u>15 seconds</u> to answer each question
               correctly.
               <br />
               Score points by answering quickly, but beware – once time runs
