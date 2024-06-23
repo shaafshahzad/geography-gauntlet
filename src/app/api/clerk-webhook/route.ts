@@ -1,12 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { api } from "~/trpc/server"; // Adjust the import to match your project structure
-
-const clerkWebhookSecret = process.env.CLERK_WEBHOOK_SECRET; // Set this in your environment variables
+import { api } from "~/trpc/server";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const signature = req.headers.get("clerk-signature");
 
     if (body.data && body.data.deleted && body.type === "user.deleted") {
       const userId = body.data.id;
