@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
     const body: Body = await req.json();
 
     if (body.data?.deleted && body.type === "user.deleted") {
-      const userId = body.data.id as string;
+      const userId = body.data.id!;
 
       await api.user.deleteUser({ user_id: userId });
 
