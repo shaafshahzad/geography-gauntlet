@@ -9,12 +9,30 @@ interface Body {
   type?: string;
 }
 
+interface UserDeletedEvent {
+  data: {
+    deleted: boolean;
+    id: string;
+  };
+  type: "user.deleted";
+}
+
+function isUserDeletedEvent(body: any): body is UserDeletedEvent {
+  return (
+    body &&
+    body.data &&
+    typeof body.data.deleted === "boolean" &&
+    typeof body.data.id === "string" &&
+    body.type === "user.deleted"
+  );
+}
+
 export async function POST(req: NextRequest) {
   try {
-    const body: Body = await req.json();
+    const body = await req.json();
 
-    if (body.data?.deleted && body.type === "user.deleted") {
-      const userId = body.data.id!;
+    if (isUserDeletedEvent(body)) {
+      const userId = body.data.id;
 
       await api.user.deleteUser({ user_id: userId });
 
