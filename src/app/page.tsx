@@ -11,20 +11,14 @@ export default async function Home() {
 
   if (userId) {
     const user = await currentUser();
-
     if (!user) {
       console.log("User not authenticated or not found");
     } else {
       userStats = await api.user.getStats({ user_id: user.id });
       if (!userStats) {
-        const firstName = user.firstName ?? "";
-        const lastName = user.lastName ?? "";
-        const username = user.username ?? "";
-        const fullname = (firstName + " " + lastName).trim() ?? username;
-
         await api.user.createUser({
           user_id: user.id,
-          fullname: fullname,
+          fullname: user.username!,
         });
         userStats = await api.user.getStats({ user_id: userId });
       }
