@@ -23,46 +23,19 @@ export function FlagQuizStartScreen({
               need to correctly identify the country each flag belongs to. Try
               to get all the flags in the shortest amount of time.
             </p>
-            <h2 className="text-lg font-bold">How to Play:</h2>
-            <ul>
-              <li>
-                <b>Objective:</b> Identify the country for each displayed flag.
-              </li>
-              <li>
-                <b>Scoring:</b> Your score is based on how many flags you can
-                correctly identify within the time limit.
-              </li>
-              <li>
-                <b>Spelling:</b> Be precise with your spelling. Abbreviations
-                like &quot;USA&quot; or &quot;DRC&quot; won&apos;t be accepted.
-                Use full country names like &quot;United States&quot; or
-                &quot;Democratic Republic of the Congo&quot;.
-              </li>
-            </ul>
-            <h2 className="text-lg font-bold">Tips for Success:</h2>
-            <ul className="list-inside list-disc">
-              <li>Study world flags and their corresponding countries.</li>
-              <li>
-                Practice regularly to improve your flag identification skills.
-              </li>
-            </ul>
           </div>
-          <div className="flex w-full flex-col justify-between lg:w-1/2">
-            <div className="invisible flex h-0 flex-grow items-center justify-center lg:visible lg:h-auto">
-              <Image
-                src="/flag-quiz.png"
-                width={250}
-                height={250}
-                alt="Flag quiz page image"
-                className="align-middle"
-                priority={true}
-              />
-            </div>
-            <div className="flex justify-end">
-              <Button className="w-full" onClick={startGame}>
-                Click to Start
-              </Button>
-            </div>
+          <div className="flex w-full flex-col items-center justify-between gap-10 lg:w-1/2">
+            <Image
+              src="/flag-quiz.png"
+              width={200}
+              height={200}
+              alt="Flag quiz page image"
+              className="align-middle"
+              priority={true}
+            />
+            <Button className="w-full" onClick={startGame}>
+              Click to Start
+            </Button>
           </div>
         </CardContent>
       </Card>

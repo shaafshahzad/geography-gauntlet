@@ -23,48 +23,19 @@ export function CountryQuizStartScreen({
               many countries as possible. Try to get all the countries in the
               shortest amount of time.
             </p>
-            <h2 className="text-lg font-bold">How to Play:</h2>
-            <ul>
-              <li>
-                <b>Objective:</b> Name all the countries in the world within the
-                time limit.
-              </li>
-              <li>
-                <b>Scoring:</b> Your score is based on how many countries you
-                can correctly name before time runs out.
-              </li>
-              <li>
-                <b>Spelling:</b> Be precise with your spelling. Abbreviations
-                like &quot;USA&quot; or &quot;DRC&quot; won&apos;t be accepted.
-                Use full country names like &quot;United States&quot; or
-                &quot;Democratic Republic of the Congo&quot;.
-              </li>
-            </ul>
-            <h2 className="text-lg font-bold">Tips for Success:</h2>
-            <ul className="list-inside list-disc">
-              <li>Brush up on your world geography.</li>
-              <li>
-                Practice makes perfect – the more you play, the better
-                you&apos;ll get!
-              </li>
-            </ul>
           </div>
-          <div className="flex w-full flex-col justify-between lg:w-1/2">
-            <div className="invisible flex h-0 flex-grow items-center justify-center lg:visible lg:h-auto">
-              <Image
-                src="/country-quiz.png"
-                width={450}
-                height={450}
-                alt="Country quiz page image"
-                className="align-middle"
-                priority={true}
-              />
-            </div>
-            <div className="flex justify-end">
-              <Button className="w-full" onClick={startGame}>
-                Click to Start
-              </Button>
-            </div>
+          <div className="flex w-full flex-col items-center justify-between gap-10 lg:w-1/2">
+            <Image
+              src="/country-quiz.png"
+              width={200}
+              height={200}
+              alt="Country quiz page image"
+              className="crop-center align-middle"
+              priority={true}
+            />
+            <Button className="w-full" onClick={startGame}>
+              Click to Start
+            </Button>
           </div>
         </CardContent>
       </Card>
