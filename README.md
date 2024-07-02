@@ -1,29 +1,79 @@
-# Create T3 App
+# Geography Gauntlet
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+<div align="center">
+  <hr>
+  <strong>🏆 Awards or Recognitions (if any) 🏆</strong>
+  <hr>
+</div>
 
-## What's next? How do I make an app with this?
+<div align="center">
+    <img src="<!-- Image URL -->" alt="Geography Gauntlet Overview" width="1000"/>
+</div>
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## Introduction
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+In Geography Gauntlet, you have 10 seconds to answer each geography-related question. The challenges include naming capitals given a country, identifying countries from their capitals, and naming countries based on flag colors. There are also dedicated quizzes for countries and flags to sharpen your skills.
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+## Key Features
 
-## Learn More
+- **Time-Bound Challenges**: Answer each question within 10 seconds.
+- **Variety of Questions**:
+  - Naming capitals given a country
+  - Identifying countries from their capitals
+  - Naming countries based on flag colors
+- **Dedicated Quizzes**: Special quizzes focused on countries and flags.
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+## Technology Stack
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+- **Frontend**: Next.js, Tailwind CSS
+- **API Integration**: Utilizes appropriate APIs for data
+- **Deployment**: Vercel
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+## Next Steps
 
-## How do I deploy this?
+Future plans include adding more question types, enhancing user experience with more visual elements, and integrating leaderboards for competitive play.
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+## Local Development
+
+### Prerequisites
+
+- Node.js
+- npm
+
+### Setup
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/shaafshahzad/geography-gauntlet.git
+   ```
+2. **Change directory**:
+   ```bash
+   cd geography-gauntlet
+   ```
+3. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+4. **Environment Variables**:
+   Create a `.env.local` file in the root directory with any necessary environment variables.
+   ```dotenv
+   VAR_NAME=your_value
+   ```
+5. **Start the local development server**:
+   ```bash
+   npm run dev
+   ```
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/your-feature-name`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/your-feature-name`)
+5. Open a pull request
+
+## License
+
+This project is licensed under the MIT License.
