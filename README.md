@@ -2,7 +2,7 @@
 
 Fast-paced geography games with 5K+ users.
 
-[Live Demo](https://geogauntlet.vercel.app) - [Repository](https://github.com/shaafshahzad/geography-gauntlet)
+[Live Demo](https://geography-gauntlet-shaaf-shahzads-projects.vercel.app) - [Repository](https://github.com/shaafshahzad/geography-gauntlet)
 
 <div align="center">
   <img src="https://github.com/shaafshahzad/geography-gauntlet/blob/main/public/preview.png?raw=true" alt="Geography Gauntlet dashboard preview" width="1000" />
