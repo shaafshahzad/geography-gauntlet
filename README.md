@@ -1,31 +1,44 @@
 # Geography Gauntlet
 
+Fast-paced geography games with 5K+ users.
+
+[Live Demo](https://geogauntlet.vercel.app) - [Repository](https://github.com/shaafshahzad/geography-gauntlet)
+
 <div align="center">
-    <img src="https://github.com/shaafshahzad/geography-gauntlet/blob/main/public/preview.png?raw=true" alt="Geography Gauntlet Overview" width="1000"/>
+  <img src="https://github.com/shaafshahzad/geography-gauntlet/blob/main/public/preview.png?raw=true" alt="Geography Gauntlet dashboard preview" width="1000" />
 </div>
 
-## Introduction
+## Overview
 
-In Geography Gauntlet, you have 10 seconds to answer each geography-related question. The challenges include naming capitals given a country, identifying countries from their capitals, and naming countries based on flag colors. There are also dedicated quizzes for countries and flags to sharpen your skills.
+Geography Gauntlet is an interactive web platform for geography games, including timed gauntlet rounds, country quizzes, flag quizzes, user stats, and leaderboards.
 
-## Key Features
+The app focuses on quick replayability: users answer geography questions under time pressure, track their results, and compete across multiple quiz modes.
 
-- **Time-Bound Challenges**: Answer each question within 10 seconds.
-- **Variety of Questions**:
-  - Naming capitals given a country
-  - Identifying countries from their capitals
-  - Naming countries based on flag colors
-- **Dedicated Quizzes**: Special quizzes focused on countries and flags.
+## Highlights
 
-## Technology Stack
+- 5K+ users
+- Timed geography gauntlet rounds
+- Dedicated country and flag quiz modes
+- User stats and leaderboards
+- Optimized data retrieval for dynamic quiz content
+- Custom database migration flow for adding new content
 
-- TypeScript
+## Stack
+
 - Next.js
+- TypeScript
+- React
 - PostgreSQL
-- Drizzle
-- TailwindCSS
+- Drizzle ORM
+- Tailwind CSS
 - Clerk Auth
+- Vercel
 
-## Next Steps
+## Local Development
 
-Future plans include adding more question types, enhancing user experience with more visual elements, and increasing question difficulty.
+```bash
+npm install
+npm run dev
+```
+
+Configure the required database, Clerk, and app environment variables before running locally.
