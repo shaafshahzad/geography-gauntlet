@@ -26,6 +26,7 @@ const config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
+        heading: ["var(--font-heading)", ...fontFamily.serif],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -80,18 +81,19 @@ const config = {
           to: { height: "0" },
         },
         aurora: {
-          from: {
-            backgroundPosition: "50% 50%, 50% 50%",
-          },
-          to: {
-            backgroundPosition: "350% 50%, 350% 50%",
-          },
+          from: { backgroundPosition: "50% 50%, 50% 50%" },
+          to: { backgroundPosition: "350% 50%, 350% 50%" },
+        },
+        "pulse-urgent": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.4" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         aurora: "aurora 60s linear infinite",
+        "pulse-urgent": "pulse-urgent 0.8s ease-in-out infinite",
       },
     },
   },

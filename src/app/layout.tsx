@@ -1,5 +1,5 @@
 import "~/styles/globals.css";
-import { Open_Sans } from "next/font/google";
+import { Open_Sans, Cinzel } from "next/font/google";
 import { TRPCReactProvider } from "~/trpc/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Navbar } from "./_components/navbar";
@@ -14,6 +14,12 @@ export const dynamic = "force-dynamic";
 const font = Open_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
+});
+
+const headingFont = Cinzel({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  weight: ["400", "700", "900"],
 });
 
 export const metadata = {
@@ -38,7 +44,7 @@ export default function RootLayout({
     <ClerkProvider>
       <CSPostHogProvider>
         <html lang="en" suppressHydrationWarning className="h-full">
-          <body className={`font-sans ${font.variable}`}>
+          <body className={`font-sans ${font.variable} ${headingFont.variable}`}>
             <TRPCReactProvider>
               <ThemeProvider
                 attribute="class"

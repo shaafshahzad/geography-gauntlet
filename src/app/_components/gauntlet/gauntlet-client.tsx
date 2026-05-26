@@ -34,6 +34,12 @@ interface GauntletState {
   questionNumber: number;
 }
 
+function getTimerColor(timer: number): string {
+  if (timer <= 5) return "text-destructive animate-pulse-urgent";
+  if (timer <= 9) return "text-amber-500 dark:text-amber-400";
+  return "text-primary dark:text-primary";
+}
+
 export function GauntletClient({
   initialQuestion,
   userId,
@@ -144,23 +150,42 @@ export function GauntletClient({
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-10">
-      <Card className="h-full w-full items-center justify-center px-5 py-10 sm:p-10">
+      <Card className="h-full w-full items-center justify-center border-l-4 border-l-destructive px-5 py-10 sm:p-10">
         <CardContent className="w-full space-y-2 pb-0 sm:space-y-10">
-          <div className="flex w-full flex-col items-center justify-center space-y-1">
-            <p className="text-4xl font-medium">{timer}</p>
-            <p className="text-xl font-light">Score: {totalScore}</p>
+          <div className="flex w-full items-center justify-between">
+            <div className="flex flex-col items-center gap-0.5">
+              <p className={`text-5xl font-bold tabular-nums transition-colors duration-300 ${getTimerColor(timer)}`}>
+                {timer}
+              </p>
+              <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                seconds
+              </p>
+            </div>
+            <div className="flex flex-col items-end gap-0.5">
+              <p className="text-3xl font-bold tabular-nums text-foreground">
+                {totalScore}
+              </p>
+              <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                score
+              </p>
+            </div>
           </div>
-          <div className="flex flex-col items-center justify-center gap-2 py-5 text-center sm:py-20">
-            <p className="text-lg">Question {questionNumber}</p>
-            <p className="text-2xl">{question.question}</p>
+
+          <div className="flex flex-col items-center justify-center gap-3 py-5 text-center sm:py-14">
+            <span className="rounded-full bg-muted px-3 py-0.5 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              Question {questionNumber}
+            </span>
+            <p className="text-2xl font-medium leading-snug">{question.question}</p>
           </div>
+
           <Input
             type="text"
             value={answer}
             onChange={(e) => setState({ ...state, answer: e.target.value })}
             onKeyDown={handleKeyDown}
-            placeholder="Type your answer here"
+            placeholder="Type your answer and press Enter"
             className="w-full"
+            autoFocus
           />
         </CardContent>
       </Card>
